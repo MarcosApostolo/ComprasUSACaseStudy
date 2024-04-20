@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A97C6C22BD42E0700780643 /* StateLoaderUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C12BD42E0700780643 /* StateLoaderUseCaseTests.swift */; };
+		4A97C6C52BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		4A97C6C02BD42DC500780643 /* ComprasUSACaseStudy.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ComprasUSACaseStudy.xctestplan; sourceTree = "<group>"; };
 		4A97C6C12BD42E0700780643 /* StateLoaderUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLoaderUseCaseTests.swift; sourceTree = "<group>"; };
+		4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakCheck.swift"; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A97C6C32BD43CC600780643 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		4AF9E2CC2BD41FEC00D4CC11 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +85,7 @@
 		4AF9E2E22BD41FED00D4CC11 /* ComprasUSACaseStudyTests */ = {
 			isa = PBXGroup;
 			children = (
+				4A97C6C32BD43CC600780643 /* Helpers */,
 				4A97C6C02BD42DC500780643 /* ComprasUSACaseStudy.xctestplan */,
 				4A97C6C12BD42E0700780643 /* StateLoaderUseCaseTests.swift */,
 			);
@@ -197,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A97C6C52BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift in Sources */,
 				4A97C6C22BD42E0700780643 /* StateLoaderUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

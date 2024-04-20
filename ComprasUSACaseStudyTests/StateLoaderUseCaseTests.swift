@@ -31,15 +31,13 @@ class StateLoaderUseCase {
 
 final class StateLoaderUseCaseTests: XCTestCase {
     func test_init_doesNotSendMessagesToClient() {
-        let store = StoreSpy()
-        _ = StateLoaderUseCase(store: store)
+        let (_, store) = makeSUT()
         
         XCTAssertEqual(store.retrievalCompletions.count, 0)
     }
     
     func test_load_sendLoadMessageToClient() {
-        let store = StoreSpy()
-        let sut = StateLoaderUseCase(store: store)
+        let (sut, store) = makeSUT()
         
         sut.load { _ in }
         
@@ -47,8 +45,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
     }
     
     func test_load_storeCompletesWithLoadErrorOnError() {
-        let store = StoreSpy()
-        let sut = StateLoaderUseCase(store: store)
+        let (sut, store) = makeSUT()
         
         var receivedResult: StateLoaderUseCase.Error?
         
@@ -62,6 +59,16 @@ final class StateLoaderUseCaseTests: XCTestCase {
     }
 
     // Helpers
+    func makeSUT() -> (sut: StateLoaderUseCase, store: StoreSpy) {
+        let store = StoreSpy()
+        let sut = StateLoaderUseCase(store: store)
+        
+        checkForMemoryLeaks(store)
+        checkForMemoryLeaks(sut)
+        
+        return (sut, store)
+    }
+    
     class StoreSpy: StateStore {
         var retrievalCompletions = [(Error) -> Void]()
         

@@ -32,6 +32,20 @@ final class CoreDataStateStoreTests: XCTestCase {
         expect(sut, toCompleteWith: .success([state1]))
     }
     
+    func test_retrieve_completeWithMultipleStatesAfterMultipleInsertions() {
+        let sut = makeSUT()
+        
+        let state1 = makeState(name: "California", taxValue: 0.02)
+        let state2 = makeState(name: "New York", taxValue: 0.01)
+        let state3 = makeState(name: "Vermont", taxValue: 0.1)
+        
+        sut.insert(state1, completion: { _ in })
+        sut.insert(state2, completion: { _ in })
+        sut.insert(state3, completion: { _ in })
+        
+        expect(sut, toCompleteWith: .success([state1, state2, state3]))
+    }
+    
     // Helpers
     func makeSUT() -> CoreDataStateStore {
         let storeURL = URL(fileURLWithPath: "/dev/null")

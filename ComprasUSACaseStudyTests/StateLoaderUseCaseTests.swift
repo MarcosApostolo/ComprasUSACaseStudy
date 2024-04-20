@@ -40,6 +40,14 @@ final class StateLoaderUseCaseTests: XCTestCase {
         }
     }
     
+    func test_load_completesWithEmptyStates() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWith: .success([])) {
+            store.completeRetrievalSuccessfully(with: [])
+        }
+    }
+    
     func test_shouldNotDeliverResultAfterSUTDeallocation() {
         let store = StoreSpy()
         var sut: StateLoaderUseCase? = StateLoaderUseCase(store: store)

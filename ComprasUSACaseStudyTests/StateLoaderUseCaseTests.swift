@@ -84,6 +84,10 @@ final class StateLoaderUseCaseTests: XCTestCase {
             retrievalCompletions.append(completion)
         }
         
+        func insert(_ state: ComprasUSACaseStudy.State, completion: @escaping InsertionCompletion) {
+            
+        }
+        
         func completeRetrieval(with error: Error, at index: Int = 0) {
             retrievalCompletions[index](.failure(error))
         }

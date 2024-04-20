@@ -11,9 +11,7 @@ import CoreData
 public class CoreDataStateStore: StateStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
-    
-    public typealias Result = StateStore.RetrievalResult
-    
+        
     private static let modelName = "PurchaseTransactions"
     private static let model = NSManagedObjectModel.with(modelName: modelName, bundle: Bundle(for: CoreDataStateStore.self))
     
@@ -42,11 +40,34 @@ public class CoreDataStateStore: StateStore {
         }
     }
     
-    public func retrieve(completion: @escaping RetrievalCompletion) {
+    func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
         let context = self.context
-        
-        context.perform {
-            completion(.success([]))
+        context.perform { action(context) }
+    }
+    
+    public func retrieve(completion: @escaping RetrievalCompletion) {
+        perform { context in
+            completion(Result(catching: {
+                guard let states = try ManagedState.find(context: context)?.compactMap({ managedState in
+                    return State(name: managedState.name, taxValue: managedState.taxValue)
+                }) else {
+                    return []
+                }
+                
+                return states
+            }))}
+    }
+    
+    public func insert(_ state: State, completion: @escaping InsertionCompletion) {
+        perform { context in
+            completion(Result(catching: {
+                let managedState = ManagedState.newInstance(context: context)
+                
+                managedState.name = state.name
+                managedState.taxValue = state.taxValue
+                
+                try context.save()
+            }))
         }
     }
 }
@@ -59,3 +80,18 @@ extension NSManagedObjectModel {
     }
 }
 
+@objc(ManagedState)
+class ManagedState: NSManagedObject {
+    @NSManaged var name: String
+    @NSManaged var taxValue: Double
+    
+    static func newInstance(context: NSManagedObjectContext) -> ManagedState {
+        ManagedState(context: context)
+    }
+    
+    static func find(context: NSManagedObjectContext) throws -> [ManagedState]? {
+        let request = NSFetchRequest<ManagedState>(entityName: "ManagedState")
+        request.returnsObjectsAsFaults = false
+        return try context.fetch(request)
+    }
+}

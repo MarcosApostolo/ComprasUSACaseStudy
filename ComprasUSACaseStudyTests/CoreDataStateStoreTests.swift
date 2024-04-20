@@ -12,14 +12,24 @@ final class CoreDataStateStoreTests: XCTestCase {
     func test_retrieve_deliversEmptyStates() {
         let sut = makeSUT()
         
-        expect(sut, toCompleteWith: .success([]), when: {})
+        expect(sut, toCompleteWith: .success([]))
     }
     
     func test_retrieve_hasNoSideEffect_afterReturningEmpty() {
         let sut = makeSUT()
         
-        expect(sut, toCompleteWith: .success([]), when: {})
-        expect(sut, toCompleteWith: .success([]), when: {})
+        expect(sut, toCompleteWith: .success([]))
+        expect(sut, toCompleteWith: .success([]))
+    }
+    
+    func test_retrieve_completesWithStatesWhenNotEmpty() {
+        let sut = makeSUT()
+        
+        let state1 = makeState(name: "California", taxValue: 0.02)
+        
+        sut.insert(state1, completion: { _ in })
+        
+        expect(sut, toCompleteWith: .success([state1]))
     }
     
     // Helpers
@@ -32,7 +42,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         return sut
     }
     
-    func expect(_ sut: CoreDataStateStore, toCompleteWith expectedResult: CoreDataStateStore.Result, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: CoreDataStateStore, toCompleteWith expectedResult: CoreDataStateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { receivedResult in

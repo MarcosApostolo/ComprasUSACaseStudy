@@ -6,44 +6,7 @@
 //
 
 import XCTest
-
-struct State: Equatable {
-    public let name: String
-    public let taxValue: Double
-}
-
-protocol StateStore {
-    typealias RetrievalCompletion = (Result<[State], Error>) -> Void
-    
-    func retrieve(completion: @escaping RetrievalCompletion)
-}
-
-class StateLoaderUseCase {
-    let store: StateStore
-    
-    public typealias LoadResult = Result<[State], Error>
-    
-    public enum Error: Swift.Error {
-        case loadError
-    }
-        
-    init(store: StateStore) {
-        self.store = store
-    }
-    
-    func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve { [weak self] result in
-            guard self != nil else { return }
-            
-            switch result {
-            case let .success(states):
-                completion(.success(states))
-            case .failure:
-                completion(.failure(.loadError))
-            }
-        }
-    }
-}
+import ComprasUSACaseStudy
 
 final class StateLoaderUseCaseTests: XCTestCase {
     func test_init_doesNotSendMessagesToClient() {

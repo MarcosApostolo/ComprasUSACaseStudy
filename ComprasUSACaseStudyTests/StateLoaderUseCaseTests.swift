@@ -7,12 +7,21 @@
 
 import XCTest
 
+struct State: Equatable {
+    public let name: String
+    public let taxValue: Double
+}
+
 protocol StateStore {
-    func retrieve(completion: @escaping (Error) -> Void)
+    typealias RetrievalCompletion = (Result<[State], Error>) -> Void
+    
+    func retrieve(completion: @escaping RetrievalCompletion)
 }
 
 class StateLoaderUseCase {
     let store: StateStore
+    
+    public typealias LoadResult = Result<[State], Error>
     
     public enum Error: Swift.Error {
         case loadError
@@ -22,9 +31,14 @@ class StateLoaderUseCase {
         self.store = store
     }
     
-    func load(completion: @escaping (Error) -> Void) {
-        store.retrieve { error in
-            completion(.loadError)
+    func load(completion: @escaping (LoadResult) -> Void) {
+        store.retrieve { result in
+            switch result {
+            case let .success(states):
+                completion(.success(states))
+            case .failure:
+                completion(.failure(.loadError))
+            }
         }
     }
 }
@@ -47,15 +61,30 @@ final class StateLoaderUseCaseTests: XCTestCase {
     func test_load_storeCompletesWithLoadErrorOnError() {
         let (sut, store) = makeSUT()
         
-        var receivedResult: StateLoaderUseCase.Error?
+        var receivedResult: StateLoaderUseCase.LoadResult?
         
-        sut.load { error in
-            receivedResult = error
+        sut.load { result in
+            receivedResult = result
         }
         
         store.completeRetrieval(with: anyNSError())
         
-        XCTAssertEqual(receivedResult, .loadError)
+        XCTAssertEqual(receivedResult, .failure(.loadError))
+    }
+    
+    func test_load_completesWithStates() {
+        let (sut, store) = makeSUT()
+        let state1 = State(name: "Any name", taxValue: 1.0)
+        
+        var expectedResult: StateLoaderUseCase.LoadResult?
+        
+        sut.load { result in
+            expectedResult = result
+        }
+        
+        store.completeRetrievalSuccessfully(with: [state1])
+        
+        XCTAssertEqual(expectedResult, .success([state1]))
     }
 
     // Helpers
@@ -70,14 +99,18 @@ final class StateLoaderUseCaseTests: XCTestCase {
     }
     
     class StoreSpy: StateStore {
-        var retrievalCompletions = [(Error) -> Void]()
+        var retrievalCompletions = [RetrievalCompletion]()
         
-        func retrieve(completion: @escaping (Error) -> Void) {
+        func retrieve(completion: @escaping RetrievalCompletion) {
             retrievalCompletions.append(completion)
         }
         
         func completeRetrieval(with error: Error, at index: Int = 0) {
-            retrievalCompletions[index](error)
+            retrievalCompletions[index](.failure(error))
+        }
+        
+        func completeRetrievalSuccessfully(with states: [State], at index: Int = 0) {
+            retrievalCompletions[index](.success(states))
         }
     }
 }

@@ -23,13 +23,8 @@ public class StateLoaderUseCase {
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
             guard self != nil else { return }
-            
-            switch result {
-            case let .success(states):
-                completion(.success(states))
-            case .failure:
-                completion(.failure(.loadError))
-            }
+
+            completion(result.mapError({ _ in .loadError}))
         }
     }
 }

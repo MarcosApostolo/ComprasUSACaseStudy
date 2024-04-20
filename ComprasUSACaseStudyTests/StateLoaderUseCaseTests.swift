@@ -60,31 +60,19 @@ final class StateLoaderUseCaseTests: XCTestCase {
     
     func test_load_storeCompletesWithLoadErrorOnError() {
         let (sut, store) = makeSUT()
-        
-        var receivedResult: StateLoaderUseCase.LoadResult?
-        
-        sut.load { result in
-            receivedResult = result
+                
+        expect(sut, toCompleteWith: .failure(.loadError)) {
+            store.completeRetrieval(with: anyNSError())
         }
-        
-        store.completeRetrieval(with: anyNSError())
-        
-        XCTAssertEqual(receivedResult, .failure(.loadError))
     }
     
     func test_load_completesWithStates() {
         let (sut, store) = makeSUT()
         let state1 = State(name: "Any name", taxValue: 1.0)
         
-        var expectedResult: StateLoaderUseCase.LoadResult?
-        
-        sut.load { result in
-            expectedResult = result
+        expect(sut, toCompleteWith: .success([state1])) {
+            store.completeRetrievalSuccessfully(with: [state1])
         }
-        
-        store.completeRetrievalSuccessfully(with: [state1])
-        
-        XCTAssertEqual(expectedResult, .success([state1]))
     }
 
     // Helpers
@@ -112,6 +100,24 @@ final class StateLoaderUseCaseTests: XCTestCase {
         func completeRetrievalSuccessfully(with states: [State], at index: Int = 0) {
             retrievalCompletions[index](.success(states))
         }
+    }
+    
+    func expect(_ sut: StateLoaderUseCase, toCompleteWith expectedResult: StateLoaderUseCase.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        var receivedResult: StateLoaderUseCase.LoadResult?
+        
+        let exp = expectation(description: "Wait for action to finish")
+        
+        sut.load { result in
+            receivedResult = result
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedResult, expectedResult)
     }
 }
 

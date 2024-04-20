@@ -7,20 +7,45 @@
 
 import XCTest
 
+protocol StateStore {
+    func retrieve()
+}
+
 class StateLoaderUseCase {
+    let store: StateStore
     
+    init(store: StateStore) {
+        self.store = store
+    }
+    
+    func load() {
+        store.retrieve()
+    }
 }
 
 final class StateLoaderUseCaseTests: XCTestCase {
     func test_init_doesNotSendMessagesToClient() {
-        _ = StateLoaderUseCase()
-        let client = Client()
+        let store = StoreSpy()
+        _ = StateLoaderUseCase(store: store)
         
-        XCTAssertTrue(client.messages.isEmpty)
+        XCTAssertEqual(store.loadMessages, 0)
+    }
+    
+    func test_load_sendLoadMessageToClient() {
+        let store = StoreSpy()
+        let sut = StateLoaderUseCase(store: store)
+        
+        sut.load()
+        
+        XCTAssertEqual(store.loadMessages, 1)
     }
 
     // Helpers
-    class Client {
-        var messages = [String]()
+    class StoreSpy: StateStore {
+        var loadMessages = 0
+        
+        func retrieve() {
+            loadMessages += 1
+        }
     }
 }

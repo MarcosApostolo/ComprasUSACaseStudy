@@ -8,14 +8,14 @@
 import XCTest
 
 protocol StateStore {
-    func retrieve(completion: (Error) -> Void)
+    func retrieve(completion: @escaping (Error) -> Void)
 }
 
 class StateLoaderUseCase {
     let store: StateStore
     
     public enum Error: Swift.Error {
-        case generic
+        case loadError
     }
         
     init(store: StateStore) {
@@ -24,7 +24,7 @@ class StateLoaderUseCase {
     
     func load(completion: @escaping (Error) -> Void) {
         store.retrieve { error in
-            completion(.generic)
+            completion(.loadError)
         }
     }
 }
@@ -34,7 +34,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
         let store = StoreSpy()
         _ = StateLoaderUseCase(store: store)
         
-        XCTAssertEqual(store.loadMessages, 0)
+        XCTAssertEqual(store.retrievalCompletions.count, 0)
     }
     
     func test_load_sendLoadMessageToClient() {
@@ -43,7 +43,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
         
         sut.load { _ in }
         
-        XCTAssertEqual(store.loadMessages, 1)
+        XCTAssertEqual(store.retrievalCompletions.count, 1)
     }
     
     func test_load_storeCompletesWithLoadErrorOnError() {
@@ -56,18 +56,21 @@ final class StateLoaderUseCaseTests: XCTestCase {
             receivedResult = error
         }
         
-        XCTAssertEqual(receivedResult, .generic)
+        store.completeRetrieval(with: anyNSError())
+        
+        XCTAssertEqual(receivedResult, .loadError)
     }
 
     // Helpers
     class StoreSpy: StateStore {
+        var retrievalCompletions = [(Error) -> Void]()
         
-        var loadMessages = 0
+        func retrieve(completion: @escaping (Error) -> Void) {
+            retrievalCompletions.append(completion)
+        }
         
-        func retrieve(completion: (Error) -> Void) {
-            loadMessages += 1
-            
-            completion(anyNSError())
+        func completeRetrieval(with error: Error, at index: Int = 0) {
+            retrievalCompletions[index](error)
         }
     }
 }

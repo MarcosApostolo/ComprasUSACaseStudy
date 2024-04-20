@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "F768AA79-F827-43CF-A4B1-033F2B9D1A05",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ComprasUSACaseStudy.xcodeproj",
+        "identifier" : "4AF9E2DD2BD41FED00D4CC11",
+        "name" : "ComprasUSACaseStudyTests"
+      }
+    }
+  ],
+  "version" : 1
+}

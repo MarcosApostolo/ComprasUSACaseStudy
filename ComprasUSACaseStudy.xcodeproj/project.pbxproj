@@ -14,7 +14,8 @@
 		4A97C6CB2BD448F700780643 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6CA2BD448F700780643 /* State.swift */; };
 		4A97C6D32BD4535100780643 /* CoreDataStateStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6D22BD4535100780643 /* CoreDataStateStoreTests.swift */; };
 		4A97C6D62BD45D0B00780643 /* CoreDataStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6D52BD45D0B00780643 /* CoreDataStateStore.swift */; };
-		4A97C6DC2BD4631C00780643 /* ComprasUSA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DA2BD4631C00780643 /* ComprasUSA.xcdatamodeld */; };
+		4A97C6DC2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DA2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld */; };
+		4A97C6DF2BD4657F00780643 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DE2BD4657F00780643 /* TestHelpers.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		4A97C6D22BD4535100780643 /* CoreDataStateStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStateStoreTests.swift; sourceTree = "<group>"; };
 		4A97C6D52BD45D0B00780643 /* CoreDataStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStateStore.swift; sourceTree = "<group>"; };
 		4A97C6DB2BD4631C00780643 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4A97C6DE2BD4657F00780643 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */,
+				4A97C6DE2BD4657F00780643 /* TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -84,7 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				4A97C6D52BD45D0B00780643 /* CoreDataStateStore.swift */,
-				4A97C6DA2BD4631C00780643 /* ComprasUSA.xcdatamodeld */,
+				4A97C6DA2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -238,7 +241,7 @@
 			files = (
 				4A97C6D62BD45D0B00780643 /* CoreDataStateStore.swift in Sources */,
 				4A97C6C92BD448D200780643 /* StateLoaderUseCase.swift in Sources */,
-				4A97C6DC2BD4631C00780643 /* ComprasUSA.xcdatamodeld in Sources */,
+				4A97C6DC2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld in Sources */,
 				4A97C6C72BD448BD00780643 /* StateStore.swift in Sources */,
 				4A97C6CB2BD448F700780643 /* State.swift in Sources */,
 			);
@@ -251,6 +254,7 @@
 				4A97C6C52BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift in Sources */,
 				4A97C6C22BD42E0700780643 /* StateLoaderUseCaseTests.swift in Sources */,
 				4A97C6D32BD4535100780643 /* CoreDataStateStoreTests.swift in Sources */,
+				4A97C6DF2BD4657F00780643 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,13 +522,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4A97C6DA2BD4631C00780643 /* ComprasUSA.xcdatamodeld */ = {
+		4A97C6DA2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				4A97C6DB2BD4631C00780643 /* Model.xcdatamodel */,
 			);
 			currentVersion = 4A97C6DB2BD4631C00780643 /* Model.xcdatamodel */;
-			path = ComprasUSA.xcdatamodeld;
+			path = PurchaseTransactions.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

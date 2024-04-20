@@ -14,7 +14,7 @@ public class CoreDataStateStore: StateStore {
     
     public typealias Result = StateStore.RetrievalResult
     
-    private static let modelName = "ComprasUSA"
+    private static let modelName = "PurchaseTransactions"
     private static let model = NSManagedObjectModel.with(modelName: modelName, bundle: Bundle(for: CoreDataStateStore.self))
     
     enum StoreError: Error {

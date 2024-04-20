@@ -8,7 +8,9 @@
 import Foundation
 
 public protocol StateStore {
-    typealias RetrievalCompletion = (Result<[State], Error>) -> Void
+    typealias RetrievalResult = Result<[State], Error>
+    
+    typealias RetrievalCompletion = (RetrievalResult) -> Void
     
     func retrieve(completion: @escaping RetrievalCompletion)
 }

@@ -32,7 +32,9 @@ class StateLoaderUseCase {
     }
     
     func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve { result in
+        store.retrieve { [weak self] result in
+            guard self != nil else { return }
+            
             switch result {
             case let .success(states):
                 completion(.success(states))
@@ -73,6 +75,24 @@ final class StateLoaderUseCaseTests: XCTestCase {
         expect(sut, toCompleteWith: .success([state1])) {
             store.completeRetrievalSuccessfully(with: [state1])
         }
+    }
+    
+    func test_shouldNotDeliverResultAfterSUTDeallocation() {
+        let store = StoreSpy()
+        var sut: StateLoaderUseCase? = StateLoaderUseCase(store: store)
+        let state1 = State(name: "Any name", taxValue: 1.0)
+        
+        var receivedResult = [StateLoaderUseCase.LoadResult]()
+        
+        sut?.load { result in
+            receivedResult.append(result)
+        }
+        
+        sut = nil
+        
+        store.completeRetrievalSuccessfully(with: [state1])
+                        
+        XCTAssertTrue(receivedResult.isEmpty)
     }
 
     // Helpers

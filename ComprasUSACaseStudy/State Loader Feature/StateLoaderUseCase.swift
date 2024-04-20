@@ -7,10 +7,14 @@
 
 import Foundation
 
-public class StateLoaderUseCase {
-    let store: StateStore
+public protocol StateLoader {
+    typealias LoadResult = Result<[State], Error>
     
-    public typealias LoadResult = Result<[State], Error>
+    func load(completion: @escaping (LoadResult) -> Void)
+}
+
+public class StateLoaderUseCase: StateLoader {
+    let store: StateStore
     
     public enum Error: Swift.Error {
         case loadError
@@ -24,7 +28,7 @@ public class StateLoaderUseCase {
         store.retrieve { [weak self] result in
             guard self != nil else { return }
 
-            completion(result.mapError({ _ in .loadError}))
+            completion(result.mapError({ _ in Error.loadError}))
         }
     }
 }

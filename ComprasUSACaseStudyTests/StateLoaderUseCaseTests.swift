@@ -26,7 +26,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
     func test_load_storeCompletesWithLoadErrorOnError() {
         let (sut, store) = makeSUT()
                 
-        expect(sut, toCompleteWith: .failure(.loadError)) {
+        expect(sut, toCompleteWith: .failure(StateLoaderUseCase.Error.loadError)) {
             store.completeRetrieval(with: anyNSError())
         }
     }
@@ -94,12 +94,17 @@ final class StateLoaderUseCaseTests: XCTestCase {
     }
     
     func expect(_ sut: StateLoaderUseCase, toCompleteWith expectedResult: StateLoaderUseCase.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
-        var receivedResult: StateLoaderUseCase.LoadResult?
-        
         let exp = expectation(description: "Wait for action to finish")
         
-        sut.load { result in
-            receivedResult = result
+        sut.load { receivedResult in
+            switch(expectedResult, receivedResult) {
+            case let (.success(expecedItems), .success(receivedItems)):
+                XCTAssertEqual(expecedItems, receivedItems, file: file, line: line)
+            case let (.failure(expectedError as StateLoaderUseCase.Error), .failure(receivedError as StateLoaderUseCase.Error)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
             
             exp.fulfill()
         }
@@ -107,8 +112,6 @@ final class StateLoaderUseCaseTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(receivedResult, expectedResult)
     }
 }
 

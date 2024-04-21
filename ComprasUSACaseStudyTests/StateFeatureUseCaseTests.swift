@@ -34,7 +34,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
     
     func test_load_completesWithStates() {
         let (sut, store) = makeSUT()
-        let state1 = State(name: "Any name", taxValue: 1.0)
+        let state1 = makeState()
         
         expect(sut, toCompleteLoadWith: .success([state1])) {
             store.completeRetrievalSuccessfully(with: [state1])
@@ -52,7 +52,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
     func test_shouldNotDeliverResultAfterSUTDeallocation() {
         let store = StoreSpy()
         var sut: StateFeatureUseCase? = StateFeatureUseCase(store: store)
-        let state1 = State(name: "Any name", taxValue: 1.0)
+        let state1 = makeState()
         
         var receivedResult = [StateFeatureUseCase.LoadResult]()
         

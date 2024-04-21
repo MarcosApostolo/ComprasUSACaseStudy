@@ -61,7 +61,7 @@ extension CoreDataStateStore {
             completion(Result(catching: {
                 let managedState = ManagedState.newInstance(context: context)
                 
-                managedState.name = state.name
+                managedState.name = state.name.rawValue
                 managedState.taxValue = state.taxValue
                 
                 try context.save()
@@ -75,7 +75,7 @@ extension CoreDataStateStore {
         perform { context in
             completion(Result(catching: {
                 guard let stateToBeRemoved = try ManagedState.find(context: context)?.first(where: { managedState in
-                    managedState.name == state.name
+                    managedState.name == state.name.rawValue
                 }) else {
                     return
                 }
@@ -91,7 +91,7 @@ extension CoreDataStateStore {
         perform { context in
             completion(Result(catching: {
                 guard let stateToEdited = try ManagedState.find(context: context)?.first(where: { managedState in
-                    managedState.name == state.name
+                    managedState.name == state.name.rawValue
                 }) else {
                     throw StoreError.editError
                 }

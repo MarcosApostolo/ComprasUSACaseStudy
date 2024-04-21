@@ -26,7 +26,7 @@ final class CoreDataStateStoreTests: XCTestCase {
     func test_retrieve_hasNoSideEffect_afterReturningNonEmptyStates() {
         let sut = makeSUT()
         
-        let state1 = makeState(name: "California", taxValue: 0.02)
+        let state1 = makeState(name: "california", taxValue: 0.02)
         
         sut.insert(state1, completion: { _ in })
         
@@ -37,7 +37,7 @@ final class CoreDataStateStoreTests: XCTestCase {
     func test_retrieve_completesWithStatesWhenNotEmpty() {
         let sut = makeSUT()
         
-        let state1 = makeState(name: "California", taxValue: 0.02)
+        let state1 = makeState(name: "california", taxValue: 0.02)
                 
         prepopulateStore(with: [state1], using: sut)
         
@@ -47,9 +47,9 @@ final class CoreDataStateStoreTests: XCTestCase {
     func test_retrieve_completeWithMultipleStatesAfterMultipleInsertions() {
         let sut = makeSUT()
         
-        let state1 = makeState(name: "California", taxValue: 0.02)
-        let state2 = makeState(name: "New York", taxValue: 0.01)
-        let state3 = makeState(name: "Vermont", taxValue: 0.1)
+        let state1 = makeState(name: "california", taxValue: 0.02)
+        let state2 = makeState(name: "newYork", taxValue: 0.01)
+        let state3 = makeState(name: "vermont", taxValue: 0.1)
         
         prepopulateStore(with: [state1, state2, state3], using: sut)
 
@@ -60,7 +60,7 @@ final class CoreDataStateStoreTests: XCTestCase {
     func test_delete_deletesState() {
         let sut = makeSUT()
         
-        let state1 = makeState(name: "California", taxValue: 0.02)
+        let state1 = makeState(name: "california", taxValue: 0.02)
         
         prepopulateStore(with: [state1], using: sut)
         
@@ -74,9 +74,9 @@ final class CoreDataStateStoreTests: XCTestCase {
     func test_delete_doesNotAlterOtherStatesWhenDeletingOneState() {
         let sut = makeSUT()
         
-        let state1 = makeState(name: "California", taxValue: 0.02)
-        let state2 = makeState(name: "New York", taxValue: 0.01)
-        let state3 = makeState(name: "Vermont", taxValue: 0.1)
+        let state1 = makeState(name: "california", taxValue: 0.02)
+        let state2 = makeState(name: "newYork", taxValue: 0.01)
+        let state3 = makeState(name: "vermont", taxValue: 0.1)
         
         prepopulateStore(with: [state1, state2, state3], using: sut)
         
@@ -91,13 +91,13 @@ final class CoreDataStateStoreTests: XCTestCase {
     func test_edit_editState() {
         let sut = makeSUT()
         
-        let state1 = makeState(name: "California", taxValue: 0.02)
+        let state1 = makeState(name: "california", taxValue: 0.02)
         
         prepopulateStore(with: [state1], using: sut)
         
         expect(sut, toRetrieveWith: .success([state1]))
         
-        let newState = makeState(name: "California", taxValue: 0.05)
+        let newState = makeState(name: "california", taxValue: 0.05)
 
         sut.edit(newState) { _ in }
         
@@ -107,13 +107,13 @@ final class CoreDataStateStoreTests: XCTestCase {
     func test_edit_doesNotAllowChangingName_completesWithError() {
         let sut = makeSUT()
         
-        let state1 = makeState(name: "California", taxValue: 0.02)
+        let state1 = makeState(name: "california", taxValue: 0.02)
         
         prepopulateStore(with: [state1], using: sut)
         
         expect(sut, toRetrieveWith: .success([state1]))
         
-        let newState = makeState(name: "california", taxValue: 0.02)
+        let newState = makeState(name: "alabama", taxValue: 0.02)
         
         let exp = expectation(description: "Wait for edit to finish")
         
@@ -140,8 +140,8 @@ final class CoreDataStateStoreTests: XCTestCase {
         let sut = makeSUT()
         var completedOperationsInOrder = [XCTestExpectation]()
         
-        let state1 = makeState(name: "California", taxValue: 0.02)
-        let state2 = makeState(name: "New York", taxValue: 0.01)
+        let state1 = makeState(name: "california", taxValue: 0.02)
+        let state2 = makeState(name: "newYork", taxValue: 0.01)
         
         let op1 = expectation(description: "Operation 1")
         sut.insert(state1, completion: { _ in
@@ -197,7 +197,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    func prepopulateStore(with states: [State] = [State(name: "California", taxValue: 0.1)], using sut: CoreDataStateStore) {
+    func prepopulateStore(with states: [State], using sut: CoreDataStateStore) {
         states.forEach({ state in
             sut.insert(state, completion: { _ in })
         })

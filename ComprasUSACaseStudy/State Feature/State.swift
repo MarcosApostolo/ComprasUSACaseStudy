@@ -8,11 +8,15 @@
 import Foundation
 
 public struct State: Equatable, Hashable {
-    public let name: String
+    public let name: USAStates
     public let taxValue: Double
     
-    public init(name: String, taxValue: Double) {
-        self.name = name
+    public init?(name: String, taxValue: Double) {
+        guard let state = USAStates(rawValue: name) else {
+            return nil
+        }
+        
+        self.name = state
         self.taxValue = taxValue
     }
 }

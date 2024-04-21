@@ -9,17 +9,18 @@ import XCTest
 import ComprasUSACaseStudy
 
 final class CoreDataStateStoreTests: XCTestCase {
+    // Retrieve
     func test_retrieve_deliversEmptyStates() {
         let sut = makeSUT()
         
-        expect(sut, toCompleteWith: .success([]))
+        expect(sut, toRetrieveWith: .success([]))
     }
     
     func test_retrieve_hasNoSideEffect_afterReturningEmpty() {
         let sut = makeSUT()
         
-        expect(sut, toCompleteWith: .success([]))
-        expect(sut, toCompleteWith: .success([]))
+        expect(sut, toRetrieveWith: .success([]))
+        expect(sut, toRetrieveWith: .success([]))
     }
     
     func test_retrieve_hasNoSideEffect_afterReturningNonEmptyStates() {
@@ -29,8 +30,8 @@ final class CoreDataStateStoreTests: XCTestCase {
         
         sut.insert(state1, completion: { _ in })
         
-        expect(sut, toCompleteWith: .success([state1]))
-        expect(sut, toCompleteWith: .success([state1]))
+        expect(sut, toRetrieveWith: .success([state1]))
+        expect(sut, toRetrieveWith: .success([state1]))
     }
     
     func test_retrieve_completesWithStatesWhenNotEmpty() {
@@ -40,7 +41,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         
         sut.insert(state1, completion: { _ in })
         
-        expect(sut, toCompleteWith: .success([state1]))
+        expect(sut, toRetrieveWith: .success([state1]))
     }
     
     func test_retrieve_completeWithMultipleStatesAfterMultipleInsertions() {
@@ -54,7 +55,40 @@ final class CoreDataStateStoreTests: XCTestCase {
         sut.insert(state2, completion: { _ in })
         sut.insert(state3, completion: { _ in })
         
-        expect(sut, toCompleteWith: .success([state1, state2, state3]))
+        expect(sut, toRetrieveWith: .success([state1, state2, state3]))
+    }
+    
+    // Delete
+    func test_delete_deletesState() {
+        let sut = makeSUT()
+        
+        let state1 = makeState(name: "California", taxValue: 0.02)
+        
+        sut.insert(state1, completion: { _ in })
+        
+        expect(sut, toRetrieveWith: .success([state1]))
+        
+        sut.delete(state1) { _ in }
+        
+        expect(sut, toRetrieveWith: .success([]))
+    }
+    
+    func test_delete_doesNotAlterOtherStatesWhenDeletingOneState() {
+        let sut = makeSUT()
+        
+        let state1 = makeState(name: "California", taxValue: 0.02)
+        let state2 = makeState(name: "New York", taxValue: 0.01)
+        let state3 = makeState(name: "Vermont", taxValue: 0.1)
+        
+        sut.insert(state1, completion: { _ in })
+        sut.insert(state2, completion: { _ in })
+        sut.insert(state3, completion: { _ in })
+        
+        expect(sut, toRetrieveWith: .success([state1, state2, state3]))
+        
+        sut.delete(state1) { _ in }
+        
+        expect(sut, toRetrieveWith: .success([state2, state3]))
     }
     
     // Helpers
@@ -67,7 +101,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         return sut
     }
     
-    func expect(_ sut: CoreDataStateStore, toCompleteWith expectedResult: CoreDataStateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: CoreDataStateStore, toRetrieveWith expectedResult: CoreDataStateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { receivedResult in

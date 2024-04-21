@@ -69,6 +69,22 @@ extension CoreDataStateStore {
     }
 }
 
+extension CoreDataStateStore {
+    public func delete(_ state: State, completion: @escaping DeletionCompletion) {
+        perform { context in
+            completion(Result(catching: {
+                guard let stateToBeRemoved = try ManagedState.find(context: context)?.first(where: { managedState in
+                    managedState.name == state.name
+                }) else {
+                    return
+                }
+
+                context.delete(stateToBeRemoved)
+            }))
+        }
+    }
+}
+
 extension NSManagedObjectModel {
     static func with(modelName: String, bundle: Bundle) -> NSManagedObjectModel? {
         bundle

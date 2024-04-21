@@ -88,6 +88,10 @@ final class StateLoaderUseCaseTests: XCTestCase {
             
         }
         
+        func delete(_ state: ComprasUSACaseStudy.State, completion: @escaping DeletionCompletion) {
+            
+        }
+        
         func completeRetrieval(with error: Error, at index: Int = 0) {
             retrievalCompletions[index](.failure(error))
         }

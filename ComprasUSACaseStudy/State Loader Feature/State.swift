@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct State: Equatable {
+public struct State: Equatable, Hashable {
     public let name: String
     public let taxValue: Double
     

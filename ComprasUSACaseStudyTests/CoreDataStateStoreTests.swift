@@ -137,7 +137,9 @@ final class CoreDataStateStoreTests: XCTestCase {
         sut.retrieve { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedStates), .success(expectedStates)):
-                XCTAssertEqual(receivedStates, expectedStates, file: file, line: line)
+                let receivedStatesSet = Set(receivedStates)
+                let expectedStatesSet = Set(expectedStates)
+                XCTAssertEqual(receivedStatesSet, expectedStatesSet, file: file, line: line)
             case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:

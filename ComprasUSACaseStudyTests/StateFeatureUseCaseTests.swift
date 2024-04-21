@@ -125,6 +125,14 @@ final class StateFeatureUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.deletionCompletions.count, 0)
     }
+    
+    func test_delete_sendDeleteMessageToStoreOnDelete() {
+        let (sut, store) = makeSUT()
+        
+        sut.remove(makeState()) { _ in }
+        
+        XCTAssertEqual(store.deletionCompletions.count, 1)
+    }
 
     // MARK: Helpers
     func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {

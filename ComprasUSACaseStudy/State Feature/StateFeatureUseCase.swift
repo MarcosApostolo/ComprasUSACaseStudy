@@ -40,3 +40,9 @@ extension StateFeatureUseCase: StateCreator {
         })
     }
 }
+
+extension StateFeatureUseCase: StateRemover {
+    public func remove(_ state: State, completion: @escaping (RemovalResult) -> Void) {
+        store.delete(state, completion: { _ in })
+    }
+}

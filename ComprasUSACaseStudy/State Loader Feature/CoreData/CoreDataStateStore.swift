@@ -26,14 +26,7 @@ public class CoreDataStateStore: StateStore {
         }
         
         do {
-            let description = NSPersistentStoreDescription(url: storeURL)
-            let container = NSPersistentContainer(name: CoreDataStateStore.modelName, managedObjectModel: model)
-            container.persistentStoreDescriptions = [description]
-            var loadError: Error?
-            container.loadPersistentStores { loadError = $1 }
-            try loadError.map { throw $0 }
-            
-            self.container = container
+            self.container = try NSPersistentContainer.load(modelName: CoreDataStateStore.modelName, url: storeURL, model: model)
             self.context = container.newBackgroundContext()
         } catch {
             throw StoreError.failedToLoadPersistentContainer(error)
@@ -44,7 +37,9 @@ public class CoreDataStateStore: StateStore {
         let context = self.context
         context.perform { action(context) }
     }
-    
+}
+
+extension CoreDataStateStore {
     public func retrieve(completion: @escaping RetrievalCompletion) {
         perform { context in
             completion(Result(catching: {
@@ -57,7 +52,9 @@ public class CoreDataStateStore: StateStore {
                 return states
             }))}
     }
-    
+}
+
+extension CoreDataStateStore {
     public func insert(_ state: State, completion: @escaping InsertionCompletion) {
         perform { context in
             completion(Result(catching: {
@@ -93,5 +90,18 @@ class ManagedState: NSManagedObject {
         let request = NSFetchRequest<ManagedState>(entityName: "ManagedState")
         request.returnsObjectsAsFaults = false
         return try context.fetch(request)
+    }
+}
+
+extension NSPersistentContainer {
+    public static func load(modelName: String, url storeURL: URL, model: NSManagedObjectModel) throws -> NSPersistentContainer {
+        let description = NSPersistentStoreDescription(url: storeURL)
+        let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
+        container.persistentStoreDescriptions = [description]
+        var loadError: Error?
+        container.loadPersistentStores { loadError = $1 }
+        try loadError.map { throw $0 }
+        
+        return container
     }
 }

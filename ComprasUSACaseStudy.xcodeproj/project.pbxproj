@@ -12,6 +12,7 @@
 		4A7ED6E12BD58727002925A9 /* StateCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E02BD58727002925A9 /* StateCreator.swift */; };
 		4A7ED6E32BD5876A002925A9 /* StateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E22BD5876A002925A9 /* StateLoader.swift */; };
 		4A7ED6E52BD589FA002925A9 /* StoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E42BD589FA002925A9 /* StoreSpy.swift */; };
+		4A7ED6E72BD58E9A002925A9 /* USAStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E62BD58E9A002925A9 /* USAStates.swift */; };
 		4A97C6C22BD42E0700780643 /* StateFeatureUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C12BD42E0700780643 /* StateFeatureUseCaseTests.swift */; };
 		4A97C6C52BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */; };
 		4A97C6C72BD448BD00780643 /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C62BD448BD00780643 /* StateStore.swift */; };
@@ -40,6 +41,7 @@
 		4A7ED6E02BD58727002925A9 /* StateCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCreator.swift; sourceTree = "<group>"; };
 		4A7ED6E22BD5876A002925A9 /* StateLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLoader.swift; sourceTree = "<group>"; };
 		4A7ED6E42BD589FA002925A9 /* StoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSpy.swift; sourceTree = "<group>"; };
+		4A7ED6E62BD58E9A002925A9 /* USAStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USAStates.swift; sourceTree = "<group>"; };
 		4A97C6C02BD42DC500780643 /* ComprasUSACaseStudy.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ComprasUSACaseStudy.xctestplan; sourceTree = "<group>"; };
 		4A97C6C12BD42E0700780643 /* StateFeatureUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateFeatureUseCaseTests.swift; sourceTree = "<group>"; };
 		4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakCheck.swift"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				4A97C6C82BD448D200780643 /* StateFeatureUseCase.swift */,
 				4A7ED6E02BD58727002925A9 /* StateCreator.swift */,
 				4A7ED6E22BD5876A002925A9 /* StateLoader.swift */,
+				4A7ED6E62BD58E9A002925A9 /* USAStates.swift */,
 			);
 			path = "State Feature";
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				4A97C6DC2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld in Sources */,
 				4A7ED6E32BD5876A002925A9 /* StateLoader.swift in Sources */,
 				4A97C6C72BD448BD00780643 /* StateStore.swift in Sources */,
+				4A7ED6E72BD58E9A002925A9 /* USAStates.swift in Sources */,
 				4A7ED6DD2BD58593002925A9 /* CoreDataStateStoreHelpers.swift in Sources */,
 				4A97C6CB2BD448F700780643 /* State.swift in Sources */,
 			);

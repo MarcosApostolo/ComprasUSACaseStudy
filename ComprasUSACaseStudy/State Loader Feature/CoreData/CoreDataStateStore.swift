@@ -18,6 +18,7 @@ public class CoreDataStateStore: StateStore {
     enum StoreError: Error {
         case modelNotFound
         case failedToLoadPersistentContainer(Error)
+        case editError
     }
     
     public init(storeURL: URL) throws {
@@ -80,6 +81,24 @@ extension CoreDataStateStore {
                 }
 
                 context.delete(stateToBeRemoved)
+            }))
+        }
+    }
+}
+
+extension CoreDataStateStore {
+    public func edit(_ state: State, completion: @escaping EditionCompletion) {
+        perform { context in
+            completion(Result(catching: {
+                guard let stateToEdited = try ManagedState.find(context: context)?.first(where: { managedState in
+                    managedState.name == state.name
+                }) else {
+                    throw StoreError.editError
+                }
+
+                stateToEdited.taxValue = state.taxValue
+                
+                try context.save()
             }))
         }
     }

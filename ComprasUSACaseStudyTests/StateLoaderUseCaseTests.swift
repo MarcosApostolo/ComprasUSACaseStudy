@@ -99,6 +99,10 @@ final class StateLoaderUseCaseTests: XCTestCase {
         func completeRetrievalSuccessfully(with states: [State], at index: Int = 0) {
             retrievalCompletions[index](.success(states))
         }
+        
+        func edit(_ state: State, completion: @escaping EditionCompletion) {
+            
+        }
     }
     
     func expect(_ sut: StateLoaderUseCase, toCompleteWith expectedResult: StateLoaderUseCase.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {

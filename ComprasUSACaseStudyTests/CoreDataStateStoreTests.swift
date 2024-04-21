@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import ComprasUSACaseStudy
+@testable import ComprasUSACaseStudy
 
 final class CoreDataStateStoreTests: XCTestCase {
     // MARK: Retrieve Tests
@@ -87,6 +87,54 @@ final class CoreDataStateStoreTests: XCTestCase {
         expect(sut, toRetrieveWith: .success([state2, state3]))
     }
     
+    // MARK: Edit Tests
+    func test_edit_editState() {
+        let sut = makeSUT()
+        
+        let state1 = makeState(name: "California", taxValue: 0.02)
+        
+        prepopulateStore(with: [state1], using: sut)
+        
+        expect(sut, toRetrieveWith: .success([state1]))
+        
+        let newState = makeState(name: "California", taxValue: 0.05)
+
+        sut.edit(newState) { _ in }
+        
+        expect(sut, toRetrieveWith: .success([newState]))
+    }
+    
+    func test_edit_doesNotAllowChangingName_completesWithError() {
+        let sut = makeSUT()
+        
+        let state1 = makeState(name: "California", taxValue: 0.02)
+        
+        prepopulateStore(with: [state1], using: sut)
+        
+        expect(sut, toRetrieveWith: .success([state1]))
+        
+        let newState = makeState(name: "california", taxValue: 0.02)
+        
+        let exp = expectation(description: "Wait for edit to finish")
+        
+        var expectedError = CoreDataStateStore.StoreError.editError
+
+        sut.edit(newState) { result in
+            switch result {
+            case .success:
+                XCTFail("Expected error but got success instead")
+            case let .failure(error):
+                XCTAssertEqual(error as NSError, expectedError as NSError)
+            }
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        expect(sut, toRetrieveWith: .success([state1]))
+    }
+    
     // MARK: General Tests
     func test_operationsRunSerially() {
         let sut = makeSUT()
@@ -140,7 +188,7 @@ final class CoreDataStateStoreTests: XCTestCase {
             case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:
-                XCTFail("Expected result \(expectedResult) but got \(receivedResult) instead")
+                XCTFail("Expected result \(expectedResult) but got \(receivedResult) instead", file: file, line: line)
             }
             
             exp.fulfill()

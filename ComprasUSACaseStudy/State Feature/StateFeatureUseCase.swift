@@ -12,6 +12,7 @@ public class StateFeatureUseCase: StateLoader {
     
     public enum Error: Swift.Error {
         case loadError
+        case createError
     }
         
     public init(store: StateStore) {
@@ -28,7 +29,9 @@ public class StateFeatureUseCase: StateLoader {
 }
 
 extension StateFeatureUseCase: StateCreator {
-    public func create(_ state: State, completion: @escaping (CreatorResult) -> Void) {
-        store.insert(state, completion: { _ in })
+    public func create(_ state: State, completion: @escaping (CreateResult) -> Void) {
+        store.insert(state, completion: { result in
+            completion(result.mapError({ _ in Error.createError }))
+        })
     }
 }

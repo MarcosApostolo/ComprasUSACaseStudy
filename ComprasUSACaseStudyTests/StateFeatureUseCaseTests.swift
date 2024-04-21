@@ -81,6 +81,15 @@ final class StateFeatureUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.insertionCompletions.count, 1)
     }
+    
+    func test_create_completesWithErrorOnStoreError() {
+        let (sut, store) = makeSUT()
+        
+        
+        expect(sut, toCompleteCreateWith: .failure(StateFeatureUseCase.Error.createError), using: makeState(), when: {
+            store.completeCreate(with: anyNSError())
+        })
+    }
 
     // MARK: Helpers
     func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {
@@ -100,6 +109,27 @@ final class StateFeatureUseCaseTests: XCTestCase {
             switch(expectedResult, receivedResult) {
             case let (.success(expecedItems), .success(receivedItems)):
                 XCTAssertEqual(expecedItems, receivedItems, file: file, line: line)
+            case let (.failure(expectedError as StateFeatureUseCase.Error), .failure(receivedError as StateFeatureUseCase.Error)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func expect(_ sut: StateFeatureUseCase, toCompleteCreateWith expectedResult: StateFeatureUseCase.CreateResult, using state: State, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for action to finish")
+        
+        sut.create(state) { receivedResult in
+            switch(expectedResult, receivedResult) {
+            case (.success, .success):
+                break
             case let (.failure(expectedError as StateFeatureUseCase.Error), .failure(receivedError as StateFeatureUseCase.Error)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:

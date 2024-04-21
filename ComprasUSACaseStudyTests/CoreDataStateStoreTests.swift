@@ -9,7 +9,7 @@ import XCTest
 import ComprasUSACaseStudy
 
 final class CoreDataStateStoreTests: XCTestCase {
-    // Retrieve
+    // MARK: Retrieve Tests
     func test_retrieve_deliversEmptyStates() {
         let sut = makeSUT()
         
@@ -38,8 +38,8 @@ final class CoreDataStateStoreTests: XCTestCase {
         let sut = makeSUT()
         
         let state1 = makeState(name: "California", taxValue: 0.02)
-        
-        sut.insert(state1, completion: { _ in })
+                
+        prepopulateStore(with: [state1], using: sut)
         
         expect(sut, toRetrieveWith: .success([state1]))
     }
@@ -51,20 +51,18 @@ final class CoreDataStateStoreTests: XCTestCase {
         let state2 = makeState(name: "New York", taxValue: 0.01)
         let state3 = makeState(name: "Vermont", taxValue: 0.1)
         
-        sut.insert(state1, completion: { _ in })
-        sut.insert(state2, completion: { _ in })
-        sut.insert(state3, completion: { _ in })
-        
+        prepopulateStore(with: [state1, state2, state3], using: sut)
+
         expect(sut, toRetrieveWith: .success([state1, state2, state3]))
     }
     
-    // Delete
+    // MARK: Delete Tests
     func test_delete_deletesState() {
         let sut = makeSUT()
         
         let state1 = makeState(name: "California", taxValue: 0.02)
         
-        sut.insert(state1, completion: { _ in })
+        prepopulateStore(with: [state1], using: sut)
         
         expect(sut, toRetrieveWith: .success([state1]))
         
@@ -80,9 +78,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         let state2 = makeState(name: "New York", taxValue: 0.01)
         let state3 = makeState(name: "Vermont", taxValue: 0.1)
         
-        sut.insert(state1, completion: { _ in })
-        sut.insert(state2, completion: { _ in })
-        sut.insert(state3, completion: { _ in })
+        prepopulateStore(with: [state1, state2, state3], using: sut)
         
         expect(sut, toRetrieveWith: .success([state1, state2, state3]))
         
@@ -91,6 +87,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         expect(sut, toRetrieveWith: .success([state2, state3]))
     }
     
+    // MARK: General Tests
     func test_operationsRunSerially() {
         let sut = makeSUT()
         var completedOperationsInOrder = [XCTestExpectation]()
@@ -121,7 +118,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
     }
     
-    // Helpers
+    // MARK: Helpers
     func makeSUT() -> CoreDataStateStore {
         let storeURL = URL(fileURLWithPath: "/dev/null")
         let sut = try! CoreDataStateStore(storeURL: storeURL)
@@ -150,5 +147,11 @@ final class CoreDataStateStoreTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    func prepopulateStore(with states: [State] = [State(name: "California", taxValue: 0.1)], using sut: CoreDataStateStore) {
+        states.forEach({ state in
+            sut.insert(state, completion: { _ in })
+        })
     }
 }

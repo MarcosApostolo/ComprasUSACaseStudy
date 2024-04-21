@@ -164,6 +164,29 @@ final class StateFeatureUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.editionCompletions.count, 1)
     }
+    
+    func test_edit_completesSuccessfullyWithNewStateWhenStoreEditIsSuccessful() {
+        let (sut, store) = makeSUT()
+        
+        let stateToBeEdited = makeState(name: "delaware", taxValue: 0.01)
+        
+        let exp = expectation(description: "Wait for edit to finish")
+        
+        sut.change(stateToBeEdited, completion: { result in
+            switch result {
+            case let .success(receivedState):
+                XCTAssertEqual(stateToBeEdited, receivedState)
+            case let .failure(error):
+                XCTFail("Expected success but got \(error) instead")
+            }
+            
+            exp.fulfill()
+        })
+        
+        store.completeEditionSuccessfully()
+        
+        wait(for: [exp], timeout: 0.5)
+    }
 
     // MARK: Helpers
     func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {

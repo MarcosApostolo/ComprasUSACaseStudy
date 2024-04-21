@@ -14,6 +14,7 @@ public class StateFeatureUseCase: StateLoader {
         case loadError
         case createError
         case deleteError
+        case editError
     }
         
     public init(store: StateStore) {
@@ -26,7 +27,7 @@ public class StateFeatureUseCase: StateLoader {
 
             completion(
                 result
-                    .mapError({ _ in Error.loadError })
+                    .mapError({ _ in Error.loadError})
                     .map({ local in local.toModel() })
             )
         }
@@ -56,7 +57,17 @@ extension StateFeatureUseCase: StateRemover {
 
 extension StateFeatureUseCase: StateChanger {
     public func change(_ state: State, completion: @escaping (ChangeResult) -> Void) {
-        store.edit(state.toLocalState(), completion: { _ in })
+        store.edit(state.toLocalState(), completion: { result in
+            completion(Result(catching: {
+                let local = try result.get()
+                
+                guard let newState = State(name: local.name, taxValue: local.taxValue) else {
+                    throw Error.createError
+                }
+                
+                return newState
+            }))
+        })
     }
 }
 
@@ -68,9 +79,8 @@ private extension State {
 
 private extension Array where Element == LocalState {
     func toModel() -> [State] {
-        map {
-            // Using force unwrapping because an error here would be a developer mistake and there are tests covering this
-            State(name: $0.name, taxValue: $0.taxValue)!
+        compactMap {
+            State(name: $0.name, taxValue: $0.taxValue)
         }
     }
 }

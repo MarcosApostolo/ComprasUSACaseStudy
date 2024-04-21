@@ -7,13 +7,7 @@
 
 import Foundation
 
-public protocol StateLoader {
-    typealias LoadResult = Result<[State], Error>
-    
-    func load(completion: @escaping (LoadResult) -> Void)
-}
-
-public class StateLoaderUseCase: StateLoader {
+public class StateFeatureUseCase: StateLoader {
     let store: StateStore
     
     public enum Error: Swift.Error {

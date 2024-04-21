@@ -26,7 +26,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
     func test_load_storeCompletesWithLoadErrorOnError() {
         let (sut, store) = makeSUT()
                 
-        expect(sut, toCompleteWith: .failure(StateLoaderUseCase.Error.loadError)) {
+        expect(sut, toCompleteWith: .failure(StateFeatureUseCase.Error.loadError)) {
             store.completeRetrieval(with: anyNSError())
         }
     }
@@ -50,10 +50,10 @@ final class StateLoaderUseCaseTests: XCTestCase {
     
     func test_shouldNotDeliverResultAfterSUTDeallocation() {
         let store = StoreSpy()
-        var sut: StateLoaderUseCase? = StateLoaderUseCase(store: store)
+        var sut: StateFeatureUseCase? = StateFeatureUseCase(store: store)
         let state1 = State(name: "Any name", taxValue: 1.0)
         
-        var receivedResult = [StateLoaderUseCase.LoadResult]()
+        var receivedResult = [StateFeatureUseCase.LoadResult]()
         
         sut?.load { result in
             receivedResult.append(result)
@@ -67,9 +67,9 @@ final class StateLoaderUseCaseTests: XCTestCase {
     }
 
     // Helpers
-    func makeSUT() -> (sut: StateLoaderUseCase, store: StoreSpy) {
+    func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {
         let store = StoreSpy()
-        let sut = StateLoaderUseCase(store: store)
+        let sut = StateFeatureUseCase(store: store)
         
         checkForMemoryLeaks(store)
         checkForMemoryLeaks(sut)
@@ -105,14 +105,14 @@ final class StateLoaderUseCaseTests: XCTestCase {
         }
     }
     
-    func expect(_ sut: StateLoaderUseCase, toCompleteWith expectedResult: StateLoaderUseCase.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: StateFeatureUseCase, toCompleteWith expectedResult: StateFeatureUseCase.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for action to finish")
         
         sut.load { receivedResult in
             switch(expectedResult, receivedResult) {
             case let (.success(expecedItems), .success(receivedItems)):
                 XCTAssertEqual(expecedItems, receivedItems, file: file, line: line)
-            case let (.failure(expectedError as StateLoaderUseCase.Error), .failure(receivedError as StateLoaderUseCase.Error)):
+            case let (.failure(expectedError as StateFeatureUseCase.Error), .failure(receivedError as StateFeatureUseCase.Error)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:
                 XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)

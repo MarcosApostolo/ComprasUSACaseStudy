@@ -22,6 +22,17 @@ final class CoreDataStateStoreTests: XCTestCase {
         expect(sut, toCompleteWith: .success([]))
     }
     
+    func test_retrieve_hasNoSideEffect_afterReturningNonEmptyStates() {
+        let sut = makeSUT()
+        
+        let state1 = makeState(name: "California", taxValue: 0.02)
+        
+        sut.insert(state1, completion: { _ in })
+        
+        expect(sut, toCompleteWith: .success([state1]))
+        expect(sut, toCompleteWith: .success([state1]))
+    }
+    
     func test_retrieve_completesWithStatesWhenNotEmpty() {
         let sut = makeSUT()
         

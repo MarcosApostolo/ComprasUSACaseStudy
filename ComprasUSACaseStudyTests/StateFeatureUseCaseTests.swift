@@ -133,6 +133,14 @@ final class StateFeatureUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.deletionCompletions.count, 1)
     }
+    
+    func test_delete_completesWithErrorOnDeleteError() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteDeleteWith: .failure(StateFeatureUseCase.Error.deleteError), using: makeState(), when: {
+            store.completeDeletion(with: anyNSError())
+        })
+    }
 
     // MARK: Helpers
     func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {
@@ -170,6 +178,27 @@ final class StateFeatureUseCaseTests: XCTestCase {
         let exp = expectation(description: "Wait for action to finish")
         
         sut.create(state) { receivedResult in
+            switch(expectedResult, receivedResult) {
+            case (.success, .success):
+                break
+            case let (.failure(expectedError as StateFeatureUseCase.Error), .failure(receivedError as StateFeatureUseCase.Error)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func expect(_ sut: StateFeatureUseCase, toCompleteDeleteWith expectedResult: StateFeatureUseCase.RemoveResult, using state: State, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for action to finish")
+        
+        sut.remove(state) { receivedResult in
             switch(expectedResult, receivedResult) {
             case (.success, .success):
                 break

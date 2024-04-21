@@ -13,6 +13,7 @@ public class StateFeatureUseCase: StateLoader {
     public enum Error: Swift.Error {
         case loadError
         case createError
+        case deleteError
     }
         
     public init(store: StateStore) {
@@ -42,7 +43,9 @@ extension StateFeatureUseCase: StateCreator {
 }
 
 extension StateFeatureUseCase: StateRemover {
-    public func remove(_ state: State, completion: @escaping (RemovalResult) -> Void) {
-        store.delete(state, completion: { _ in })
+    public func remove(_ state: State, completion: @escaping (RemoveResult) -> Void) {
+        store.delete(state, completion: { result in
+            completion(result.mapError({ _ in Error.deleteError}))
+        })
     }
 }

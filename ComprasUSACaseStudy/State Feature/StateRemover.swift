@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol StateRemover {
-    typealias RemovalResult = Result<Void, Error>
+    typealias RemoveResult = Result<Void, Error>
     
-    func remove(_ state: State, completion: @escaping (RemovalResult) -> Void)
+    func remove(_ state: State, completion: @escaping (RemoveResult) -> Void)
 }

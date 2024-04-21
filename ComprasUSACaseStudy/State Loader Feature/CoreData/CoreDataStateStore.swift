@@ -104,39 +104,3 @@ extension CoreDataStateStore {
     }
 }
 
-extension NSManagedObjectModel {
-    static func with(modelName: String, bundle: Bundle) -> NSManagedObjectModel? {
-        bundle
-            .url(forResource: modelName, withExtension: "momd")
-            .flatMap({ NSManagedObjectModel(contentsOf: $0) })
-    }
-}
-
-@objc(ManagedState)
-class ManagedState: NSManagedObject {
-    @NSManaged var name: String
-    @NSManaged var taxValue: Double
-    
-    static func newInstance(context: NSManagedObjectContext) -> ManagedState {
-        ManagedState(context: context)
-    }
-    
-    static func find(context: NSManagedObjectContext) throws -> [ManagedState]? {
-        let request = NSFetchRequest<ManagedState>(entityName: "ManagedState")
-        request.returnsObjectsAsFaults = false
-        return try context.fetch(request)
-    }
-}
-
-extension NSPersistentContainer {
-    public static func load(modelName: String, url storeURL: URL, model: NSManagedObjectModel) throws -> NSPersistentContainer {
-        let description = NSPersistentStoreDescription(url: storeURL)
-        let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
-        container.persistentStoreDescriptions = [description]
-        var loadError: Error?
-        container.loadPersistentStores { loadError = $1 }
-        try loadError.map { throw $0 }
-        
-        return container
-    }
-}

@@ -90,6 +90,15 @@ final class StateFeatureUseCaseTests: XCTestCase {
             store.completeCreate(with: anyNSError())
         })
     }
+    
+    func test_create_completesSuccessfullyOnStoreCreateSuccess() {
+        let (sut, store) = makeSUT()
+        
+        
+        expect(sut, toCompleteCreateWith: .success(()), using: makeState(), when: {
+            store.completeSuccessfully()
+        })
+    }
 
     // MARK: Helpers
     func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {

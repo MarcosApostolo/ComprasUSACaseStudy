@@ -35,6 +35,10 @@ extension StoreSpy {
     func completeCreate(with error: Error, at index: Int = 0) {
         insertionCompletions[index](.failure(error))
     }
+    
+    func completeSuccessfully(at index: Int = 0) {
+        insertionCompletions[index](.success(()))
+    }
 }
 
 extension StoreSpy {

@@ -7,5 +7,5 @@
 public protocol StateCreator {
     typealias CreateResult = Result<Void, Error>
     
-    func create(_ state: State, completion: @escaping (CreateResult) -> Void)
+    func create(_ state: State?, completion: @escaping (CreateResult) -> Void)
 }

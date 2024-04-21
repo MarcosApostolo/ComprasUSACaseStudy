@@ -85,7 +85,6 @@ final class StateFeatureUseCaseTests: XCTestCase {
     func test_create_completesWithErrorOnStoreError() {
         let (sut, store) = makeSUT()
         
-        
         expect(sut, toCompleteCreateWith: .failure(StateFeatureUseCase.Error.createError), using: makeState(), when: {
             store.completeCreate(with: anyNSError())
         })
@@ -94,10 +93,30 @@ final class StateFeatureUseCaseTests: XCTestCase {
     func test_create_completesSuccessfullyOnStoreCreateSuccess() {
         let (sut, store) = makeSUT()
         
-        
         expect(sut, toCompleteCreateWith: .success(()), using: makeState(), when: {
             store.completeSuccessfully()
         })
+    }
+    
+    func test_create_doesNotAllowCreatingWithInvalidName() {
+        let (sut, store) = makeSUT()
+        
+        let exp = expectation(description: "Waif for create to finish")
+                
+        let invalidState = State(name: "invalid name", taxValue: 0.01)
+        
+        sut.create(invalidState, completion: { result in
+            switch result {
+            case let .failure(error):
+                XCTAssertEqual(error as NSError, StateFeatureUseCase.Error.createError as NSError)
+            default:
+                XCTFail("Expected error but got other result instead")
+            }
+            
+            exp.fulfill()
+        })
+        
+        wait(for: [exp], timeout: 0.1)
     }
 
     // MARK: Helpers

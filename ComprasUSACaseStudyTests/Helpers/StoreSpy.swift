@@ -28,7 +28,7 @@ extension StoreSpy {
 }
 
 extension StoreSpy {
-    func insert(_ state: ComprasUSACaseStudy.State, completion: @escaping InsertionCompletion) {
+    func insert(_ state: State, completion: @escaping InsertionCompletion) {
         insertionCompletions.append(completion)
     }
     

@@ -91,6 +91,36 @@ final class CoreDataStateStoreTests: XCTestCase {
         expect(sut, toRetrieveWith: .success([state2, state3]))
     }
     
+    func test_operationsRunSerially() {
+        let sut = makeSUT()
+        var completedOperationsInOrder = [XCTestExpectation]()
+        
+        let state1 = makeState(name: "California", taxValue: 0.02)
+        let state2 = makeState(name: "New York", taxValue: 0.01)
+        
+        let op1 = expectation(description: "Operation 1")
+        sut.insert(state1, completion: { _ in
+            completedOperationsInOrder.append(op1)
+            op1.fulfill()
+        })
+
+        let op2 = expectation(description: "Operation 2")
+        sut.delete(state1) { _ in
+            completedOperationsInOrder.append(op2)
+            op2.fulfill()
+        }
+
+        let op3 = expectation(description: "Operation 3")
+        sut.insert(state2, completion: { _ in
+            completedOperationsInOrder.append(op3)
+            op3.fulfill()
+        })
+
+        waitForExpectations(timeout: 5.0)
+
+        XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
+    }
+    
     // Helpers
     func makeSUT() -> CoreDataStateStore {
         let storeURL = URL(fileURLWithPath: "/dev/null")
@@ -106,7 +136,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         
         sut.retrieve { receivedResult in
             switch (receivedResult, expectedResult) {
-            case let (.success(receivedStates), .success(expectedStates)) :
+            case let (.success(receivedStates), .success(expectedStates)):
                 XCTAssertEqual(receivedStates, expectedStates, file: file, line: line)
             case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)

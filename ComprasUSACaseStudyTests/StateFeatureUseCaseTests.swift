@@ -141,6 +141,14 @@ final class StateFeatureUseCaseTests: XCTestCase {
             store.completeDeletion(with: anyNSError())
         })
     }
+    
+    func test_delete_completesSuccessfullyOnStoreDeleteSuccess() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteDeleteWith: .success(()), using: makeState(), when: {
+            store.completeDeletionSuccessfully()
+        })
+    }
 
     // MARK: Helpers
     func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {

@@ -94,12 +94,12 @@ final class StateFeatureUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         
         expect(sut, toCompleteCreateWith: .success(()), using: makeState(), when: {
-            store.completeSuccessfully()
+            store.completeInsertionSuccessfully()
         })
     }
     
     func test_create_doesNotAllowCreatingWithInvalidName() {
-        let (sut, store) = makeSUT()
+        let (sut, _) = makeSUT()
         
         let exp = expectation(description: "Waif for create to finish")
                 
@@ -117,6 +117,13 @@ final class StateFeatureUseCaseTests: XCTestCase {
         })
         
         wait(for: [exp], timeout: 0.1)
+    }
+    
+    // MARK: Delete
+    func test_delete_doesNotSendMessagesOnInit() {
+        let (_, store) = makeSUT()
+        
+        XCTAssertEqual(store.deletionCompletions.count, 0)
     }
 
     // MARK: Helpers

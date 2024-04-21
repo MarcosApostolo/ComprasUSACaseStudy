@@ -11,6 +11,7 @@ import ComprasUSACaseStudy
 class StoreSpy: StateStore {
     var retrievalCompletions = [RetrievalCompletion]()
     var insertionCompletions = [InsertionCompletion]()
+    var deletionCompletions = [DeletionCompletion]()
 }
 
 extension StoreSpy {
@@ -36,7 +37,7 @@ extension StoreSpy {
         insertionCompletions[index](.failure(error))
     }
     
-    func completeSuccessfully(at index: Int = 0) {
+    func completeInsertionSuccessfully(at index: Int = 0) {
         insertionCompletions[index](.success(()))
     }
 }
@@ -48,7 +49,15 @@ extension StoreSpy {
 }
 
 extension StoreSpy {
-    func delete(_ state: ComprasUSACaseStudy.State, completion: @escaping DeletionCompletion) {
-        
+    func delete(_ state: State, completion: @escaping DeletionCompletion) {
+        deletionCompletions.append(completion)
+    }
+    
+    func completeDeletion(with error: Error, at index: Int = 0) {
+        deletionCompletions[index](.failure(error))
+    }
+    
+    func completeDeletionSuccessfully(at index: Int = 0) {
+        deletionCompletions[index](.success(()))
     }
 }

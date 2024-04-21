@@ -29,6 +29,6 @@ public class StateFeatureUseCase: StateLoader {
 
 extension StateFeatureUseCase: StateCreator {
     public func create(_ state: State, completion: @escaping (CreatorResult) -> Void) {
-        
+        store.insert(state, completion: { _ in })
     }
 }

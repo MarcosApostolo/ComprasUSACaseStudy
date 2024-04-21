@@ -8,7 +8,7 @@
 import XCTest
 import ComprasUSACaseStudy
 
-final class StateLoaderUseCaseTests: XCTestCase {
+final class StateFeatureUseCaseTests: XCTestCase {
     // MARK: Loader Tests
     func test_init_doesNotSendMessagesToClient() {
         let (_, store) = makeSUT()
@@ -72,6 +72,14 @@ final class StateLoaderUseCaseTests: XCTestCase {
         let (_, store) = makeSUT()
         
         XCTAssertEqual(store.insertionCompletions.count, 0)
+    }
+    
+    func test_create_sendMessageToStoreWhenOnCreate() {
+        let (sut, store) = makeSUT()
+        
+        sut.create(makeState()) { _ in }
+        
+        XCTAssertEqual(store.insertionCompletions.count, 1)
     }
 
     // MARK: Helpers

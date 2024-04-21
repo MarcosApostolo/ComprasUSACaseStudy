@@ -117,7 +117,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         
         let exp = expectation(description: "Wait for edit to finish")
         
-        var expectedError = CoreDataStateStore.StoreError.editError
+        let expectedError = CoreDataStateStore.StoreError.editError
 
         sut.edit(newState) { result in
             switch result {

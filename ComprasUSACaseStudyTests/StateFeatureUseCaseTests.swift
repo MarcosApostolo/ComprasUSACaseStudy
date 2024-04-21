@@ -9,6 +9,7 @@ import XCTest
 import ComprasUSACaseStudy
 
 final class StateLoaderUseCaseTests: XCTestCase {
+    // MARK: Loader Tests
     func test_init_doesNotSendMessagesToClient() {
         let (_, store) = makeSUT()
         
@@ -65,8 +66,15 @@ final class StateLoaderUseCaseTests: XCTestCase {
                         
         XCTAssertTrue(receivedResult.isEmpty)
     }
+    
+    // MARK: Creator Tests
+    func test_create_doesNotSendMessagesOnInit() {
+        let (_, store) = makeSUT()
+        
+        XCTAssertEqual(store.insertionCompletions.count, 0)
+    }
 
-    // Helpers
+    // MARK: Helpers
     func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {
         let store = StoreSpy()
         let sut = StateFeatureUseCase(store: store)
@@ -79,13 +87,14 @@ final class StateLoaderUseCaseTests: XCTestCase {
     
     class StoreSpy: StateStore {
         var retrievalCompletions = [RetrievalCompletion]()
-        
+        var insertionCompletions = [InsertionCompletion]()
+                
         func retrieve(completion: @escaping RetrievalCompletion) {
             retrievalCompletions.append(completion)
         }
         
         func insert(_ state: ComprasUSACaseStudy.State, completion: @escaping InsertionCompletion) {
-            
+            insertionCompletions.append(completion)
         }
         
         func delete(_ state: ComprasUSACaseStudy.State, completion: @escaping DeletionCompletion) {

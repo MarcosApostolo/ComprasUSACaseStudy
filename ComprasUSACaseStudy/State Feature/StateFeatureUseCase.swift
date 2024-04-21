@@ -49,3 +49,9 @@ extension StateFeatureUseCase: StateRemover {
         })
     }
 }
+
+extension StateFeatureUseCase: StateChanger {
+    public func change(_ state: State, completion: @escaping (ChangeResult) -> Void) {
+        store.edit(state, completion: { _ in })
+    }
+}

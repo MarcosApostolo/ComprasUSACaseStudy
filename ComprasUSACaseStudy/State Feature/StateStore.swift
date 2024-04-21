@@ -11,7 +11,7 @@ public protocol StateStore {
     typealias RetrievalResult = Result<[State], Error>
     typealias InsertionResult = Result<Void, Error>
     typealias DeletionResult = Result<Void, Error>
-    typealias EditionResult = Result<Void, Error>
+    typealias EditionResult = Result<State, Error>
     
     typealias RetrievalCompletion = (RetrievalResult) -> Void
     typealias InsertionCompletion = (InsertionResult) -> Void

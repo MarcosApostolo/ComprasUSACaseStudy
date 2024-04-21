@@ -12,6 +12,9 @@ class StoreSpy: StateStore {
     var retrievalCompletions = [RetrievalCompletion]()
     var insertionCompletions = [InsertionCompletion]()
     var deletionCompletions = [DeletionCompletion]()
+    var editionCompletions = [EditionCompletion]()
+    
+    var newStatesAfterEdit = [State]()
 }
 
 extension StoreSpy {
@@ -44,7 +47,16 @@ extension StoreSpy {
 
 extension StoreSpy {
     func edit(_ state: State, completion: @escaping EditionCompletion) {
-        
+        editionCompletions.append(completion)
+        newStatesAfterEdit.append(state)
+    }
+    
+    func completeEditon(with error: Error, at index: Int = 0) {
+        editionCompletions[index](.failure(error))
+    }
+    
+    func completeEditionSuccessfully(at index: Int = 0) {
+        editionCompletions[index](.success(newStatesAfterEdit[index]))
     }
 }
 

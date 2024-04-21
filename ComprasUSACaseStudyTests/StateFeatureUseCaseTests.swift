@@ -119,7 +119,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
     }
     
-    // MARK: Delete
+    // MARK: Delete Tests
     func test_delete_doesNotSendMessagesOnInit() {
         let (_, store) = makeSUT()
         
@@ -148,6 +148,21 @@ final class StateFeatureUseCaseTests: XCTestCase {
         expect(sut, toCompleteDeleteWith: .success(()), using: makeState(), when: {
             store.completeDeletionSuccessfully()
         })
+    }
+    
+    // MARK: Edit Tests
+    func test_edit_doesNotSendMessagesOnInit() {
+        let (_, store) = makeSUT()
+        
+        XCTAssertEqual(store.editionCompletions.count, 0)
+    }
+    
+    func test_edit_sendDeleteMessageToStoreOnEdit() {
+        let (sut, store) = makeSUT()
+        
+        sut.change(makeState()) { _ in }
+        
+        XCTAssertEqual(store.editionCompletions.count, 1)
     }
 
     // MARK: Helpers

@@ -45,7 +45,7 @@ extension CoreDataStateStore {
         perform { context in
             completion(Result(catching: {
                 guard let states = try ManagedState.find(context: context)?.compactMap({ managedState in
-                    return State(name: managedState.name, taxValue: managedState.taxValue)
+                    return managedState.state
                 }) else {
                     return []
                 }
@@ -90,15 +90,21 @@ extension CoreDataStateStore {
     public func edit(_ state: State, completion: @escaping EditionCompletion) {
         perform { context in
             completion(Result(catching: {
-                guard let stateToEdited = try ManagedState.find(context: context)?.first(where: { managedState in
+                guard let stateToBeEdited = try ManagedState.find(context: context)?.first(where: { managedState in
                     managedState.name == state.name.rawValue
                 }) else {
                     throw StoreError.editError
                 }
 
-                stateToEdited.taxValue = state.taxValue
+                stateToBeEdited.taxValue = state.taxValue
                 
                 try context.save()
+                
+                guard let newState = stateToBeEdited.state else {
+                    throw StoreError.editError
+                }
+                
+                return newState
             }))
         }
     }

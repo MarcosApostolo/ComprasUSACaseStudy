@@ -27,7 +27,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
     func test_load_storeCompletesWithLoadErrorOnError() {
         let (sut, store) = makeSUT()
                 
-        expect(sut, toCompleteWith: .failure(StateFeatureUseCase.Error.loadError)) {
+        expect(sut, toCompleteLoadWith: .failure(StateFeatureUseCase.Error.loadError)) {
             store.completeRetrieval(with: anyNSError())
         }
     }
@@ -36,7 +36,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         let state1 = State(name: "Any name", taxValue: 1.0)
         
-        expect(sut, toCompleteWith: .success([state1])) {
+        expect(sut, toCompleteLoadWith: .success([state1])) {
             store.completeRetrievalSuccessfully(with: [state1])
         }
     }
@@ -44,7 +44,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
     func test_load_completesWithEmptyStates() {
         let (sut, store) = makeSUT()
         
-        expect(sut, toCompleteWith: .success([])) {
+        expect(sut, toCompleteLoadWith: .success([])) {
             store.completeRetrievalSuccessfully(with: [])
         }
     }
@@ -85,36 +85,7 @@ final class StateLoaderUseCaseTests: XCTestCase {
         return (sut, store)
     }
     
-    class StoreSpy: StateStore {
-        var retrievalCompletions = [RetrievalCompletion]()
-        var insertionCompletions = [InsertionCompletion]()
-                
-        func retrieve(completion: @escaping RetrievalCompletion) {
-            retrievalCompletions.append(completion)
-        }
-        
-        func insert(_ state: ComprasUSACaseStudy.State, completion: @escaping InsertionCompletion) {
-            insertionCompletions.append(completion)
-        }
-        
-        func delete(_ state: ComprasUSACaseStudy.State, completion: @escaping DeletionCompletion) {
-            
-        }
-        
-        func completeRetrieval(with error: Error, at index: Int = 0) {
-            retrievalCompletions[index](.failure(error))
-        }
-        
-        func completeRetrievalSuccessfully(with states: [State], at index: Int = 0) {
-            retrievalCompletions[index](.success(states))
-        }
-        
-        func edit(_ state: State, completion: @escaping EditionCompletion) {
-            
-        }
-    }
-    
-    func expect(_ sut: StateFeatureUseCase, toCompleteWith expectedResult: StateFeatureUseCase.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: StateFeatureUseCase, toCompleteLoadWith expectedResult: StateFeatureUseCase.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for action to finish")
         
         sut.load { receivedResult in

@@ -8,10 +8,10 @@
 import Foundation
 
 public protocol StateStore {
-    typealias RetrievalResult = Result<[State], Error>
+    typealias RetrievalResult = Result<[LocalState], Error>
     typealias InsertionResult = Result<Void, Error>
     typealias DeletionResult = Result<Void, Error>
-    typealias EditionResult = Result<State, Error>
+    typealias EditionResult = Result<LocalState, Error>
     
     typealias RetrievalCompletion = (RetrievalResult) -> Void
     typealias InsertionCompletion = (InsertionResult) -> Void
@@ -20,9 +20,9 @@ public protocol StateStore {
     
     func retrieve(completion: @escaping RetrievalCompletion)
     
-    func insert(_ state: State, completion: @escaping InsertionCompletion)
+    func insert(_ state: LocalState, completion: @escaping InsertionCompletion)
     
-    func delete(_ state: State, completion: @escaping DeletionCompletion)
+    func delete(_ state: LocalState, completion: @escaping DeletionCompletion)
     
-    func edit(_ state: State, completion: @escaping EditionCompletion)
+    func edit(_ state: LocalState, completion: @escaping EditionCompletion)
 }

@@ -24,7 +24,11 @@ public class StateFeatureUseCase: StateLoader {
         store.retrieve { [weak self] result in
             guard self != nil else { return }
 
-            completion(result.mapError({ _ in Error.loadError}))
+            completion(
+                result
+                    .mapError({ _ in Error.loadError })
+                    .map({ local in local.toModel() })
+            )
         }
     }
 }
@@ -36,7 +40,7 @@ extension StateFeatureUseCase: StateCreator {
             return
         }
         
-        store.insert(state, completion: { result in
+        store.insert(state.toLocalState(), completion: { result in
             completion(result.mapError({ _ in Error.createError }))
         })
     }
@@ -44,7 +48,7 @@ extension StateFeatureUseCase: StateCreator {
 
 extension StateFeatureUseCase: StateRemover {
     public func remove(_ state: State, completion: @escaping (RemoveResult) -> Void) {
-        store.delete(state, completion: { result in
+        store.delete(state.toLocalState(), completion: { result in
             completion(result.mapError({ _ in Error.deleteError}))
         })
     }
@@ -52,6 +56,21 @@ extension StateFeatureUseCase: StateRemover {
 
 extension StateFeatureUseCase: StateChanger {
     public func change(_ state: State, completion: @escaping (ChangeResult) -> Void) {
-        store.edit(state, completion: { _ in })
+        store.edit(state.toLocalState(), completion: { _ in })
+    }
+}
+
+private extension State {
+    func toLocalState() -> LocalState {
+        LocalState(name: self.name.rawValue, taxValue: self.taxValue)
+    }
+}
+
+private extension Array where Element == LocalState {
+    func toModel() -> [State] {
+        map {
+            // Using force unwrapping because an error here would be a developer mistake and there are tests covering this
+            State(name: $0.name, taxValue: $0.taxValue)!
+        }
     }
 }

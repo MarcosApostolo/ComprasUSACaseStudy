@@ -34,10 +34,10 @@ final class StateFeatureUseCaseTests: XCTestCase {
     
     func test_load_completesWithStates() {
         let (sut, store) = makeSUT()
-        let state1 = makeState()
+        let state1 = makeStateObjects()
         
-        expect(sut, toCompleteLoadWith: .success([state1])) {
-            store.completeRetrievalSuccessfully(with: [state1])
+        expect(sut, toCompleteLoadWith: .success([state1.model])) {
+            store.completeRetrievalSuccessfully(with: [state1.local])
         }
     }
     
@@ -52,7 +52,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
     func test_shouldNotDeliverResultAfterSUTDeallocation() {
         let store = StoreSpy()
         var sut: StateFeatureUseCase? = StateFeatureUseCase(store: store)
-        let state1 = makeState()
+        let state1 = makeStateObjects()
         
         var receivedResult = [StateFeatureUseCase.LoadResult]()
         
@@ -62,7 +62,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
         
         sut = nil
         
-        store.completeRetrievalSuccessfully(with: [state1])
+        store.completeRetrievalSuccessfully(with: [state1.local])
                         
         XCTAssertTrue(receivedResult.isEmpty)
     }

@@ -22,8 +22,8 @@ class ManagedState: NSManagedObject {
         request.returnsObjectsAsFaults = false
         return try context.fetch(request)
     }
-    
-    var state: State? {
-        State(name: self.name, taxValue: self.taxValue)
+
+    var localState: LocalState {
+        LocalState(name: self.name, taxValue: self.taxValue)
     }
 }

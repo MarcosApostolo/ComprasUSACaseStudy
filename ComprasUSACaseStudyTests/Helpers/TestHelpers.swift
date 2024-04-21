@@ -13,6 +13,13 @@ public func anyNSError() -> NSError {
 }
 
 public func makeState(name: String = "california", taxValue: Double = 0.01) -> State {
-    // Using force unwrapping because an error here would be a developer mistake and I have tests covering that
     return State(name: name, taxValue: taxValue)!
+}
+
+public func makeLocalState(name: String = "california", taxValue: Double = 0.01) -> LocalState {
+    return LocalState(name: name, taxValue: taxValue)
+}
+
+public func makeStateObjects(name: String = "california", taxValue: Double = 0.01) -> (model: State, local: LocalState) {
+    return (makeState(name: name, taxValue: taxValue), makeLocalState(name: name, taxValue: taxValue))
 }

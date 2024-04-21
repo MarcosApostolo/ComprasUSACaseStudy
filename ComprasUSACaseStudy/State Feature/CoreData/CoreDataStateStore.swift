@@ -45,7 +45,7 @@ extension CoreDataStateStore {
         perform { context in
             completion(Result(catching: {
                 guard let states = try ManagedState.find(context: context)?.compactMap({ managedState in
-                    return managedState.state
+                    return managedState.localState
                 }) else {
                     return []
                 }
@@ -56,12 +56,12 @@ extension CoreDataStateStore {
 }
 
 extension CoreDataStateStore {
-    public func insert(_ state: State, completion: @escaping InsertionCompletion) {
+    public func insert(_ state: LocalState, completion: @escaping InsertionCompletion) {
         perform { context in
             completion(Result(catching: {
                 let managedState = ManagedState.newInstance(context: context)
                 
-                managedState.name = state.name.rawValue
+                managedState.name = state.name
                 managedState.taxValue = state.taxValue
                 
                 try context.save()
@@ -71,11 +71,11 @@ extension CoreDataStateStore {
 }
 
 extension CoreDataStateStore {
-    public func delete(_ state: State, completion: @escaping DeletionCompletion) {
+    public func delete(_ state: LocalState, completion: @escaping DeletionCompletion) {
         perform { context in
             completion(Result(catching: {
                 guard let stateToBeRemoved = try ManagedState.find(context: context)?.first(where: { managedState in
-                    managedState.name == state.name.rawValue
+                    managedState.name == state.name
                 }) else {
                     return
                 }
@@ -87,11 +87,11 @@ extension CoreDataStateStore {
 }
 
 extension CoreDataStateStore {
-    public func edit(_ state: State, completion: @escaping EditionCompletion) {
+    public func edit(_ state: LocalState, completion: @escaping EditionCompletion) {
         perform { context in
             completion(Result(catching: {
                 guard let stateToBeEdited = try ManagedState.find(context: context)?.first(where: { managedState in
-                    managedState.name == state.name.rawValue
+                    managedState.name == state.name
                 }) else {
                     throw StoreError.editError
                 }
@@ -100,11 +100,7 @@ extension CoreDataStateStore {
                 
                 try context.save()
                 
-                guard let newState = stateToBeEdited.state else {
-                    throw StoreError.editError
-                }
-                
-                return newState
+                return stateToBeEdited.localState
             }))
         }
     }

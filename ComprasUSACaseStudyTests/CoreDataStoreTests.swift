@@ -172,6 +172,13 @@ final class CoreDataStoreTests: XCTestCase {
         
         expect(sut, toRetrievePurchasesWith: .success([]))
     }
+    
+    func test_retrievePurchases_hasNoSideEffect_afterReturningEmpty() {
+        let sut = makeSUT()
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
+        expect(sut, toRetrievePurchasesWith: .success([]))
+    }
 
     // MARK: Helpers
     func makeSUT() -> CoreDataStore {

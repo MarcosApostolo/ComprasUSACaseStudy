@@ -40,11 +40,7 @@ public class CoreDataStore: StateStore, PurchaseStore {
     }
 }
 
-extension CoreDataStore {
-    public func retrieve(completion: @escaping StateStore.RetrievalCompletion) {
-        retrieveStates(completion: completion)
-    }
-    
+extension CoreDataStore {    
     public func retrieveStates(completion: @escaping StateStore.RetrievalCompletion) {
         perform { context in
             completion(Result(catching: {

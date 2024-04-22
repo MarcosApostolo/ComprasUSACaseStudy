@@ -119,8 +119,8 @@ extension CoreDataStore {
 }
     
 extension CoreDataStore {
-    public func retrieve(completion: @escaping PurchaseStore.RetrievalCompletion) {
-        
+    public func retrievePurchases(completion: @escaping PurchaseStore.RetrievalCompletion) {
+        completion(.success([]))
     }
 }
 

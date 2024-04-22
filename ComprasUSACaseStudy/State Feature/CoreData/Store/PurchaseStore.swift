@@ -18,7 +18,7 @@ public protocol PurchaseStore {
     typealias DeletionCompletion = (DeletionResult) -> Void
     typealias EditionCompletion = (EditionResult) -> Void
     
-    func retrieve(completion: @escaping RetrievalCompletion)
+    func retrievePurchases(completion: @escaping RetrievalCompletion)
     
     func insert(_ purchase: LocalPurchase, completion: @escaping InsertionCompletion)
     

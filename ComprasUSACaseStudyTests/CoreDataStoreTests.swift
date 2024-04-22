@@ -165,6 +165,13 @@ final class CoreDataStoreTests: XCTestCase {
 
         XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
     }
+    
+    // MARK: Purchases Retrieve Tests
+    func test_retrievePurchases_deliversEmptyStates() {
+        let sut = makeSUT()
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
+    }
 
     // MARK: Helpers
     func makeSUT() -> CoreDataStore {
@@ -185,6 +192,27 @@ final class CoreDataStoreTests: XCTestCase {
                 let receivedStatesSet = Set(receivedStates)
                 let expectedStatesSet = Set(expectedStates)
                 XCTAssertEqual(receivedStatesSet, expectedStatesSet, file: file, line: line)
+            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) but got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func expect(_ sut: CoreDataStore, toRetrievePurchasesWith expectedResult: PurchaseStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for cache retrieval")
+        
+        sut.retrievePurchases { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.success(receivedPurchases), .success(expectedPurchases)):
+                let receivedPurchasesSet = Set(receivedPurchases)
+                let expectedPurchasesSet = Set(expectedPurchases)
+                XCTAssertEqual(receivedPurchasesSet, expectedPurchasesSet, file: file, line: line)
             case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:

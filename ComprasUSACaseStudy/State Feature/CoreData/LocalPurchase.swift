@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct LocalPurchase {
+public struct LocalPurchase: Hashable {
     public let name: String
     public let imageData: Data?
     public let value: Double

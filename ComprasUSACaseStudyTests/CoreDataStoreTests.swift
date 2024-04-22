@@ -9,18 +9,18 @@ import XCTest
 @testable import ComprasUSACaseStudy
 
 final class CoreDataStoreTests: XCTestCase {
-    // MARK: Retrieve Tests
+    // MARK: State Retrieve Tests
     func test_retrieve_deliversEmptyStates() {
         let sut = makeSUT()
         
-        expect(sut, toRetrieveWith: .success([]))
+        expect(sut, toRetrieveStatesWith: .success([]))
     }
     
     func test_retrieve_hasNoSideEffect_afterReturningEmpty() {
         let sut = makeSUT()
         
-        expect(sut, toRetrieveWith: .success([]))
-        expect(sut, toRetrieveWith: .success([]))
+        expect(sut, toRetrieveStatesWith: .success([]))
+        expect(sut, toRetrieveStatesWith: .success([]))
     }
     
     func test_retrieve_hasNoSideEffect_afterReturningNonEmptyStates() {
@@ -30,8 +30,8 @@ final class CoreDataStoreTests: XCTestCase {
         
         sut.insert(state1, completion: { _ in })
         
-        expect(sut, toRetrieveWith: .success([state1]))
-        expect(sut, toRetrieveWith: .success([state1]))
+        expect(sut, toRetrieveStatesWith: .success([state1]))
+        expect(sut, toRetrieveStatesWith: .success([state1]))
     }
     
     func test_retrieve_completesWithStatesWhenNotEmpty() {
@@ -41,7 +41,7 @@ final class CoreDataStoreTests: XCTestCase {
                 
         prepopulateStore(with: [state1], using: sut)
         
-        expect(sut, toRetrieveWith: .success([state1]))
+        expect(sut, toRetrieveStatesWith: .success([state1]))
     }
     
     func test_retrieve_completeWithMultipleStatesAfterMultipleInsertions() {
@@ -53,10 +53,10 @@ final class CoreDataStoreTests: XCTestCase {
         
         prepopulateStore(with: [state1, state2, state3], using: sut)
 
-        expect(sut, toRetrieveWith: .success([state1, state2, state3]))
+        expect(sut, toRetrieveStatesWith: .success([state1, state2, state3]))
     }
     
-    // MARK: Delete Tests
+    // MARK: State Delete Tests
     func test_delete_deletesState() {
         let sut = makeSUT()
         
@@ -64,11 +64,11 @@ final class CoreDataStoreTests: XCTestCase {
         
         prepopulateStore(with: [state1], using: sut)
         
-        expect(sut, toRetrieveWith: .success([state1]))
+        expect(sut, toRetrieveStatesWith: .success([state1]))
         
         sut.delete(state1) { _ in }
         
-        expect(sut, toRetrieveWith: .success([]))
+        expect(sut, toRetrieveStatesWith: .success([]))
     }
     
     func test_delete_doesNotAlterOtherStatesWhenDeletingOneState() {
@@ -80,14 +80,14 @@ final class CoreDataStoreTests: XCTestCase {
         
         prepopulateStore(with: [state1, state2, state3], using: sut)
         
-        expect(sut, toRetrieveWith: .success([state1, state2, state3]))
+        expect(sut, toRetrieveStatesWith: .success([state1, state2, state3]))
         
         sut.delete(state1) { _ in }
         
-        expect(sut, toRetrieveWith: .success([state2, state3]))
+        expect(sut, toRetrieveStatesWith: .success([state2, state3]))
     }
     
-    // MARK: Edit Tests
+    // MARK: State Edit Tests
     func test_edit_editState() {
         let sut = makeSUT()
         
@@ -95,13 +95,13 @@ final class CoreDataStoreTests: XCTestCase {
         
         prepopulateStore(with: [state1], using: sut)
         
-        expect(sut, toRetrieveWith: .success([state1]))
+        expect(sut, toRetrieveStatesWith: .success([state1]))
         
         let newState = makeLocalState(name: "california", taxValue: 0.05)
 
         sut.edit(newState) { _ in }
         
-        expect(sut, toRetrieveWith: .success([newState]))
+        expect(sut, toRetrieveStatesWith: .success([newState]))
     }
     
     func test_edit_doesNotAllowChangingName_completesWithError() {
@@ -111,7 +111,7 @@ final class CoreDataStoreTests: XCTestCase {
         
         prepopulateStore(with: [state1], using: sut)
         
-        expect(sut, toRetrieveWith: .success([state1]))
+        expect(sut, toRetrieveStatesWith: .success([state1]))
         
         let newState = makeLocalState(name: "alabama", taxValue: 0.02)
         
@@ -132,10 +132,10 @@ final class CoreDataStoreTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
         
-        expect(sut, toRetrieveWith: .success([state1]))
+        expect(sut, toRetrieveStatesWith: .success([state1]))
     }
     
-    // MARK: General Tests
+    // MARK: State General Tests
     func test_operationsRunSerially() {
         let sut = makeSUT()
         var completedOperationsInOrder = [XCTestExpectation]()
@@ -165,7 +165,7 @@ final class CoreDataStoreTests: XCTestCase {
 
         XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
     }
-    
+
     // MARK: Helpers
     func makeSUT() -> CoreDataStore {
         let storeURL = URL(fileURLWithPath: "/dev/null")
@@ -176,7 +176,7 @@ final class CoreDataStoreTests: XCTestCase {
         return sut
     }
     
-    func expect(_ sut: CoreDataStore, toRetrieveWith expectedResult: StateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: CoreDataStore, toRetrieveStatesWith expectedResult: StateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { receivedResult in

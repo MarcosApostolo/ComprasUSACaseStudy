@@ -18,6 +18,7 @@ public protocol StateStore {
     typealias DeletionCompletion = (DeletionResult) -> Void
     typealias EditionCompletion = (EditionResult) -> Void
     
+    @available(*, deprecated)
     func retrieve(completion: @escaping RetrievalCompletion)
     
     func insert(_ state: LocalState, completion: @escaping InsertionCompletion)

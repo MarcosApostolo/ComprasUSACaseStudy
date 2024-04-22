@@ -26,4 +26,6 @@ public protocol StateStore {
     func delete(_ state: LocalState, completion: @escaping DeletionCompletion)
     
     func edit(_ state: LocalState, completion: @escaping EditionCompletion)
+    
+    func retrieveStates(completion: @escaping RetrievalCompletion)
 }

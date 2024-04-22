@@ -19,6 +19,10 @@ class StoreSpy: StateStore {
 
 extension StoreSpy {
     func retrieve(completion: @escaping RetrievalCompletion) {
+        retrieveStates(completion: completion)
+    }
+    
+    func retrieveStates(completion: @escaping RetrievalCompletion) {
         retrievalCompletions.append(completion)
     }
     

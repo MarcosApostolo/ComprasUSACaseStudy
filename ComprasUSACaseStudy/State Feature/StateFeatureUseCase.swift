@@ -22,7 +22,7 @@ public class StateFeatureUseCase: StateLoader {
     }
     
     public func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve { [weak self] result in
+        store.retrieveStates { [weak self] result in
             guard self != nil else { return }
 
             completion(

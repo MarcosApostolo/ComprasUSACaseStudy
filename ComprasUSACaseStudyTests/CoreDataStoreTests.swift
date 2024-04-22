@@ -10,20 +10,20 @@ import XCTest
 
 final class CoreDataStoreTests: XCTestCase {
     // MARK: State Retrieve Tests
-    func test_retrieve_deliversEmptyStates() {
+    func test_retrieveStates_deliversEmptyStates() {
         let sut = makeSUT()
         
         expect(sut, toRetrieveStatesWith: .success([]))
     }
     
-    func test_retrieve_hasNoSideEffect_afterReturningEmpty() {
+    func test_retrieveStates_hasNoSideEffect_afterReturningEmpty() {
         let sut = makeSUT()
         
         expect(sut, toRetrieveStatesWith: .success([]))
         expect(sut, toRetrieveStatesWith: .success([]))
     }
     
-    func test_retrieve_hasNoSideEffect_afterReturningNonEmptyStates() {
+    func test_retrieveStates_hasNoSideEffect_afterReturningNonEmptyStates() {
         let sut = makeSUT()
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
@@ -34,7 +34,7 @@ final class CoreDataStoreTests: XCTestCase {
         expect(sut, toRetrieveStatesWith: .success([state1]))
     }
     
-    func test_retrieve_completesWithStatesWhenNotEmpty() {
+    func test_retrieveStates_completesWithStatesWhenNotEmpty() {
         let sut = makeSUT()
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
@@ -44,7 +44,7 @@ final class CoreDataStoreTests: XCTestCase {
         expect(sut, toRetrieveStatesWith: .success([state1]))
     }
     
-    func test_retrieve_completeWithMultipleStatesAfterMultipleInsertions() {
+    func test_retrieveStates_completeWithMultipleStatesAfterMultipleInsertions() {
         let sut = makeSUT()
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
@@ -179,7 +179,7 @@ final class CoreDataStoreTests: XCTestCase {
     func expect(_ sut: CoreDataStore, toRetrieveStatesWith expectedResult: StateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
-        sut.retrieve { receivedResult in
+        sut.retrieveStates { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedStates), .success(expectedStates)):
                 let receivedStatesSet = Set(receivedStates)

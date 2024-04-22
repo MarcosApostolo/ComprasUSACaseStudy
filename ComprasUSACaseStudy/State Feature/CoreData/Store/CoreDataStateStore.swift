@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-public class CoreDataStateStore: StateStore {
+public class CoreDataStateStore: StateStore, PurchaseStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
         
@@ -41,7 +41,7 @@ public class CoreDataStateStore: StateStore {
 }
 
 extension CoreDataStateStore {
-    public func retrieve(completion: @escaping RetrievalCompletion) {
+    public func retrieve(completion: @escaping StateStore.RetrievalCompletion) {
         perform { context in
             completion(Result(catching: {
                 guard let states = try ManagedState.find(context: context)?.compactMap({ managedState in
@@ -56,7 +56,7 @@ extension CoreDataStateStore {
 }
 
 extension CoreDataStateStore {
-    public func insert(_ state: LocalState, completion: @escaping InsertionCompletion) {
+    public func insert(_ state: LocalState, completion: @escaping StateStore.InsertionCompletion) {
         perform { context in
             completion(Result(catching: {
                 let managedState = ManagedState.newInstance(context: context)
@@ -71,7 +71,7 @@ extension CoreDataStateStore {
 }
 
 extension CoreDataStateStore {
-    public func delete(_ state: LocalState, completion: @escaping DeletionCompletion) {
+    public func delete(_ state: LocalState, completion: @escaping StateStore.DeletionCompletion) {
         perform { context in
             completion(Result(catching: {
                 guard let stateToBeRemoved = try ManagedState.find(context: context)?.first(where: { managedState in
@@ -87,7 +87,7 @@ extension CoreDataStateStore {
 }
 
 extension CoreDataStateStore {
-    public func edit(_ state: LocalState, completion: @escaping EditionCompletion) {
+    public func edit(_ state: LocalState, completion: @escaping StateStore.EditionCompletion) {
         perform { context in
             completion(Result(catching: {
                 guard let stateToBeEdited = try ManagedState.find(context: context)?.first(where: { managedState in
@@ -106,3 +106,26 @@ extension CoreDataStateStore {
     }
 }
 
+extension CoreDataStateStore {
+    public func insert(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.InsertionCompletion) {
+        
+    }
+}
+    
+extension CoreDataStateStore {
+    public func delete(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.DeletionCompletion) {
+        
+    }
+}
+    
+extension CoreDataStateStore {
+    public func retrieve(completion: @escaping PurchaseStore.RetrievalCompletion) {
+        
+    }
+}
+
+extension CoreDataStateStore {
+    public func edit(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.EditionCompletion) {
+        
+    }
+}

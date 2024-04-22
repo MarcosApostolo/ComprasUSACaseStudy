@@ -176,7 +176,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         return sut
     }
     
-    func expect(_ sut: CoreDataStateStore, toRetrieveWith expectedResult: CoreDataStateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: CoreDataStateStore, toRetrieveWith expectedResult: StateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { receivedResult in

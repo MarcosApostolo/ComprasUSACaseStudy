@@ -58,6 +58,10 @@ extension StoreSpy {
     func completeEditionSuccessfully(at index: Int = 0) {
         editionCompletions[index](.success(newStatesAfterEdit[index]))
     }
+    
+    func completeEditionSuccessfully(with state: LocalState, at index: Int = 0) {
+        editionCompletions[index](.success(state))
+    }
 }
 
 extension StoreSpy {

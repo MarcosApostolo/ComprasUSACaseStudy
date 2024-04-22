@@ -62,7 +62,7 @@ extension StateFeatureUseCase: StateChanger {
                 let local = try result.get()
                 
                 guard let newState = State(name: local.name, taxValue: local.taxValue) else {
-                    throw Error.createError
+                    throw Error.editError
                 }
                 
                 return newState

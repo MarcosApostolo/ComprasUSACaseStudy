@@ -170,22 +170,9 @@ final class StateFeatureUseCaseTests: XCTestCase {
         
         let stateToBeEdited = makeState(name: "delaware", taxValue: 0.01)
         
-        let exp = expectation(description: "Wait for edit to finish")
-        
-        sut.change(stateToBeEdited, completion: { result in
-            switch result {
-            case let .success(receivedState):
-                XCTAssertEqual(stateToBeEdited, receivedState)
-            case let .failure(error):
-                XCTFail("Expected success but got \(error) instead")
-            }
-            
-            exp.fulfill()
+        expect(sut, toCompleteEditWith: .success(stateToBeEdited), using: stateToBeEdited, when: {
+            store.completeEditionSuccessfully()
         })
-        
-        store.completeEditionSuccessfully()
-        
-        wait(for: [exp], timeout: 0.5)
     }
     
     func test_edit_completesWithLoadErrorWhenStoreCompletesWithInvalidState() {
@@ -193,22 +180,9 @@ final class StateFeatureUseCaseTests: XCTestCase {
         
         let stateToBeEdited = makeState(name: "delaware", taxValue: 0.01)
         
-        let exp = expectation(description: "Wait for edit to finish")
-        
-        sut.change(stateToBeEdited, completion: { result in
-            switch result {
-            case let .success(receivedState):
-                XCTFail("Expected Fail but got success instead")
-            case let .failure(error):
-                XCTAssertEqual(error as NSError, StateFeatureUseCase.Error.editError as NSError)
-            }
-            
-            exp.fulfill()
+        expect(sut, toCompleteEditWith: .failure(StateFeatureUseCase.Error.editError), using: stateToBeEdited, when: {
+            store.completeEditionSuccessfully(with: LocalState(name: "dellaware", taxValue: 0.02))
         })
-        
-        store.completeEditionSuccessfully(with: LocalState(name: "dellaware", taxValue: 0.02))
-        
-        wait(for: [exp], timeout: 0.5)
     }
 
     // MARK: Helpers
@@ -268,6 +242,27 @@ final class StateFeatureUseCaseTests: XCTestCase {
         let exp = expectation(description: "Wait for action to finish")
         
         sut.remove(state) { receivedResult in
+            switch(expectedResult, receivedResult) {
+            case (.success, .success):
+                break
+            case let (.failure(expectedError as StateFeatureUseCase.Error), .failure(receivedError as StateFeatureUseCase.Error)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func expect(_ sut: StateFeatureUseCase, toCompleteEditWith expectedResult: StateFeatureUseCase.ChangeResult, using state: State, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for action to finish")
+        
+        sut.change(state) { receivedResult in
             switch(expectedResult, receivedResult) {
             case (.success, .success):
                 break

@@ -8,7 +8,7 @@
 import XCTest
 @testable import ComprasUSACaseStudy
 
-final class CoreDataStateStoreTests: XCTestCase {
+final class CoreDataStoreTests: XCTestCase {
     // MARK: Retrieve Tests
     func test_retrieve_deliversEmptyStates() {
         let sut = makeSUT()
@@ -117,7 +117,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         
         let exp = expectation(description: "Wait for edit to finish")
         
-        let expectedError = CoreDataStateStore.StoreError.editError
+        let expectedError = CoreDataStore.StoreError.editError
 
         sut.edit(newState) { result in
             switch result {
@@ -167,16 +167,16 @@ final class CoreDataStateStoreTests: XCTestCase {
     }
     
     // MARK: Helpers
-    func makeSUT() -> CoreDataStateStore {
+    func makeSUT() -> CoreDataStore {
         let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try! CoreDataStateStore(storeURL: storeURL)
+        let sut = try! CoreDataStore(storeURL: storeURL)
         
         checkForMemoryLeaks(sut)
         
         return sut
     }
     
-    func expect(_ sut: CoreDataStateStore, toRetrieveWith expectedResult: StateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
+    func expect(_ sut: CoreDataStore, toRetrieveWith expectedResult: StateStore.RetrievalResult, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { receivedResult in
@@ -197,7 +197,7 @@ final class CoreDataStateStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    func prepopulateStore(with states: [LocalState], using sut: CoreDataStateStore) {
+    func prepopulateStore(with states: [LocalState], using sut: CoreDataStore) {
         states.forEach({ state in
             sut.insert(state, completion: { _ in })
         })

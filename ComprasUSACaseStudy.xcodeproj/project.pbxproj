@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A7ED6DD2BD58593002925A9 /* CoreDataStateStoreHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DC2BD58593002925A9 /* CoreDataStateStoreHelpers.swift */; };
+		4A7ED6DD2BD58593002925A9 /* CoreDataStoreHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */; };
 		4A7ED6DF2BD585BF002925A9 /* ManagedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */; };
 		4A7ED6E12BD58727002925A9 /* StateCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E02BD58727002925A9 /* StateCreator.swift */; };
 		4A7ED6E32BD5876A002925A9 /* StateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E22BD5876A002925A9 /* StateLoader.swift */; };
@@ -15,6 +15,7 @@
 		4A7ED6E72BD58E9A002925A9 /* USAStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E62BD58E9A002925A9 /* USAStates.swift */; };
 		4A7FD9EF2BD7221F00E791F9 /* PurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FD9EE2BD7221F00E791F9 /* PurchaseStore.swift */; };
 		4A7FD9F12BD7226600E791F9 /* LocalPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FD9F02BD7226600E791F9 /* LocalPurchase.swift */; };
+		4A7FD9F32BD725AC00E791F9 /* ManagedPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7FD9F22BD725AC00E791F9 /* ManagedPurchase.swift */; };
 		4A9624632BD5BBE300336B46 /* StateRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9624622BD5BBE300336B46 /* StateRemover.swift */; };
 		4A9624652BD5BF5600336B46 /* StateChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9624642BD5BF5600336B46 /* StateChanger.swift */; };
 		4A9624672BD5C1CF00336B46 /* LocaState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9624662BD5C1CF00336B46 /* LocaState.swift */; };
@@ -23,8 +24,8 @@
 		4A97C6C72BD448BD00780643 /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C62BD448BD00780643 /* StateStore.swift */; };
 		4A97C6C92BD448D200780643 /* StateFeatureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C82BD448D200780643 /* StateFeatureUseCase.swift */; };
 		4A97C6CB2BD448F700780643 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6CA2BD448F700780643 /* State.swift */; };
-		4A97C6D32BD4535100780643 /* CoreDataStateStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6D22BD4535100780643 /* CoreDataStateStoreTests.swift */; };
-		4A97C6D62BD45D0B00780643 /* CoreDataStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6D52BD45D0B00780643 /* CoreDataStateStore.swift */; };
+		4A97C6D32BD4535100780643 /* CoreDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6D22BD4535100780643 /* CoreDataStoreTests.swift */; };
+		4A97C6D62BD45D0B00780643 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6D52BD45D0B00780643 /* CoreDataStore.swift */; };
 		4A97C6DC2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DA2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld */; };
 		4A97C6DF2BD4657F00780643 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DE2BD4657F00780643 /* TestHelpers.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
@@ -41,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4A7ED6DC2BD58593002925A9 /* CoreDataStateStoreHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStateStoreHelpers.swift; sourceTree = "<group>"; };
+		4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreHelpers.swift; sourceTree = "<group>"; };
 		4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedState.swift; sourceTree = "<group>"; };
 		4A7ED6E02BD58727002925A9 /* StateCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCreator.swift; sourceTree = "<group>"; };
 		4A7ED6E22BD5876A002925A9 /* StateLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateLoader.swift; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		4A7ED6E62BD58E9A002925A9 /* USAStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USAStates.swift; sourceTree = "<group>"; };
 		4A7FD9EE2BD7221F00E791F9 /* PurchaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseStore.swift; sourceTree = "<group>"; };
 		4A7FD9F02BD7226600E791F9 /* LocalPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPurchase.swift; sourceTree = "<group>"; };
+		4A7FD9F22BD725AC00E791F9 /* ManagedPurchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPurchase.swift; sourceTree = "<group>"; };
 		4A9624622BD5BBE300336B46 /* StateRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRemover.swift; sourceTree = "<group>"; };
 		4A9624642BD5BF5600336B46 /* StateChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateChanger.swift; sourceTree = "<group>"; };
 		4A9624662BD5C1CF00336B46 /* LocaState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaState.swift; sourceTree = "<group>"; };
@@ -58,8 +60,8 @@
 		4A97C6C62BD448BD00780643 /* StateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStore.swift; sourceTree = "<group>"; };
 		4A97C6C82BD448D200780643 /* StateFeatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateFeatureUseCase.swift; sourceTree = "<group>"; };
 		4A97C6CA2BD448F700780643 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		4A97C6D22BD4535100780643 /* CoreDataStateStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStateStoreTests.swift; sourceTree = "<group>"; };
-		4A97C6D52BD45D0B00780643 /* CoreDataStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStateStore.swift; sourceTree = "<group>"; };
+		4A97C6D22BD4535100780643 /* CoreDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreTests.swift; sourceTree = "<group>"; };
+		4A97C6D52BD45D0B00780643 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		4A97C6DB2BD4631C00780643 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4A97C6DE2BD4657F00780643 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,8 +90,8 @@
 		4A7FD9ED2BD721F400E791F9 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				4A97C6D52BD45D0B00780643 /* CoreDataStateStore.swift */,
-				4A7ED6DC2BD58593002925A9 /* CoreDataStateStoreHelpers.swift */,
+				4A97C6D52BD45D0B00780643 /* CoreDataStore.swift */,
+				4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */,
 				4A97C6C62BD448BD00780643 /* StateStore.swift */,
 				4A7FD9EE2BD7221F00E791F9 /* PurchaseStore.swift */,
 			);
@@ -129,6 +131,7 @@
 				4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */,
 				4A9624662BD5C1CF00336B46 /* LocaState.swift */,
 				4A7FD9F02BD7226600E791F9 /* LocalPurchase.swift */,
+				4A7FD9F22BD725AC00E791F9 /* ManagedPurchase.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -165,7 +168,7 @@
 				4A97C6C32BD43CC600780643 /* Helpers */,
 				4A97C6C02BD42DC500780643 /* ComprasUSACaseStudy.xctestplan */,
 				4A97C6C12BD42E0700780643 /* StateFeatureUseCaseTests.swift */,
-				4A97C6D22BD4535100780643 /* CoreDataStateStoreTests.swift */,
+				4A97C6D22BD4535100780643 /* CoreDataStoreTests.swift */,
 			);
 			path = ComprasUSACaseStudyTests;
 			sourceTree = "<group>";
@@ -280,7 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A97C6D62BD45D0B00780643 /* CoreDataStateStore.swift in Sources */,
+				4A97C6D62BD45D0B00780643 /* CoreDataStore.swift in Sources */,
 				4A9624632BD5BBE300336B46 /* StateRemover.swift in Sources */,
 				4A97C6C92BD448D200780643 /* StateFeatureUseCase.swift in Sources */,
 				4A7ED6E12BD58727002925A9 /* StateCreator.swift in Sources */,
@@ -288,10 +291,11 @@
 				4A7ED6DF2BD585BF002925A9 /* ManagedState.swift in Sources */,
 				4A7FD9F12BD7226600E791F9 /* LocalPurchase.swift in Sources */,
 				4A97C6DC2BD4631C00780643 /* PurchaseTransactions.xcdatamodeld in Sources */,
+				4A7FD9F32BD725AC00E791F9 /* ManagedPurchase.swift in Sources */,
 				4A7ED6E32BD5876A002925A9 /* StateLoader.swift in Sources */,
 				4A97C6C72BD448BD00780643 /* StateStore.swift in Sources */,
 				4A7ED6E72BD58E9A002925A9 /* USAStates.swift in Sources */,
-				4A7ED6DD2BD58593002925A9 /* CoreDataStateStoreHelpers.swift in Sources */,
+				4A7ED6DD2BD58593002925A9 /* CoreDataStoreHelpers.swift in Sources */,
 				4A9624652BD5BF5600336B46 /* StateChanger.swift in Sources */,
 				4A9624672BD5C1CF00336B46 /* LocaState.swift in Sources */,
 				4A97C6CB2BD448F700780643 /* State.swift in Sources */,
@@ -305,7 +309,7 @@
 				4A7ED6E52BD589FA002925A9 /* StoreSpy.swift in Sources */,
 				4A97C6C52BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift in Sources */,
 				4A97C6C22BD42E0700780643 /* StateFeatureUseCaseTests.swift in Sources */,
-				4A97C6D32BD4535100780643 /* CoreDataStateStoreTests.swift in Sources */,
+				4A97C6D32BD4535100780643 /* CoreDataStoreTests.swift in Sources */,
 				4A97C6DF2BD4657F00780643 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

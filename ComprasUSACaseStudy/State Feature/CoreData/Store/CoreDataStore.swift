@@ -8,12 +8,12 @@
 import Foundation
 import CoreData
 
-public class CoreDataStateStore: StateStore, PurchaseStore {
+public class CoreDataStore: StateStore, PurchaseStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
         
     private static let modelName = "PurchaseTransactions"
-    private static let model = NSManagedObjectModel.with(modelName: modelName, bundle: Bundle(for: CoreDataStateStore.self))
+    private static let model = NSManagedObjectModel.with(modelName: modelName, bundle: Bundle(for: CoreDataStore.self))
     
     enum StoreError: Error {
         case modelNotFound
@@ -22,12 +22,12 @@ public class CoreDataStateStore: StateStore, PurchaseStore {
     }
     
     public init(storeURL: URL) throws {
-        guard let model = CoreDataStateStore.model else {
+        guard let model = CoreDataStore.model else {
             throw StoreError.modelNotFound
         }
         
         do {
-            self.container = try NSPersistentContainer.load(modelName: CoreDataStateStore.modelName, url: storeURL, model: model)
+            self.container = try NSPersistentContainer.load(modelName: CoreDataStore.modelName, url: storeURL, model: model)
             self.context = container.newBackgroundContext()
         } catch {
             throw StoreError.failedToLoadPersistentContainer(error)
@@ -40,7 +40,7 @@ public class CoreDataStateStore: StateStore, PurchaseStore {
     }
 }
 
-extension CoreDataStateStore {
+extension CoreDataStore {
     public func retrieve(completion: @escaping StateStore.RetrievalCompletion) {
         perform { context in
             completion(Result(catching: {
@@ -55,7 +55,7 @@ extension CoreDataStateStore {
     }
 }
 
-extension CoreDataStateStore {
+extension CoreDataStore {
     public func insert(_ state: LocalState, completion: @escaping StateStore.InsertionCompletion) {
         perform { context in
             completion(Result(catching: {
@@ -70,7 +70,7 @@ extension CoreDataStateStore {
     }
 }
 
-extension CoreDataStateStore {
+extension CoreDataStore {
     public func delete(_ state: LocalState, completion: @escaping StateStore.DeletionCompletion) {
         perform { context in
             completion(Result(catching: {
@@ -86,7 +86,7 @@ extension CoreDataStateStore {
     }
 }
 
-extension CoreDataStateStore {
+extension CoreDataStore {
     public func edit(_ state: LocalState, completion: @escaping StateStore.EditionCompletion) {
         perform { context in
             completion(Result(catching: {
@@ -106,25 +106,25 @@ extension CoreDataStateStore {
     }
 }
 
-extension CoreDataStateStore {
+extension CoreDataStore {
     public func insert(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.InsertionCompletion) {
         
     }
 }
     
-extension CoreDataStateStore {
+extension CoreDataStore {
     public func delete(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.DeletionCompletion) {
         
     }
 }
     
-extension CoreDataStateStore {
+extension CoreDataStore {
     public func retrieve(completion: @escaping PurchaseStore.RetrievalCompletion) {
         
     }
 }
 
-extension CoreDataStateStore {
+extension CoreDataStore {
     public func edit(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.EditionCompletion) {
         
     }

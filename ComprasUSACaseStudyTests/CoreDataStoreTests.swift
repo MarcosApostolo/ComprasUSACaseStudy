@@ -23,6 +23,25 @@ final class CoreDataStoreTests: XCTestCase {
         expect(sut, toRetrieveStatesWith: .success([]))
     }
     
+    func test_async_retrieveStates_returnsStatesWhenNotEmpty() async throws {
+        let sut = makeSUT()
+        
+        let state1 = makeLocalState(name: "california", taxValue: 0.02)
+        
+        insertState(state1, using: sut)
+        
+        let result = try await sut.retrieveStates()
+        
+        switch result {
+        case let .success(receivedStates):
+            let receivedStatesSet = Set(receivedStates)
+            let expectedStatesSet = Set([state1])
+            XCTAssertEqual(receivedStatesSet, expectedStatesSet)
+        case .failure:
+            XCTFail()
+        }
+    }
+    
     func test_retrieveStates_hasNoSideEffect_afterReturningNonEmptyStates() {
         let sut = makeSUT()
         
@@ -30,7 +49,7 @@ final class CoreDataStoreTests: XCTestCase {
         
         expect(sut, toRetrieveStatesWith: .success([]))
         
-        sut.insert(state1, completion: { _ in })
+        insertState(state1, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([state1]))
         expect(sut, toRetrieveStatesWith: .success([state1]))

@@ -20,6 +20,7 @@ public class CoreDataStore: StateStore, PurchaseStore {
         case failedToLoadPersistentContainer(Error)
         case editError
         case insertError
+        case retrieveError
     }
     
     public init(storeURL: URL) throws {
@@ -163,5 +164,21 @@ extension CoreDataStore {
 extension CoreDataStore {
     public func edit(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.EditionCompletion) {
         
+    }
+    
+    public func retrieveStates() async throws -> StateStore.RetrievalResult {
+        Result {
+            do {
+                guard let states = try ManagedState.find(context: context)?.compactMap({ managedState in
+                    return managedState.localState
+                }) else {
+                    return []
+                }
+                
+                return states
+            } catch {
+                throw StoreError.retrieveError
+            }
+        }
     }
 }

@@ -7,10 +7,20 @@
         <attribute name="paymentType" attributeType="String"/>
         <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedState" inverseName="purchase" inverseEntity="ManagedState"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="ManagedState" representedClassName="ManagedState" syncable="YES">
         <attribute name="name" attributeType="String"/>
         <attribute name="taxValue" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="purchase" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedPurchase" inverseName="state" inverseEntity="ManagedPurchase"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
 </model>

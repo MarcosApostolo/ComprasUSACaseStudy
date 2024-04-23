@@ -83,6 +83,22 @@ final class CoreDataStoreTests: XCTestCase {
         expect(sut, toRetrieveStatesWith: .success([state1, state2, state3]))
     }
     
+    func test_insert_doesNotDuplicateStates() {
+        let sut = makeSUT()
+        
+        let state1 = makeLocalState(name: "california", taxValue: 0.02)
+        
+        expect(sut, toRetrieveStatesWith: .success([]))
+        
+        insertState(state1, using: sut)
+        
+        expect(sut, toRetrieveStatesWith: .success([state1]))
+        
+        insertState(state1, using: sut)
+        
+        expect(sut, toRetrieveStatesWith: .success([state1]))
+    }
+    
     // MARK: State Delete Tests
     func test_delete_deletesState() {
         let sut = makeSUT()
@@ -320,6 +336,27 @@ final class CoreDataStoreTests: XCTestCase {
         expect(sut, toRetrievePurchasesWith: .success([purchase1, purchase2, purchase3]))
     }
     
+    func test_insert_doesNotDuplicatePurchases() {
+        let sut = makeSUT()
+        
+        let localState = makeLocalState(name: "california", taxValue: 0.04)
+        
+        let purchase1 = makeLocalPurchase(state: localState)
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
+        expect(sut, toRetrieveStatesWith: .success([]))
+        
+        insertPurchase(purchase1, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchase1]))
+        expect(sut, toRetrieveStatesWith: .success([localState]))
+
+        insertPurchase(purchase1, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchase1]))
+        expect(sut, toRetrieveStatesWith: .success([localState]))
+    }
+    
     // MARK: Purchase Delete Tests
     func test_delete_deletesPurchase() {
         let sut = makeSUT()
@@ -511,6 +548,46 @@ final class CoreDataStoreTests: XCTestCase {
         editPurchase(editedPurchase, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([editedPurchase]))
+    }
+    
+    func test_edit_editingAStateReflectsOnPurchase() {
+        let sut = makeSUT()
+        
+        let localState = makeLocalState(name: "california", taxValue: 0.04)
+        
+        expect(sut, toRetrieveStatesWith: .success([]))
+        expect(sut, toRetrievePurchasesWith: .success([]))
+        
+        insertState(localState, using: sut)
+        
+        let purchase1 = makeLocalPurchase(
+            name: "a purchase",
+            imageData: anyData(),
+            value: 10,
+            paymentType: "card",
+            state: localState
+        )
+        
+        insertPurchase(purchase1, using: sut)
+        
+        expect(sut, toRetrieveStatesWith: .success([localState]))
+        expect(sut, toRetrievePurchasesWith: .success([purchase1]))
+        
+        let stateToBeEdited = makeLocalState(name: "california", taxValue: 0.02)
+        
+        let purchaseWithNewEditedState = makeLocalPurchase(
+            id: purchase1.id,
+            name: "a purchase",
+            imageData: anyData(),
+            value: 10,
+            paymentType: "card",
+            state: stateToBeEdited
+        )
+        
+        editState(stateToBeEdited, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchaseWithNewEditedState]))
+        expect(sut, toRetrieveStatesWith: .success([stateToBeEdited]))
     }
 
     // MARK: Helpers

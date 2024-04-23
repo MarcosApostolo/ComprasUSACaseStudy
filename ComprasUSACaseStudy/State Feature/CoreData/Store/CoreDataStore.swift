@@ -32,6 +32,8 @@ public class CoreDataStore: StateStore, PurchaseStore {
         do {
             self.container = try NSPersistentContainer.load(modelName: CoreDataStore.modelName, url: storeURL, model: model)
             self.context = container.newBackgroundContext()
+            
+            self.context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         } catch {
             throw StoreError.failedToLoadPersistentContainer(error)
         }
@@ -63,7 +65,7 @@ extension CoreDataStore {
         perform { context in
             completion(Result(catching: {
                 let managedState = ManagedState.newInstance(context: context)
-                
+                                
                 managedState.name = state.name
                 managedState.taxValue = state.taxValue
                 
@@ -115,7 +117,7 @@ extension CoreDataStore {
             completion(Result(catching: {
                 let managedPurchase = ManagedPurchase.newInstance(context: context)
                 let managedState = ManagedState(context: context)
-                
+                                
                 guard let state = purchase.state else {
                     throw StoreError.insertError
                 }
@@ -129,7 +131,7 @@ extension CoreDataStore {
                 managedPurchase.paymentType = purchase.paymentType
                 managedPurchase.state = managedState
                 managedPurchase.value = purchase.value
-                
+                                
                 try context.save()
             }))
         }

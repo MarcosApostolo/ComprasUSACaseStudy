@@ -175,11 +175,21 @@ extension CoreDataStore {
                 }) else {
                     throw StoreError.editError
                 }
+                
+                let managedState = ManagedState(context: context)
+                
+                guard let state = purchase.state else {
+                    throw StoreError.editError
+                }
+                
+                managedState.name = state.name
+                managedState.taxValue = state.taxValue
 
                 purchaseToBeEdited.imageData = purchase.imageData
                 purchaseToBeEdited.name = purchase.name
                 purchaseToBeEdited.paymentType = purchase.paymentType
                 purchaseToBeEdited.value = purchase.value
+                purchaseToBeEdited.state = managedState
                 
                 try context.save()
                 

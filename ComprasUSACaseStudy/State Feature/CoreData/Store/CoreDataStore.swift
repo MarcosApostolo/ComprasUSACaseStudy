@@ -134,13 +134,13 @@ extension CoreDataStore {
     public func delete(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.DeletionCompletion) {
         perform { context in
             completion(Result(catching: {
-                guard let stateToBeRemoved = try ManagedPurchase.find(context: context)?.first(where: { managedPurchase in
+                guard let purchaseToBeRemoved = try ManagedPurchase.find(context: context)?.first(where: { managedPurchase in
                     managedPurchase.id == purchase.id
                 }) else {
                     return
                 }
 
-                context.delete(stateToBeRemoved)
+                context.delete(purchaseToBeRemoved)
             }))
         }
     }

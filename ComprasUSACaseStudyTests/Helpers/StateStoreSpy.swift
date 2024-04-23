@@ -8,7 +8,7 @@
 import Foundation
 import ComprasUSACaseStudy
 
-class StoreSpy: StateStore {
+class StateStoreSpy: StateStore {
     var retrievalCompletions = [RetrievalCompletion]()
     var insertionCompletions = [InsertionCompletion]()
     var deletionCompletions = [DeletionCompletion]()
@@ -17,7 +17,7 @@ class StoreSpy: StateStore {
     var newStatesAfterEdit = [LocalState]()
 }
 
-extension StoreSpy {
+extension StateStoreSpy {
     func retrieveStates(completion: @escaping RetrievalCompletion) {
         retrievalCompletions.append(completion)
     }
@@ -31,7 +31,7 @@ extension StoreSpy {
     }
 }
 
-extension StoreSpy {
+extension StateStoreSpy {
     func insert(_ state: LocalState, completion: @escaping InsertionCompletion) {
         insertionCompletions.append(completion)
     }
@@ -45,7 +45,7 @@ extension StoreSpy {
     }
 }
 
-extension StoreSpy {
+extension StateStoreSpy {
     func edit(_ state: LocalState, completion: @escaping EditionCompletion) {
         editionCompletions.append(completion)
         newStatesAfterEdit.append(state)
@@ -64,7 +64,7 @@ extension StoreSpy {
     }
 }
 
-extension StoreSpy {
+extension StateStoreSpy {
     func delete(_ state: LocalState, completion: @escaping DeletionCompletion) {
         deletionCompletions.append(completion)
     }

@@ -50,7 +50,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
     }
     
     func test_shouldNotDeliverResultAfterSUTDeallocation() {
-        let store = StoreSpy()
+        let store = StateStoreSpy()
         var sut: StateFeatureUseCase? = StateFeatureUseCase(store: store)
         let state1 = makeStateObjects()
         
@@ -186,8 +186,8 @@ final class StateFeatureUseCaseTests: XCTestCase {
     }
 
     // MARK: Helpers
-    func makeSUT() -> (sut: StateFeatureUseCase, store: StoreSpy) {
-        let store = StoreSpy()
+    func makeSUT() -> (sut: StateFeatureUseCase, store: StateStoreSpy) {
+        let store = StateStoreSpy()
         let sut = StateFeatureUseCase(store: store)
         
         checkForMemoryLeaks(store)

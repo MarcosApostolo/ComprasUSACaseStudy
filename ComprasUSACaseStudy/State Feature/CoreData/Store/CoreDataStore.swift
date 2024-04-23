@@ -19,6 +19,7 @@ public class CoreDataStore: StateStore, PurchaseStore {
         case modelNotFound
         case failedToLoadPersistentContainer(Error)
         case editError
+        case insertError
     }
     
     public init(storeURL: URL) throws {
@@ -108,7 +109,23 @@ extension CoreDataStore {
 
 extension CoreDataStore {
     public func insert(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.InsertionCompletion) {
-        
+        perform { context in
+            completion(Result(catching: {
+                let managedPurchase = ManagedPurchase.newInstance(context: context)
+                let managedState = ManagedState(context: context)
+                
+                managedState.name = purchase.state.name
+                managedState.taxValue = purchase.state.taxValue
+                
+                managedPurchase.name = purchase.name
+                managedPurchase.imageData = purchase.imageData
+                managedPurchase.paymentType = purchase.paymentType
+                managedPurchase.state = managedState
+                managedPurchase.value = purchase.value
+                
+                try context.save()
+            }))
+        }
     }
 }
     
@@ -120,7 +137,15 @@ extension CoreDataStore {
     
 extension CoreDataStore {
     public func retrievePurchases(completion: @escaping PurchaseStore.RetrievalCompletion) {
-        completion(.success([]))
+        completion(Result(catching: {
+            guard let purchases = try ManagedPurchase.find(context: context)?.compactMap({ managedPurchase in
+                return managedPurchase.localPurchase
+            }) else {
+                return []
+            }
+            
+            return purchases
+        }))
     }
 }
 

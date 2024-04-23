@@ -32,10 +32,7 @@ class ManagedPurchase: NSManagedObject {
             imageData: self.imageData,
             value: self.value,
             paymentType: self.paymentType,
-            state: LocalState(
-                name: self.state.name,
-                taxValue: self.state.taxValue
-            )
+            state: self.state.localState
         )
     }
 }

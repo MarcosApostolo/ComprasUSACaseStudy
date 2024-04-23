@@ -179,6 +179,24 @@ final class CoreDataStoreTests: XCTestCase {
         expect(sut, toRetrievePurchasesWith: .success([]))
         expect(sut, toRetrievePurchasesWith: .success([]))
     }
+    
+    func test_retrievePurchases_completesWithPurchasesWhenNotEmpty() {
+        let sut = makeSUT()
+        
+        let localState = makeLocalState(name: "california", taxValue: 0.04)
+        
+        let purchase1 = makeLocalPurchase(state: localState)
+        
+        let exp1 = expectation(description: "Wait for first insert to finish")
+        
+        sut.insert(purchase1, completion: { _ in
+            exp1.fulfill()
+        })
+        
+        wait(for: [exp1], timeout: 1.0)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchase1]))
+    }
 
     // MARK: Helpers
     func makeSUT() -> CoreDataStore {

@@ -5,7 +5,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="paymentType" attributeType="String"/>
         <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedState" inverseName="purchase" inverseEntity="ManagedState"/>
+        <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="ManagedState" inverseName="purchase" inverseEntity="ManagedState"/>
     </entity>
     <entity name="ManagedState" representedClassName="ManagedState" syncable="YES">
         <attribute name="name" attributeType="String"/>

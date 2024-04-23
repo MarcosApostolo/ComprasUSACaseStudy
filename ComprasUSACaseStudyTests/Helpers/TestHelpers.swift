@@ -23,3 +23,13 @@ public func makeLocalState(name: String = "california", taxValue: Double = 0.01)
 public func makeStateObjects(name: String = "california", taxValue: Double = 0.01) -> (model: State, local: LocalState) {
     return (makeState(name: name, taxValue: taxValue), makeLocalState(name: name, taxValue: taxValue))
 }
+
+public func makeLocalPurchase(
+    name: String = "a purchase",
+    imageData: Data? = nil,
+    value: Double = 10,
+    paymentType: String = "card",
+    state: LocalState = LocalState(name: "california", taxValue: 0.01)
+) -> LocalPurchase {
+    LocalPurchase(name: name, imageData: imageData, value: value, paymentType: paymentType, state: state)
+}

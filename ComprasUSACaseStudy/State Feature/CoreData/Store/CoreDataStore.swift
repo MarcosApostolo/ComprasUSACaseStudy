@@ -21,6 +21,7 @@ public class CoreDataStore: StateStore, PurchaseStore {
         case editError
         case insertError
         case retrieveError
+        case deleteError
     }
     
     public init(storeURL: URL) throws {
@@ -142,7 +143,7 @@ extension CoreDataStore {
                 guard let purchaseToBeRemoved = try ManagedPurchase.find(context: context)?.first(where: { managedPurchase in
                     managedPurchase.id == purchase.id
                 }) else {
-                    return
+                    throw StoreError.deleteError
                 }
 
                 context.delete(purchaseToBeRemoved)

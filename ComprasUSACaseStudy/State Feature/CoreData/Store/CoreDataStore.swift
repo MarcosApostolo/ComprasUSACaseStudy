@@ -117,6 +117,7 @@ extension CoreDataStore {
                 managedState.name = purchase.state.name
                 managedState.taxValue = purchase.state.taxValue
                 
+                managedPurchase.id = purchase.id
                 managedPurchase.name = purchase.name
                 managedPurchase.imageData = purchase.imageData
                 managedPurchase.paymentType = purchase.paymentType
@@ -131,7 +132,17 @@ extension CoreDataStore {
     
 extension CoreDataStore {
     public func delete(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.DeletionCompletion) {
-        
+        perform { context in
+            completion(Result(catching: {
+                guard let stateToBeRemoved = try ManagedPurchase.find(context: context)?.first(where: { managedPurchase in
+                    managedPurchase.id == purchase.id
+                }) else {
+                    return
+                }
+
+                context.delete(stateToBeRemoved)
+            }))
+        }
     }
 }
     

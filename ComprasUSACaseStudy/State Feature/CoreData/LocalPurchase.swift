@@ -8,13 +8,15 @@
 import Foundation
 
 public struct LocalPurchase: Hashable {
+    public let id: UUID
     public let name: String
     public let imageData: Data?
     public let value: Double
     public let paymentType: String
     public let state: LocalState
     
-    public init(name: String, imageData: Data?, value: Double, paymentType: String, state: LocalState) {
+    public init(id: UUID, name: String, imageData: Data?, value: Double, paymentType: String, state: LocalState) {
+        self.id = id
         self.name = name
         self.imageData = imageData
         self.value = value

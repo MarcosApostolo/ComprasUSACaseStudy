@@ -10,6 +10,7 @@ import CoreData
 
 @objc(ManagedPurchase)
 class ManagedPurchase: NSManagedObject {
+    @NSManaged var id: UUID
     @NSManaged var name: String
     @NSManaged var imageData: Data?
     @NSManaged var value: Double
@@ -28,6 +29,7 @@ class ManagedPurchase: NSManagedObject {
 
     var localPurchase: LocalPurchase {
         LocalPurchase(
+            id: self.id,
             name: self.name,
             imageData: self.imageData,
             value: self.value,

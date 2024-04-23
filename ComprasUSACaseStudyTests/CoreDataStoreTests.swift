@@ -274,6 +274,23 @@ final class CoreDataStoreTests: XCTestCase {
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1, purchase2, purchase3]))
     }
+    
+    // MARK: Purchase Delete Tests
+    func test_delete_deletesPurchase() {
+        let sut = makeSUT()
+        
+        let localState = makeLocalState(name: "california", taxValue: 0.04)
+        
+        let purchase1 = makeLocalPurchase(state: localState)
+        
+        insert(purchase1, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchase1]))
+        
+        sut.delete(purchase1) { _ in }
+        
+        expect(sut, toRetrieveStatesWith: .success([]))
+    }
 
     // MARK: Helpers
     func makeSUT() -> CoreDataStore {

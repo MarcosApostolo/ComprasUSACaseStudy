@@ -25,13 +25,21 @@ public func makeStateObjects(name: String = "california", taxValue: Double = 0.0
 }
 
 public func makeLocalPurchase(
+    id: UUID = UUID(),
     name: String = "a purchase",
     imageData: Data? = nil,
     value: Double = 10,
     paymentType: String = "card",
     state: LocalState = LocalState(name: "california", taxValue: 0.01)
 ) -> LocalPurchase {
-    LocalPurchase(name: name, imageData: imageData, value: value, paymentType: paymentType, state: state)
+    LocalPurchase(
+        id: id,
+        name: name,
+        imageData: imageData,
+        value: value,
+        paymentType: paymentType, 
+        state: state
+    )
 }
 
 public func anyData() -> Data {

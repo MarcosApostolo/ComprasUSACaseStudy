@@ -167,7 +167,24 @@ extension CoreDataStore {
 
 extension CoreDataStore {
     public func edit(_ purchase: LocalPurchase, completion: @escaping PurchaseStore.EditionCompletion) {
-        
+        perform { context in
+            completion(Result(catching: {
+                guard let purchaseToBeEdited = try ManagedPurchase.find(context: context)?.first(where: { managedPurchase in
+                    managedPurchase.id == purchase.id
+                }) else {
+                    throw StoreError.editError
+                }
+
+                purchaseToBeEdited.imageData = purchase.imageData
+                purchaseToBeEdited.name = purchase.name
+                purchaseToBeEdited.paymentType = purchase.paymentType
+                purchaseToBeEdited.value = purchase.value
+                
+                try context.save()
+                
+                return purchaseToBeEdited.localPurchase
+            }))
+        }
     }
     
     public func retrieveStates() async throws -> StateStore.RetrievalResult {

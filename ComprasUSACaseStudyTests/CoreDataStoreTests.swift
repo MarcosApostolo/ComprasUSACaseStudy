@@ -443,6 +443,40 @@ final class CoreDataStoreTests: XCTestCase {
         expect(sut, toRetrievePurchasesWith: .success([expectedPurchase]))
         expect(sut, toRetrieveStatesWith: .success([]))
     }
+    
+    // MARK: Purchases Edit Tests
+    func test_edit_editPurchase() {
+        let sut = makeSUT()
+        
+        let localState = makeLocalState(name: "california", taxValue: 0.04)
+        
+        let purchase1 = makeLocalPurchase(
+            name: "a purchase",
+            imageData: anyData(),
+            value: 10,
+            paymentType: "card",
+            state: localState
+        )
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
+        
+        insertPurchase(purchase1, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchase1]))
+        
+        let editedPurchase = makeLocalPurchase(
+            id: purchase1.id,
+            name: "edited purchase",
+            imageData: anyData(),
+            value: 10,
+            paymentType: "card",
+            state: localState
+        )
+
+        editPurchase(editedPurchase, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([editedPurchase]))
+    }
 
     // MARK: Helpers
     func makeSUT() -> CoreDataStore {

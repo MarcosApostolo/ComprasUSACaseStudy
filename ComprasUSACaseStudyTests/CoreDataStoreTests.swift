@@ -378,6 +378,35 @@ final class CoreDataStoreTests: XCTestCase {
         
         expect(sut, toRetrievePurchasesWith: .success([purchase2, purchase3]))
     }
+    
+    func test_delete_doesNotDeleteStatesWhenDeletingPurchase() {
+        let sut = makeSUT()
+        
+        let localState = makeLocalState(name: "california", taxValue: 0.04)
+        
+        let purchase1 = makeLocalPurchase(
+            name: "a purchase",
+            imageData: anyData(),
+            value: 10,
+            paymentType: "card",
+            state: localState
+        )
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
+        expect(sut, toRetrieveStatesWith: .success([]))
+        
+        insertState(localState, using: sut)
+        
+        insertPurchase(purchase1, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchase1]))
+        expect(sut, toRetrieveStatesWith: .success([localState]))
+        
+        deletePurchase(purchase1, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
+        expect(sut, toRetrieveStatesWith: .success([localState]))
+    }
 
     // MARK: Helpers
     func makeSUT() -> CoreDataStore {

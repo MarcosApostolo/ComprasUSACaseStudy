@@ -8,7 +8,6 @@
 import XCTest
 @testable import ComprasUSACaseStudy
 
-// add preconditions
 final class CoreDataStoreTests: XCTestCase {
     // MARK: State Retrieve Tests
     func test_retrieveStates_deliversEmptyStates() {
@@ -29,6 +28,8 @@ final class CoreDataStoreTests: XCTestCase {
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
         
+        expect(sut, toRetrieveStatesWith: .success([]))
+        
         sut.insert(state1, completion: { _ in })
         
         expect(sut, toRetrieveStatesWith: .success([state1]))
@@ -39,6 +40,8 @@ final class CoreDataStoreTests: XCTestCase {
         let sut = makeSUT()
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
+        
+        expect(sut, toRetrieveStatesWith: .success([]))
         
         insertState(state1, using: sut)
                         
@@ -52,6 +55,8 @@ final class CoreDataStoreTests: XCTestCase {
         let state2 = makeLocalState(name: "newYork", taxValue: 0.01)
         let state3 = makeLocalState(name: "vermont", taxValue: 0.1)
         
+        expect(sut, toRetrieveStatesWith: .success([]))
+        
         insertState(state1, using: sut)
         insertState(state2, using: sut)
         insertState(state3, using: sut)
@@ -64,6 +69,8 @@ final class CoreDataStoreTests: XCTestCase {
         let sut = makeSUT()
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
+        
+        expect(sut, toRetrieveStatesWith: .success([]))
         
         insertState(state1, using: sut)
                 
@@ -80,6 +87,8 @@ final class CoreDataStoreTests: XCTestCase {
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
         let state2 = makeLocalState(name: "newYork", taxValue: 0.01)
         let state3 = makeLocalState(name: "vermont", taxValue: 0.1)
+        
+        expect(sut, toRetrieveStatesWith: .success([]))
         
         insertState(state1, using: sut)
         insertState(state2, using: sut)
@@ -98,6 +107,8 @@ final class CoreDataStoreTests: XCTestCase {
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
         
+        expect(sut, toRetrieveStatesWith: .success([]))
+        
         insertState(state1, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([state1]))
@@ -113,6 +124,8 @@ final class CoreDataStoreTests: XCTestCase {
         let sut = makeSUT()
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
+        
+        expect(sut, toRetrieveStatesWith: .success([]))
         
         insertState(state1, using: sut)
         
@@ -192,6 +205,8 @@ final class CoreDataStoreTests: XCTestCase {
         
         let purchase1 = makeLocalPurchase(state: localState)
         
+        expect(sut, toRetrievePurchasesWith: .success([]))
+        
         insertPurchase(purchase1, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
@@ -203,6 +218,8 @@ final class CoreDataStoreTests: XCTestCase {
         let localState = makeLocalState(name: "california", taxValue: 0.04)
         
         let purchase1 = makeLocalPurchase(state: localState)
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
         
         insertPurchase(purchase1, using: sut)
         
@@ -236,6 +253,8 @@ final class CoreDataStoreTests: XCTestCase {
             paymentType: "card",
             state: localState
         )
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
         
         insertPurchase(purchase1, using: sut)
         insertPurchase(purchase2, using: sut)
@@ -273,6 +292,8 @@ final class CoreDataStoreTests: XCTestCase {
             state: localState3
         )
         
+        expect(sut, toRetrievePurchasesWith: .success([]))
+        
         insertPurchase(purchase1, using: sut)
         insertPurchase(purchase2, using: sut)
         insertPurchase(purchase3, using: sut)
@@ -287,6 +308,8 @@ final class CoreDataStoreTests: XCTestCase {
         let localState = makeLocalState(name: "california", taxValue: 0.04)
         
         let purchase1 = makeLocalPurchase(state: localState)
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
         
         insertPurchase(purchase1, using: sut)
         
@@ -323,6 +346,8 @@ final class CoreDataStoreTests: XCTestCase {
             paymentType: "card",
             state: localState
         )
+        
+        expect(sut, toRetrievePurchasesWith: .success([]))
         
         insertPurchase(purchase1, using: sut)
         insertPurchase(purchase2, using: sut)

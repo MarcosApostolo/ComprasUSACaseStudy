@@ -9,14 +9,17 @@ import XCTest
 import ComprasUSACaseStudy
 
 final class StateFeatureUseCaseTests: XCTestCase {
-    // MARK: Loader Tests
-    func test_init_doesNotSendMessagesToClient() {
+    func test_init_doesNotSendMessagesToStore() {
         let (_, store) = makeSUT()
         
         XCTAssertEqual(store.retrievalCompletions.count, 0)
+        XCTAssertEqual(store.insertionCompletions.count, 0)
+        XCTAssertEqual(store.deletionCompletions.count, 0)
+        XCTAssertEqual(store.editionCompletions.count, 0)
     }
     
-    func test_load_sendLoadMessageToClient() {
+    // MARK: Loader Tests
+    func test_load_sendLoadMessageToStore() {
         let (sut, store) = makeSUT()
         
         sut.load { _ in }
@@ -68,12 +71,6 @@ final class StateFeatureUseCaseTests: XCTestCase {
     }
     
     // MARK: Creator Tests
-    func test_create_doesNotSendMessagesOnInit() {
-        let (_, store) = makeSUT()
-        
-        XCTAssertEqual(store.insertionCompletions.count, 0)
-    }
-    
     func test_create_sendMessageToStoreWhenOnCreate() {
         let (sut, store) = makeSUT()
         
@@ -119,14 +116,8 @@ final class StateFeatureUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
     }
     
-    // MARK: Delete Tests
-    func test_delete_doesNotSendMessagesOnInit() {
-        let (_, store) = makeSUT()
-        
-        XCTAssertEqual(store.deletionCompletions.count, 0)
-    }
-    
-    func test_delete_sendDeleteMessageToStoreOnDelete() {
+    // MARK: Remove Tests
+    func test_remove_sendDeleteMessageToStoreOnDelete() {
         let (sut, store) = makeSUT()
         
         sut.remove(makeState()) { _ in }
@@ -134,7 +125,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
         XCTAssertEqual(store.deletionCompletions.count, 1)
     }
     
-    func test_delete_completesWithErrorOnDeleteError() {
+    func test_remove_completesWithErrorOnDeleteError() {
         let (sut, store) = makeSUT()
         
         expect(sut, toCompleteDeleteWith: .failure(StateFeatureUseCase.Error.deleteError), using: makeState(), when: {
@@ -142,7 +133,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
         })
     }
     
-    func test_delete_completesSuccessfullyOnStoreDeleteSuccess() {
+    func test_remove_completesSuccessfullyOnStoreDeleteSuccess() {
         let (sut, store) = makeSUT()
         
         expect(sut, toCompleteDeleteWith: .success(()), using: makeState(), when: {
@@ -150,14 +141,8 @@ final class StateFeatureUseCaseTests: XCTestCase {
         })
     }
     
-    // MARK: Edit Tests
-    func test_edit_doesNotSendMessagesOnInit() {
-        let (_, store) = makeSUT()
-        
-        XCTAssertEqual(store.editionCompletions.count, 0)
-    }
-    
-    func test_edit_sendDeleteMessageToStoreOnEdit() {
+    // MARK: Change Tests
+    func test_change_sendDeleteMessageToStoreOnEdit() {
         let (sut, store) = makeSUT()
         
         sut.change(makeState()) { _ in }
@@ -165,7 +150,7 @@ final class StateFeatureUseCaseTests: XCTestCase {
         XCTAssertEqual(store.editionCompletions.count, 1)
     }
     
-    func test_edit_completesSuccessfullyWithNewStateWhenStoreEditIsSuccessful() {
+    func test_change_completesSuccessfullyWithNewStateWhenStoreEditIsSuccessful() {
         let (sut, store) = makeSUT()
         
         let stateToBeEdited = makeState(name: "delaware", taxValue: 0.01)

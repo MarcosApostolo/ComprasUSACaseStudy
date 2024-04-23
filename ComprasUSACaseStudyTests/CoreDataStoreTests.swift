@@ -8,6 +8,7 @@
 import XCTest
 @testable import ComprasUSACaseStudy
 
+// add preconditions
 final class CoreDataStoreTests: XCTestCase {
     // MARK: State Retrieve Tests
     func test_retrieveStates_deliversEmptyStates() {
@@ -38,9 +39,9 @@ final class CoreDataStoreTests: XCTestCase {
         let sut = makeSUT()
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
-                
-        prepopulateStore(with: [state1], using: sut)
         
+        insertState(state1, using: sut)
+                        
         expect(sut, toRetrieveStatesWith: .success([state1]))
     }
     
@@ -51,8 +52,10 @@ final class CoreDataStoreTests: XCTestCase {
         let state2 = makeLocalState(name: "newYork", taxValue: 0.01)
         let state3 = makeLocalState(name: "vermont", taxValue: 0.1)
         
-        prepopulateStore(with: [state1, state2, state3], using: sut)
-
+        insertState(state1, using: sut)
+        insertState(state2, using: sut)
+        insertState(state3, using: sut)
+        
         expect(sut, toRetrieveStatesWith: .success([state1, state2, state3]))
     }
     
@@ -62,11 +65,11 @@ final class CoreDataStoreTests: XCTestCase {
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
         
-        prepopulateStore(with: [state1], using: sut)
-        
+        insertState(state1, using: sut)
+                
         expect(sut, toRetrieveStatesWith: .success([state1]))
         
-        sut.delete(state1) { _ in }
+        deleteState(state1, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([]))
     }
@@ -78,11 +81,13 @@ final class CoreDataStoreTests: XCTestCase {
         let state2 = makeLocalState(name: "newYork", taxValue: 0.01)
         let state3 = makeLocalState(name: "vermont", taxValue: 0.1)
         
-        prepopulateStore(with: [state1, state2, state3], using: sut)
+        insertState(state1, using: sut)
+        insertState(state2, using: sut)
+        insertState(state3, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([state1, state2, state3]))
         
-        sut.delete(state1) { _ in }
+        deleteState(state1, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([state2, state3]))
     }
@@ -93,13 +98,13 @@ final class CoreDataStoreTests: XCTestCase {
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
         
-        prepopulateStore(with: [state1], using: sut)
+        insertState(state1, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([state1]))
         
         let newState = makeLocalState(name: "california", taxValue: 0.05)
 
-        sut.edit(newState) { _ in }
+        editState(newState, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([newState]))
     }
@@ -109,7 +114,7 @@ final class CoreDataStoreTests: XCTestCase {
         
         let state1 = makeLocalState(name: "california", taxValue: 0.02)
         
-        prepopulateStore(with: [state1], using: sut)
+        insertState(state1, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([state1]))
         
@@ -187,7 +192,7 @@ final class CoreDataStoreTests: XCTestCase {
         
         let purchase1 = makeLocalPurchase(state: localState)
         
-        insert(purchase1, using: sut)
+        insertPurchase(purchase1, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
     }
@@ -199,7 +204,7 @@ final class CoreDataStoreTests: XCTestCase {
         
         let purchase1 = makeLocalPurchase(state: localState)
         
-        insert(purchase1, using: sut)
+        insertPurchase(purchase1, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
@@ -232,9 +237,9 @@ final class CoreDataStoreTests: XCTestCase {
             state: localState
         )
         
-        insert(purchase1, using: sut)
-        insert(purchase2, using: sut)
-        insert(purchase3, using: sut)
+        insertPurchase(purchase1, using: sut)
+        insertPurchase(purchase2, using: sut)
+        insertPurchase(purchase3, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1, purchase2, purchase3]))
     }
@@ -268,9 +273,9 @@ final class CoreDataStoreTests: XCTestCase {
             state: localState3
         )
         
-        insert(purchase1, using: sut)
-        insert(purchase2, using: sut)
-        insert(purchase3, using: sut)
+        insertPurchase(purchase1, using: sut)
+        insertPurchase(purchase2, using: sut)
+        insertPurchase(purchase3, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1, purchase2, purchase3]))
     }
@@ -283,11 +288,11 @@ final class CoreDataStoreTests: XCTestCase {
         
         let purchase1 = makeLocalPurchase(state: localState)
         
-        insert(purchase1, using: sut)
+        insertPurchase(purchase1, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
         
-        sut.delete(purchase1) { _ in }
+        deletePurchase(purchase1, using: sut)
         
         expect(sut, toRetrieveStatesWith: .success([]))
     }
@@ -319,18 +324,13 @@ final class CoreDataStoreTests: XCTestCase {
             state: localState
         )
         
-        insert(purchase1, using: sut)
-        insert(purchase2, using: sut)
-        insert(purchase3, using: sut)
+        insertPurchase(purchase1, using: sut)
+        insertPurchase(purchase2, using: sut)
+        insertPurchase(purchase3, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1, purchase2, purchase3]))
-        let exp = expectation(description: "Wait for delete to finish")
         
-        sut.delete(purchase1) { _ in
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 0.5)
+        deletePurchase(purchase1, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase2, purchase3]))
     }
@@ -387,19 +387,62 @@ final class CoreDataStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    func insert(_ purchase: LocalPurchase, using sut: CoreDataStore) {
-        let exp = expectation(description: "Wait for first insert to finish")
-        
-        sut.insert(purchase, completion: { _ in
-            exp.fulfill()
-        })
-        
-        wait(for: [exp], timeout: 1.0)
+    func insertPurchase(_ purchase: LocalPurchase, using sut: CoreDataStore) {
+        runActionAsync({ completion in
+            sut.insert(purchase, completion: { [completion] _ in
+                completion()
+            })
+        }, using: sut)
     }
     
-    func prepopulateStore(with states: [LocalState], using sut: CoreDataStore) {
-        states.forEach({ state in
-            sut.insert(state, completion: { _ in })
-        })
+    func insertState(_ state: LocalState, using sut: CoreDataStore) {
+        runActionAsync({ completion in
+            sut.insert(state, completion: { [completion] _ in
+                completion()
+            })
+        }, using: sut)
+
+    }
+    
+    func deleteState(_ state: LocalState, using sut: CoreDataStore) {
+        runActionAsync({ completion in
+            sut.delete(state, completion: { [completion] _ in
+                completion()
+            })
+        }, using: sut)
+    }
+    
+    func deletePurchase(_ purchase: LocalPurchase, using sut: CoreDataStore) {
+        runActionAsync({ completion in
+            sut.delete(purchase, completion: { [completion] _ in
+                completion()
+            })
+        }, using: sut)
+    }
+    
+    func editPurchase(_ purchase: LocalPurchase, using sut: CoreDataStore) {
+        runActionAsync({ completion in
+            sut.edit(purchase, completion: { [completion] _ in
+                completion()
+            })
+        }, using: sut)
+    }
+    
+    func editState(_ state: LocalState, using sut: CoreDataStore) {
+        runActionAsync({ completion in
+            sut.edit(state, completion: { [completion] _ in
+                completion()
+            })
+        }, using: sut)
+    }
+    
+    func runActionAsync(_ action: (_ completion: @escaping () -> Void) -> Void, using sut: CoreDataStore) {
+        let exp = expectation(description: "Wait for action to finish")
+        
+        action {
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
 }

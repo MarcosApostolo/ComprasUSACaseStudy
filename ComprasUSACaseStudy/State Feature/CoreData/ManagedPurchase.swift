@@ -15,7 +15,7 @@ class ManagedPurchase: NSManagedObject {
     @NSManaged var imageData: Data?
     @NSManaged var value: Double
     @NSManaged var paymentType: String
-    @NSManaged var state: ManagedState
+    @NSManaged var state: ManagedState?
     
     static func newInstance(context: NSManagedObjectContext) -> ManagedPurchase {
         ManagedPurchase(context: context)
@@ -34,7 +34,7 @@ class ManagedPurchase: NSManagedObject {
             imageData: self.imageData,
             value: self.value,
             paymentType: self.paymentType,
-            state: self.state.localState
+            state: self.state?.localState
         )
     }
 }

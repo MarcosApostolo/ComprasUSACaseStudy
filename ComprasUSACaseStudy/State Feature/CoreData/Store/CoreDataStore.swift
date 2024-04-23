@@ -115,8 +115,12 @@ extension CoreDataStore {
                 let managedPurchase = ManagedPurchase.newInstance(context: context)
                 let managedState = ManagedState(context: context)
                 
-                managedState.name = purchase.state.name
-                managedState.taxValue = purchase.state.taxValue
+                guard let state = purchase.state else {
+                    throw StoreError.insertError
+                }
+                
+                managedState.name = state.name
+                managedState.taxValue = state.taxValue
                 
                 managedPurchase.id = purchase.id
                 managedPurchase.name = purchase.name

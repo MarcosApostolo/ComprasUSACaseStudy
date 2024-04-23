@@ -30,7 +30,7 @@ public func makeLocalPurchase(
     imageData: Data? = nil,
     value: Double = 10,
     paymentType: String = "card",
-    state: LocalState = LocalState(name: "california", taxValue: 0.01)
+    state: LocalState? = LocalState(name: "california", taxValue: 0.01)
 ) -> LocalPurchase {
     LocalPurchase(
         id: id,

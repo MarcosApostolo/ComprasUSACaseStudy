@@ -13,9 +13,9 @@ public struct LocalPurchase: Hashable {
     public let imageData: Data?
     public let value: Double
     public let paymentType: String
-    public let state: LocalState
+    public let state: LocalState?
     
-    public init(id: UUID, name: String, imageData: Data?, value: Double, paymentType: String, state: LocalState) {
+    public init(id: UUID, name: String, imageData: Data?, value: Double, paymentType: String, state: LocalState?) {
         self.id = id
         self.name = name
         self.imageData = imageData

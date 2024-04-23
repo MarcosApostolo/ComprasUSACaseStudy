@@ -204,6 +204,76 @@ final class CoreDataStoreTests: XCTestCase {
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
     }
+    
+    func test_retrievePurchases_completeWithMultiplePurchasesAfterMultipleInsertionsWithSameState() {
+        let sut = makeSUT()
+        
+        let localState = makeLocalState(name: "california", taxValue: 0.04)
+        
+        let purchase1 = makeLocalPurchase(
+            name: "a purchase",
+            imageData: anyData(),
+            value: 10,
+            paymentType: "card",
+            state: localState
+        )
+        let purchase2 = makeLocalPurchase(
+            name: "another purchase",
+            imageData: anyData(),
+            value: 15,
+            paymentType: "cash",
+            state: localState
+        )
+        let purchase3 = makeLocalPurchase(
+            name: "other purchase",
+            imageData: anyData(),
+            value: 5,
+            paymentType: "card",
+            state: localState
+        )
+        
+        insert(purchase1, using: sut)
+        insert(purchase2, using: sut)
+        insert(purchase3, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchase1, purchase2, purchase3]))
+    }
+    
+    func test_retrievePurchases_completeWithMultiplePurchasesAfterMultipleInsertionsWithDifferentStates() {
+        let sut = makeSUT()
+        
+        let localState1 = makeLocalState(name: "california", taxValue: 0.04)
+        let localState2 = makeLocalState(name: "delaware", taxValue: 0.01)
+        let localState3 = makeLocalState(name: "newYork", taxValue: 0.02)
+        
+        let purchase1 = makeLocalPurchase(
+            name: "a purchase",
+            imageData: anyData(),
+            value: 10,
+            paymentType: "card",
+            state: localState1
+        )
+        let purchase2 = makeLocalPurchase(
+            name: "another purchase",
+            imageData: anyData(),
+            value: 15,
+            paymentType: "cash",
+            state: localState2
+        )
+        let purchase3 = makeLocalPurchase(
+            name: "other purchase",
+            imageData: anyData(),
+            value: 5,
+            paymentType: "card",
+            state: localState3
+        )
+        
+        insert(purchase1, using: sut)
+        insert(purchase2, using: sut)
+        insert(purchase3, using: sut)
+        
+        expect(sut, toRetrievePurchasesWith: .success([purchase1, purchase2, purchase3]))
+    }
 
     // MARK: Helpers
     func makeSUT() -> CoreDataStore {

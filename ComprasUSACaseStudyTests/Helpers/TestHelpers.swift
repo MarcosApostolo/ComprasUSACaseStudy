@@ -33,3 +33,7 @@ public func makeLocalPurchase(
 ) -> LocalPurchase {
     LocalPurchase(name: name, imageData: imageData, value: value, paymentType: paymentType, state: state)
 }
+
+public func anyData() -> Data {
+    return Data("any data".utf8)
+}

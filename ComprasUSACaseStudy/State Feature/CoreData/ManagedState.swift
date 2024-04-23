@@ -12,6 +12,7 @@ import CoreData
 class ManagedState: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var taxValue: Double
+    @NSManaged var purchase: NSSet
     
     static func newInstance(context: NSManagedObjectContext) -> ManagedState {
         ManagedState(context: context)

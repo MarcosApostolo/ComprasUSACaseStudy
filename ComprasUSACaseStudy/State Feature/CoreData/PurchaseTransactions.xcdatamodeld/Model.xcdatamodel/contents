@@ -10,6 +10,6 @@
     <entity name="ManagedState" representedClassName="ManagedState" syncable="YES">
         <attribute name="name" attributeType="String"/>
         <attribute name="taxValue" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="purchase" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPurchase" inverseName="state" inverseEntity="ManagedPurchase"/>
+        <relationship name="purchase" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedPurchase" inverseName="state" inverseEntity="ManagedPurchase"/>
     </entity>
 </model>

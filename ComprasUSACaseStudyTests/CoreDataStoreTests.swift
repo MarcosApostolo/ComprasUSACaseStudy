@@ -187,13 +187,7 @@ final class CoreDataStoreTests: XCTestCase {
         
         let purchase1 = makeLocalPurchase(state: localState)
         
-        let exp1 = expectation(description: "Wait for first insert to finish")
-        
-        sut.insert(purchase1, completion: { _ in
-            exp1.fulfill()
-        })
-        
-        wait(for: [exp1], timeout: 1.0)
+        insert(purchase1, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
     }
@@ -205,13 +199,7 @@ final class CoreDataStoreTests: XCTestCase {
         
         let purchase1 = makeLocalPurchase(state: localState)
         
-        let exp1 = expectation(description: "Wait for first insert to finish")
-        
-        sut.insert(purchase1, completion: { _ in
-            exp1.fulfill()
-        })
-        
-        wait(for: [exp1], timeout: 1.0)
+        insert(purchase1, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
         expect(sut, toRetrievePurchasesWith: .success([purchase1]))
@@ -265,6 +253,16 @@ final class CoreDataStoreTests: XCTestCase {
             
             exp.fulfill()
         }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func insert(_ purchase: LocalPurchase, using sut: CoreDataStore) {
+        let exp = expectation(description: "Wait for first insert to finish")
+        
+        sut.insert(purchase, completion: { _ in
+            exp.fulfill()
+        })
         
         wait(for: [exp], timeout: 1.0)
     }

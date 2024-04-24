@@ -13,4 +13,8 @@ public class PurchaseFeatureUseCase {
     public init(store: PurchaseStore) {
         self.store = store
     }
+    
+    public func load() {
+        store.retrievePurchases(completion: { _ in })
+    }
 }

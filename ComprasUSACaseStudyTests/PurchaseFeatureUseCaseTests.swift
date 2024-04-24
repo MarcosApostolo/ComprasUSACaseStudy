@@ -18,6 +18,15 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         XCTAssertEqual(store.editionCompletions.count, 0)
     }
     
+    // MARK: Load Tests
+    func test_load_sendsLoadMessageToStore() {
+        let (sut, store) = makeSUT()
+        
+        sut.load()
+        
+        XCTAssertEqual(store.retrievalCompletions.count, 1)
+    }
+    
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
         let store = PurchaseStoreSpy()
@@ -39,7 +48,7 @@ class PurchaseStoreSpy: PurchaseStore {
 
 extension PurchaseStoreSpy {
     func retrievePurchases(completion: @escaping RetrievalCompletion) {
-        
+        retrievalCompletions.append(completion)
     }
     
     func insert(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping InsertionCompletion) {

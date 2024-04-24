@@ -25,6 +25,7 @@ public class PurchaseFeatureUseCase: PurchaseLoader {
     public enum Error: Swift.Error {
         case loadError
         case createError
+        case removeError
     }
     
     public init(store: PurchaseStore) {
@@ -52,7 +53,9 @@ extension PurchaseFeatureUseCase: PurchaseCreator {
 
 extension PurchaseFeatureUseCase: PurchaseRemover {
     public func remove(_ purchase: Purchase, completion: @escaping (RemoveResult) -> Void) {
-        store.delete(purchase.toLocal, completion: { _ in })
+        store.delete(purchase.toLocal, completion: { result in
+            completion(result.mapError({ _ in Error.removeError }))
+        })
     }
 }
 

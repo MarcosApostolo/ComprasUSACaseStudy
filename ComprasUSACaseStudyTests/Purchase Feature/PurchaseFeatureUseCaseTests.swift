@@ -104,6 +104,16 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.deletionCompletions.count, 1)
     }
+    
+    func test_remove_completesWithRemoveError() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        expect(sut, toCompleteRemoveWith: .failure(PurchaseFeatureUseCase.Error.removeError), using: purchase, when: {
+            store.completeDeletion(with: anyNSError())
+        })
+    }
         
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
@@ -141,6 +151,27 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         let exp = expectation(description: "Wait for action to finish")
         
         sut.create(purchase) { receivedResult in
+            switch(expectedResult, receivedResult) {
+            case (.success, .success):
+                break
+            case let (.failure(expectedError as PurchaseFeatureUseCase.Error), .failure(receivedError as PurchaseFeatureUseCase.Error)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func expect(_ sut: PurchaseFeatureUseCase, toCompleteRemoveWith expectedResult: PurchaseFeatureUseCase.RemoveResult, using purchase: Purchase, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for action to finish")
+        
+        sut.remove(purchase) { receivedResult in
             switch(expectedResult, receivedResult) {
             case (.success, .success):
                 break
@@ -199,6 +230,12 @@ extension PurchaseStoreSpy {
         deletionCompletions.append(completion)
     }
     
+    func completeDeletion(with error: Error, at index: Int = 0) {
+        deletionCompletions[index](.failure(error))
+    }
+}
+
+extension PurchaseStoreSpy {
     func edit(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping EditionCompletion) {
         
     }

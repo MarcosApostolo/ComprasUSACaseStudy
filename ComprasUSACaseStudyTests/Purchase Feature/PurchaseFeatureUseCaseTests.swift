@@ -114,6 +114,16 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
             store.completeDeletion(with: anyNSError())
         })
     }
+    
+    func test_remove_completesWithSuccess() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        expect(sut, toCompleteRemoveWith: .success(()), using: purchase, when: {
+            store.completeDeletionSuccessfully()
+        })
+    }
         
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
@@ -232,6 +242,10 @@ extension PurchaseStoreSpy {
     
     func completeDeletion(with error: Error, at index: Int = 0) {
         deletionCompletions[index](.failure(error))
+    }
+    
+    func completeDeletionSuccessfully(at index: Int = 0) {
+        deletionCompletions[index](.success(()))
     }
 }
 

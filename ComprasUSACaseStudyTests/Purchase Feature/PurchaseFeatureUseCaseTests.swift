@@ -35,6 +35,16 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         })
     }
     
+    func test_load_completesWithPurchasesWhenStoreCompletesSuccessufully() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchaseObjects()
+        
+        expect(sut, toCompleteLoadWith: .success([purchase.model]), when: {
+            store.completeRetrievalSuccessfully([purchase.local])
+        })
+    }
+    
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
         let store = PurchaseStoreSpy()
@@ -82,6 +92,10 @@ extension PurchaseStoreSpy {
     
     func completeRetrieval(with error: Error, at index: Int = 0) {
         retrievalCompletions[index](.failure(error))
+    }
+    
+    func completeRetrievalSuccessfully(_ purchase: [LocalPurchase], at index: Int = 0) {
+        retrievalCompletions[index](.success(purchase))
     }
 }
 

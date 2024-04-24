@@ -22,9 +22,17 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
     func test_load_sendsLoadMessageToStore() {
         let (sut, store) = makeSUT()
         
-        sut.load()
+        sut.load { _ in }
         
         XCTAssertEqual(store.retrievalCompletions.count, 1)
+    }
+    
+    func test_load_completesWithErrorOnStoreError() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteLoadWith: .failure(PurchaseFeatureUseCase.Error.loadError), when: {
+            store.completeRetrieval(with: anyNSError())
+        })
     }
     
     // MARK: Helpers
@@ -36,6 +44,27 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         checkForMemoryLeaks(sut)
         
         return (sut, store)
+    }
+    
+    func expect(_ sut: PurchaseFeatureUseCase, toCompleteLoadWith expectedResult: PurchaseFeatureUseCase.LoadResult, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for action to finish")
+        
+        sut.load { receivedResult in
+            switch(expectedResult, receivedResult) {
+            case let (.success(expecedItems), .success(receivedItems)):
+                XCTAssertEqual(expecedItems, receivedItems, file: file, line: line)
+            case let (.failure(expectedError as PurchaseFeatureUseCase.Error), .failure(receivedError as PurchaseFeatureUseCase.Error)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
     }
 }
 
@@ -51,6 +80,12 @@ extension PurchaseStoreSpy {
         retrievalCompletions.append(completion)
     }
     
+    func completeRetrieval(with error: Error, at index: Int = 0) {
+        retrievalCompletions[index](.failure(error))
+    }
+}
+
+extension PurchaseStoreSpy {
     func insert(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping InsertionCompletion) {
         
     }

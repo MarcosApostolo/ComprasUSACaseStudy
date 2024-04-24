@@ -7,14 +7,30 @@
 
 import Foundation
 
-public class PurchaseFeatureUseCase {
+public struct Purchase: Equatable {
+    
+}
+
+public protocol PurchaseLoader {
+    typealias LoadResult = Result<[Purchase], Error>
+    
+    func load(completion: @escaping (LoadResult) -> Void)
+}
+
+public class PurchaseFeatureUseCase: PurchaseLoader {
     let store: PurchaseStore
+    
+    public enum Error: Swift.Error {
+        case loadError
+    }
     
     public init(store: PurchaseStore) {
         self.store = store
     }
     
-    public func load() {
-        store.retrievePurchases(completion: { _ in })
+    public func load(completion: @escaping (LoadResult) -> Void) {
+        store.retrievePurchases(completion: { result in
+            completion(.failure(Error.loadError))
+        })
     }
 }

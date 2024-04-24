@@ -107,7 +107,6 @@
 			children = (
 				4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */,
 				4A97C6DE2BD4657F00780643 /* TestHelpers.swift */,
-				4A7ED6E42BD589FA002925A9 /* StateStoreSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -162,6 +161,39 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		4AA4644D2BD886320036B3DD /* State Feature */ = {
+			isa = PBXGroup;
+			children = (
+				4AA4644E2BD886410036B3DD /* Helpers */,
+				4A97C6C12BD42E0700780643 /* StateFeatureUseCaseTests.swift */,
+			);
+			path = "State Feature";
+			sourceTree = "<group>";
+		};
+		4AA4644E2BD886410036B3DD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4A7ED6E42BD589FA002925A9 /* StateStoreSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4AA4644F2BD886970036B3DD /* Purchase Feature */ = {
+			isa = PBXGroup;
+			children = (
+				4AA464452BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift */,
+			);
+			path = "Purchase Feature";
+			sourceTree = "<group>";
+		};
+		4AA464502BD886DA0036B3DD /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				4A97C6D22BD4535100780643 /* CoreDataStoreTests.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		4AF9E2CC2BD41FEC00D4CC11 = {
 			isa = PBXGroup;
 			children = (
@@ -194,11 +226,11 @@
 		4AF9E2E22BD41FED00D4CC11 /* ComprasUSACaseStudyTests */ = {
 			isa = PBXGroup;
 			children = (
+				4AA464502BD886DA0036B3DD /* Infrastructure */,
 				4A97C6C32BD43CC600780643 /* Helpers */,
+				4AA4644D2BD886320036B3DD /* State Feature */,
+				4AA4644F2BD886970036B3DD /* Purchase Feature */,
 				4A97C6C02BD42DC500780643 /* ComprasUSACaseStudy.xctestplan */,
-				4A97C6C12BD42E0700780643 /* StateFeatureUseCaseTests.swift */,
-				4A97C6D22BD4535100780643 /* CoreDataStoreTests.swift */,
-				4AA464452BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift */,
 			);
 			path = ComprasUSACaseStudyTests;
 			sourceTree = "<group>";

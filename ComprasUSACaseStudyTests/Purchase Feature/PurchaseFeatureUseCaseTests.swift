@@ -93,6 +93,17 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
             store.completeCreateSuccessfully()
         })
     }
+    
+    // MARK: Remove Tests
+    func test_remove_sendsRemoveMessageToStore() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        sut.remove(purchase) { _ in }
+        
+        XCTAssertEqual(store.deletionCompletions.count, 1)
+    }
         
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
@@ -185,7 +196,7 @@ extension PurchaseStoreSpy {
 
 extension PurchaseStoreSpy {
     func delete(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping DeletionCompletion) {
-        
+        deletionCompletions.append(completion)
     }
     
     func edit(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping EditionCompletion) {

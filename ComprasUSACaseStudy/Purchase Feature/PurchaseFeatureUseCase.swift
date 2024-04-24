@@ -13,6 +13,12 @@ public protocol PurchaseCreator {
     func create(_ purchase: Purchase, completion: @escaping (CreateResult) -> Void)
 }
 
+public protocol PurchaseRemover {
+    typealias RemoveResult = Result<Void, Error>
+    
+    func remove(_ purchase: Purchase, completion: @escaping (RemoveResult) -> Void)
+}
+
 public class PurchaseFeatureUseCase: PurchaseLoader {
     let store: PurchaseStore
     
@@ -41,6 +47,12 @@ extension PurchaseFeatureUseCase: PurchaseCreator {
         store.insert(purchase.toLocal, completion: { result in
             completion(result.mapError({ _ in Error.createError }))
         })
+    }
+}
+
+extension PurchaseFeatureUseCase: PurchaseRemover {
+    public func remove(_ purchase: Purchase, completion: @escaping (RemoveResult) -> Void) {
+        store.delete(purchase.toLocal, completion: { _ in })
     }
 }
 

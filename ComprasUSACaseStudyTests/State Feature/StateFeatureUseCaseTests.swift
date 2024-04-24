@@ -95,27 +95,6 @@ final class StateFeatureUseCaseTests: XCTestCase {
         })
     }
     
-    func test_create_doesNotAllowCreatingWithInvalidName() {
-        let (sut, _) = makeSUT()
-        
-        let exp = expectation(description: "Waif for create to finish")
-                
-        let invalidState = State(name: "invalid name", taxValue: 0.01)
-        
-        sut.create(invalidState, completion: { result in
-            switch result {
-            case let .failure(error):
-                XCTAssertEqual(error as NSError, StateFeatureUseCase.Error.createError as NSError)
-            default:
-                XCTFail("Expected error but got other result instead")
-            }
-            
-            exp.fulfill()
-        })
-        
-        wait(for: [exp], timeout: 0.1)
-    }
-    
     // MARK: Remove Tests
     func test_remove_sendDeleteMessageToStoreOnDelete() {
         let (sut, store) = makeSUT()

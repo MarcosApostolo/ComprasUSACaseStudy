@@ -35,12 +35,7 @@ public class StateFeatureUseCase: StateLoader {
 }
 
 extension StateFeatureUseCase: StateCreator {
-    public func create(_ state: State?, completion: @escaping (CreateResult) -> Void) {
-        guard let state = state else {
-            completion(.failure(Error.createError))
-            return
-        }
-        
+    public func create(_ state: State, completion: @escaping (CreateResult) -> Void) {
         store.insert(state.toLocalState(), completion: { result in
             completion(result.mapError({ _ in Error.createError }))
         })

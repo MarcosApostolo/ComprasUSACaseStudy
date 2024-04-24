@@ -83,6 +83,16 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
             store.completeCreate(with: anyNSError())
         })
     }
+    
+    func test_create_completeWithPurchases() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        expect(sut, toCompleteCreateWith: .success(()), using: purchase, when: {
+            store.completeCreateSuccessfully()
+        })
+    }
         
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
@@ -166,6 +176,10 @@ extension PurchaseStoreSpy {
     
     func completeCreate(with error: Error, at index: Int = 0) {
         insertionCompletions[index](.failure(error))
+    }
+    
+    func completeCreateSuccessfully(at index: Int = 0) {
+        insertionCompletions[index](.success(()))
     }
 }
 

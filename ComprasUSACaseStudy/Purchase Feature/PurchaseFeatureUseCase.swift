@@ -7,6 +7,12 @@
 
 import Foundation
 
+public protocol PurchaseCreator {
+    typealias CreateResult = Result<Void, Error>
+    
+    func create(_ purchase: Purchase, completion: @escaping (CreateResult) -> Void)
+}
+
 public class PurchaseFeatureUseCase: PurchaseLoader {
     let store: PurchaseStore
     
@@ -29,17 +35,23 @@ public class PurchaseFeatureUseCase: PurchaseLoader {
     }
 }
 
+extension PurchaseFeatureUseCase: PurchaseCreator {
+    public func create(_ purchase: Purchase, completion: @escaping (CreateResult) -> Void) {
+        store.insert(purchase.toLocal, completion: { _ in })
+    }
+}
+
 private extension Array where Element == LocalPurchase {
     func toModel() -> [Purchase] {
         compactMap {
-            if let stateName = $0.state?.name, let stateTaxValue = $0.state?.taxValue {
+            if let state = $0.state {
                 return Purchase(
                     id: $0.id,
                     name: $0.name,
                     imageData: $0.imageData,
                     value: $0.value,
                     paymentType: PaymentType(rawValue: $0.paymentType)!,
-                    state: State(name: stateName, taxValue: stateTaxValue))
+                    state: State(name: state.name, taxValue: state.taxValue))
             }
             
             return Purchase(
@@ -51,5 +63,32 @@ private extension Array where Element == LocalPurchase {
                 state: nil
             )
         }
+    }
+}
+
+private extension Purchase {
+    var toLocal: LocalPurchase {
+        if let state = self.state {
+            return LocalPurchase(
+                id: self.id,
+                name: self.name,
+                imageData: self.imageData,
+                value: self.value,
+                paymentType: self.paymentType.rawValue,
+                state: LocalState(
+                    name: state.name.rawValue,
+                    taxValue: state.taxValue
+                )
+            )
+        }
+        
+        return LocalPurchase(
+            id: self.id,
+            name: self.name,
+            imageData: self.imageData,
+            value: self.value,
+            paymentType: self.paymentType.rawValue,
+            state: nil
+        )
     }
 }

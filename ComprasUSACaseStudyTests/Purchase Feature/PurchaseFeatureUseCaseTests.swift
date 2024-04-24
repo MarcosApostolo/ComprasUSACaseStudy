@@ -62,6 +62,17 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
             store.completeRetrievalSuccessfully([purchase.local])
         })
     }
+    
+    // MARK: Creator Tests
+    func test_create_sendsCreateMessageToStore() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        sut.create(purchase) { _ in }
+        
+        XCTAssertEqual(store.insertionCompletions.count, 1)
+    }
         
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
@@ -119,9 +130,11 @@ extension PurchaseStoreSpy {
 
 extension PurchaseStoreSpy {
     func insert(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping InsertionCompletion) {
-        
+        insertionCompletions.append(completion)
     }
-    
+}
+
+extension PurchaseStoreSpy {
     func delete(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping DeletionCompletion) {
         
     }

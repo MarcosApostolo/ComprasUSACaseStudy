@@ -27,6 +27,14 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         XCTAssertEqual(store.retrievalCompletions.count, 1)
     }
     
+    func test_load_completesWithEmptyPurchases() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteLoadWith: .success([]), when: {
+            store.completeRetrievalSuccessfully([])
+        })
+    }
+    
     func test_load_completesWithErrorOnStoreError() {
         let (sut, store) = makeSUT()
         
@@ -54,7 +62,7 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
             store.completeRetrievalSuccessfully([purchase.local])
         })
     }
-    
+        
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
         let store = PurchaseStoreSpy()

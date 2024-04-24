@@ -18,6 +18,7 @@ public class PurchaseFeatureUseCase: PurchaseLoader {
     
     public enum Error: Swift.Error {
         case loadError
+        case createError
     }
     
     public init(store: PurchaseStore) {
@@ -37,7 +38,9 @@ public class PurchaseFeatureUseCase: PurchaseLoader {
 
 extension PurchaseFeatureUseCase: PurchaseCreator {
     public func create(_ purchase: Purchase, completion: @escaping (CreateResult) -> Void) {
-        store.insert(purchase.toLocal, completion: { _ in })
+        store.insert(purchase.toLocal, completion: { result in
+            completion(result.mapError({ _ in Error.createError }))
+        })
     }
 }
 

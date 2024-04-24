@@ -73,6 +73,16 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.insertionCompletions.count, 1)
     }
+    
+    func test_create_completesWithCreateError() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        expect(sut, toCompleteCreateWith: .failure(PurchaseFeatureUseCase.Error.createError), using: purchase, when: {
+            store.completeCreate(with: anyNSError())
+        })
+    }
         
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
@@ -92,6 +102,27 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
             switch(expectedResult, receivedResult) {
             case let (.success(expecedItems), .success(receivedItems)):
                 XCTAssertEqual(expecedItems, receivedItems, file: file, line: line)
+            case let (.failure(expectedError as PurchaseFeatureUseCase.Error), .failure(receivedError as PurchaseFeatureUseCase.Error)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func expect(_ sut: PurchaseFeatureUseCase, toCompleteCreateWith expectedResult: PurchaseFeatureUseCase.CreateResult, using purchase: Purchase, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for action to finish")
+        
+        sut.create(purchase) { receivedResult in
+            switch(expectedResult, receivedResult) {
+            case (.success, .success):
+                break
             case let (.failure(expectedError as PurchaseFeatureUseCase.Error), .failure(receivedError as PurchaseFeatureUseCase.Error)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:
@@ -131,6 +162,10 @@ extension PurchaseStoreSpy {
 extension PurchaseStoreSpy {
     func insert(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping InsertionCompletion) {
         insertionCompletions.append(completion)
+    }
+    
+    func completeCreate(with error: Error, at index: Int = 0) {
+        insertionCompletions[index](.failure(error))
     }
 }
 

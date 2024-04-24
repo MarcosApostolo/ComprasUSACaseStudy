@@ -45,6 +45,16 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         })
     }
     
+    func test_load_completesWithPurchasesWithNoStatesWhenStoreCompletesSuccessufully() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchaseObjects(state: nil)
+        
+        expect(sut, toCompleteLoadWith: .success([purchase.model]), when: {
+            store.completeRetrievalSuccessfully([purchase.local])
+        })
+    }
+    
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
         let store = PurchaseStoreSpy()

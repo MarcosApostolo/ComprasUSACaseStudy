@@ -7,35 +7,6 @@
 
 import Foundation
 
-public enum PaymentType: String {
-    case card
-    case cash
-}
-
-public struct Purchase: Equatable {
-    public let id: UUID
-    public let name: String
-    public let imageData: Data?
-    public let value: Double
-    public let paymentType: PaymentType
-    public let state: State?
-    
-    public init(id: UUID, name: String, imageData: Data?, value: Double, paymentType: PaymentType, state: State?) {
-        self.id = id
-        self.name = name
-        self.imageData = imageData
-        self.value = value
-        self.paymentType = paymentType
-        self.state = state
-    }
-}
-
-public protocol PurchaseLoader {
-    typealias LoadResult = Result<[Purchase], Error>
-    
-    func load(completion: @escaping (LoadResult) -> Void)
-}
-
 public class PurchaseFeatureUseCase: PurchaseLoader {
     let store: PurchaseStore
     

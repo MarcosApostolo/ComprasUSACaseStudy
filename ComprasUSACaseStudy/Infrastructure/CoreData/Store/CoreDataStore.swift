@@ -86,6 +86,8 @@ extension CoreDataStore {
                 }
 
                 context.delete(stateToBeRemoved)
+                
+                try context.save()
             }))
         }
     }
@@ -149,6 +151,8 @@ extension CoreDataStore {
                 }
 
                 context.delete(purchaseToBeRemoved)
+                
+                try context.save()
             }))
         }
     }

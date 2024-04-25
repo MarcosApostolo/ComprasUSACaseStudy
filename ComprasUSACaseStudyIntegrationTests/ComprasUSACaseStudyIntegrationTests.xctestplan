@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "A53E83AD-49D8-4FF3-AE46-0D17B3B5744A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ComprasUSACaseStudy.xcodeproj",
+        "identifier" : "4A71467F2BDAF33800D202BE",
+        "name" : "ComprasUSACaseStudyIntegrationTests"
+      }
+    }
+  ],
+  "version" : 1
+}

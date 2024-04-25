@@ -13,8 +13,6 @@ class StateStoreSpy: StateStore {
     var insertionCompletions = [InsertionCompletion]()
     var deletionCompletions = [DeletionCompletion]()
     var editionCompletions = [EditionCompletion]()
-    
-    var newStatesAfterEdit = [LocalState]()
 }
 
 extension StateStoreSpy {
@@ -48,15 +46,10 @@ extension StateStoreSpy {
 extension StateStoreSpy {
     func edit(_ state: LocalState, completion: @escaping EditionCompletion) {
         editionCompletions.append(completion)
-        newStatesAfterEdit.append(state)
     }
     
     func completeEditon(with error: Error, at index: Int = 0) {
         editionCompletions[index](.failure(error))
-    }
-    
-    func completeEditionSuccessfully(at index: Int = 0) {
-        editionCompletions[index](.success(newStatesAfterEdit[index]))
     }
     
     func completeEditionSuccessfully(with state: LocalState, at index: Int = 0) {

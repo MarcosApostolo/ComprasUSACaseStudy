@@ -132,14 +132,14 @@ final class StateFeatureUseCaseTests: XCTestCase {
     func test_change_completesSuccessfullyWithNewStateWhenStoreEditIsSuccessful() {
         let (sut, store) = makeSUT()
         
-        let stateToBeEdited = makeState(name: "delaware", taxValue: 0.01)
+        let stateToBeEdited = makeStateObjects(name: "delaware", taxValue: 0.01)
         
-        expect(sut, toCompleteEditWith: .success(stateToBeEdited), using: stateToBeEdited, when: {
-            store.completeEditionSuccessfully()
+        expect(sut, toCompleteEditWith: .success(stateToBeEdited.model), using: stateToBeEdited.model, when: {
+            store.completeEditionSuccessfully(with: stateToBeEdited.local)
         })
     }
     
-    func test_edit_completesWithLoadErrorWhenStoreCompletesWithInvalidState() {
+    func test_change_completesWithLoadErrorWhenStoreCompletesWithInvalidState() {
         let (sut, store) = makeSUT()
         
         let stateToBeEdited = makeState(name: "delaware", taxValue: 0.01)

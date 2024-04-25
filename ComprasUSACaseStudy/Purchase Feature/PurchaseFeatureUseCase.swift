@@ -7,24 +7,6 @@
 
 import Foundation
 
-public protocol PurchaseCreator {
-    typealias CreateResult = Result<Void, Error>
-    
-    func create(_ purchase: Purchase, completion: @escaping (CreateResult) -> Void)
-}
-
-public protocol PurchaseRemover {
-    typealias RemoveResult = Result<Void, Error>
-    
-    func remove(_ purchase: Purchase, completion: @escaping (RemoveResult) -> Void)
-}
-
-public protocol PurchaseChanger {
-    typealias ChangeResult = Result<Purchase, Error>
-    
-    func change(_ purchase: Purchase, completion: @escaping (ChangeResult) -> Void)
-}
-
 public class PurchaseFeatureUseCase: PurchaseLoader {
     let store: PurchaseStore
     

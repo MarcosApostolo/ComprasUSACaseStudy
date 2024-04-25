@@ -146,11 +146,31 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         })
     }
     
+    func test_change_completesWithErrorWhenPaymentTypeIsInvalid() {
+        let (sut, store) = makeSUT()
+        
+        let localPurchase = makeLocalPurchase(paymentType: "invalid payment type")
+        let purchase = makePurchase(id: localPurchase.id)
+        
+        expect(sut, toCompleteChangeWith: .failure(PurchaseFeatureUseCase.Error.changeError), using: purchase, when: {
+            store.completeChangeSuccessfully(with: localPurchase)
+        })
+    }
+    
     func test_change_completesWithChangedPurchase_whenStoreCompletesSuccessfully() {
         let (sut, store) = makeSUT()
         
         let purchase = makePurchaseObjects()
-        let otherPurchase = makePurchase()
+        
+        expect(sut, toCompleteChangeWith: .success(purchase.model), using: purchase.model, when: {
+            store.completeChangeSuccessfully(with: purchase.local)
+        })
+    }
+    
+    func test_change_completeWithChangedPurchase_onPurchaseWithoutState_whenStoreCompletesSuccessfully() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchaseObjects(state: nil)
         
         expect(sut, toCompleteChangeWith: .success(purchase.model), using: purchase.model, when: {
             store.completeChangeSuccessfully(with: purchase.local)
@@ -258,8 +278,6 @@ class PurchaseStoreSpy: PurchaseStore {
     var insertionCompletions = [InsertionCompletion]()
     var deletionCompletions = [DeletionCompletion]()
     var editionCompletions = [EditionCompletion]()
-    
-    var newPurchasesAfterChange = [LocalPurchase]()
 }
 
 extension PurchaseStoreSpy {
@@ -307,7 +325,6 @@ extension PurchaseStoreSpy {
 extension PurchaseStoreSpy {
     func edit(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping EditionCompletion) {
         editionCompletions.append(completion)
-        newPurchasesAfterChange.append(purchase)
     }
     
     func completeChange(with error: Error, at index: Int = 0) {
@@ -315,6 +332,6 @@ extension PurchaseStoreSpy {
     }
     
     func completeChangeSuccessfully(with purchase: ComprasUSACaseStudy.LocalPurchase, at index: Int = 0) {
-        editionCompletions[index](.success(newPurchasesAfterChange[index]))
+        editionCompletions[index](.success(purchase))
     }
 }

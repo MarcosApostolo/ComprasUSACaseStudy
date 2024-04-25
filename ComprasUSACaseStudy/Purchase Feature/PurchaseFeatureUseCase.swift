@@ -73,17 +73,12 @@ extension PurchaseFeatureUseCase: PurchaseChanger {
             case .failure:
                 completion(.failure(Error.changeError))
             case let .success(local):
-                guard let localState = local.state else {
-                    completion(.failure(Error.changeError))
-                    return
-                }
-                
                 guard let paymentType = PaymentType(rawValue: local.paymentType) else {
                     completion(.failure(Error.changeError))
                     return
                 }
-                                
-                guard let newState = State(name: localState.name, taxValue: localState.taxValue) else {
+                
+                guard let localState = local.state, let newState = State(name: localState.name, taxValue: localState.taxValue) else {
                     completion(
                         .success(
                             Purchase(

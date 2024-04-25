@@ -19,6 +19,12 @@ public protocol PurchaseRemover {
     func remove(_ purchase: Purchase, completion: @escaping (RemoveResult) -> Void)
 }
 
+public protocol PurchaseChanger {
+    typealias ChangeResult = Result<Void, Error>
+    
+    func change(_ purchase: Purchase, completion: @escaping (ChangeResult) -> Void)
+}
+
 public class PurchaseFeatureUseCase: PurchaseLoader {
     let store: PurchaseStore
     
@@ -56,6 +62,12 @@ extension PurchaseFeatureUseCase: PurchaseRemover {
         store.delete(purchase.toLocal, completion: { result in
             completion(result.mapError({ _ in Error.removeError }))
         })
+    }
+}
+
+extension PurchaseFeatureUseCase: PurchaseChanger {
+    public func change(_ purchase: Purchase, completion: @escaping (ChangeResult) -> Void) {
+        store.edit(purchase.toLocal, completion: { _ in })
     }
 }
 

@@ -19,7 +19,7 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
     }
     
     // MARK: Load Tests
-    func test_load_sendsLoadMessageToStore() {
+    func test_load_sendsRetrieveMessageToStore() {
         let (sut, store) = makeSUT()
         
         sut.load { _ in }
@@ -64,7 +64,7 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
     }
     
     // MARK: Creator Tests
-    func test_create_sendsCreateMessageToStore() {
+    func test_create_sendsInsertMessageToStore() {
         let (sut, store) = makeSUT()
         
         let purchase = makePurchase()
@@ -95,7 +95,7 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
     }
     
     // MARK: Remove Tests
-    func test_remove_sendsRemoveMessageToStore() {
+    func test_remove_sendsDeleteMessageToStore() {
         let (sut, store) = makeSUT()
         
         let purchase = makePurchase()
@@ -123,6 +123,17 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         expect(sut, toCompleteRemoveWith: .success(()), using: purchase, when: {
             store.completeDeletionSuccessfully()
         })
+    }
+    
+    // MARK: Change Tests
+    func test_change_sendsEditMessageToStore() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        sut.change(purchase) { _ in }
+        
+        XCTAssertEqual(store.editionCompletions.count, 1)
     }
         
     // MARK: Helpers
@@ -251,6 +262,6 @@ extension PurchaseStoreSpy {
 
 extension PurchaseStoreSpy {
     func edit(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping EditionCompletion) {
-        
+        editionCompletions.append(completion)
     }
 }

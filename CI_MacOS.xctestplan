@@ -1,8 +1,8 @@
 {
   "configurations" : [
     {
-      "id" : "F768AA79-F827-43CF-A4B1-033F2B9D1A05",
-      "name" : "Test Scheme Action",
+      "id" : "F3FF2DC5-AACD-4002-9A42-AB68D5115D17",
+      "name" : "Configuration 1",
       "options" : {
 
       }
@@ -15,15 +15,15 @@
     {
       "target" : {
         "containerPath" : "container:ComprasUSACaseStudy.xcodeproj",
-        "identifier" : "4AF9E2DD2BD41FED00D4CC11",
-        "name" : "ComprasUSACaseStudyTests"
+        "identifier" : "4A71467F2BDAF33800D202BE",
+        "name" : "ComprasUSACaseStudyIntegrationTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:ComprasUSACaseStudy.xcodeproj",
-        "identifier" : "4A71467F2BDAF33800D202BE",
-        "name" : "ComprasUSACaseStudyIntegrationTests"
+        "identifier" : "4AF9E2DD2BD41FED00D4CC11",
+        "name" : "ComprasUSACaseStudyTests"
       }
     }
   ],

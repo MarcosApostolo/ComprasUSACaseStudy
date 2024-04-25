@@ -72,6 +72,7 @@
 		4A7146802BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A71468A2BDAF9BB00D202BE /* ComprasUSAFeaturesIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprasUSAFeaturesIntegrationTests.swift; sourceTree = "<group>"; };
 		4A71468D2BDAFB3500D202BE /* ComprasUSACaseStudyIntegrationTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ComprasUSACaseStudyIntegrationTests.xctestplan; sourceTree = "<group>"; };
+		4A7146912BDB23CE00D202BE /* CI_MacOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI_MacOS.xctestplan; sourceTree = "<group>"; };
 		4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreHelpers.swift; sourceTree = "<group>"; };
 		4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedState.swift; sourceTree = "<group>"; };
 		4A7ED6E02BD58727002925A9 /* StateCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCreator.swift; sourceTree = "<group>"; };
@@ -257,6 +258,7 @@
 		4AF9E2CC2BD41FEC00D4CC11 = {
 			isa = PBXGroup;
 			children = (
+				4A7146912BDB23CE00D202BE /* CI_MacOS.xctestplan */,
 				4AF9E2D82BD41FEC00D4CC11 /* ComprasUSACaseStudy */,
 				4AF9E2E22BD41FED00D4CC11 /* ComprasUSACaseStudyTests */,
 				4A7146812BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests */,

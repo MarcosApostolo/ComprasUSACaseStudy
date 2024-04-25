@@ -8,7 +8,7 @@
 import XCTest
 import ComprasUSACaseStudy
 
-final class ComprasUSAIntegrationTests: XCTestCase {
+final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
@@ -24,7 +24,13 @@ final class ComprasUSAIntegrationTests: XCTestCase {
     func test_purchases_load_completesWithNoPurchasesWhenStoreIsEmpty() {
         let sut = makePurchasesFeature()
         
-        expect(sut, toLoad: [])
+        expect(sut, toLoadPurchases: [])
+    }
+    
+    func test_states_load_completesWithNoStatesWhenStoreIsEmpty() {
+        let sut = makeStatesFeature()
+        
+        expect(sut, toLoadStates: [])
     }
     
     func test_purchases_load_completesWithPurchasesSavedOnASeparateInstance() {
@@ -32,11 +38,11 @@ final class ComprasUSAIntegrationTests: XCTestCase {
         let sutToPerformLoad = makePurchasesFeature()
         let purchase = makePurchase()
         
-        expect(sutToPerformLoad, toLoad: [])
+        expect(sutToPerformLoad, toLoadPurchases: [])
         
-        create(purchase, with: sutToPerformCreate)
+        createPurchase(purchase, with: sutToPerformCreate)
 
-        expect(sutToPerformLoad, toLoad: [purchase])
+        expect(sutToPerformLoad, toLoadPurchases: [purchase])
     }
     
     func test_purchases_create_completesWithPurchasesSavedOnMultipleInstances() {
@@ -46,12 +52,12 @@ final class ComprasUSAIntegrationTests: XCTestCase {
         let firstPurchase = makePurchase()
         let lastPurchase = makePurchase()
         
-        expect(sutToPerformLoad, toLoad: [])
+        expect(sutToPerformLoad, toLoadPurchases: [])
         
-        create(firstPurchase, with: sutToPerformFirstCreate)
-        create(lastPurchase, with: sutToPerformLastCreate)
+        createPurchase(firstPurchase, with: sutToPerformFirstCreate)
+        createPurchase(lastPurchase, with: sutToPerformLastCreate)
 
-        expect(sutToPerformLoad, toLoad: [firstPurchase, lastPurchase])
+        expect(sutToPerformLoad, toLoadPurchases: [firstPurchase, lastPurchase])
     }
     
     func test_purchase_remove_deletesPurchaseSavedOnSeparateInstance() {
@@ -60,15 +66,15 @@ final class ComprasUSAIntegrationTests: XCTestCase {
         let sutToPerformDelete = makePurchasesFeature()
         let purchase = makePurchase()
         
-        expect(sutToPerformLoad, toLoad: [])
+        expect(sutToPerformLoad, toLoadPurchases: [])
         
-        create(purchase, with: sutToPerformCreate)
+        createPurchase(purchase, with: sutToPerformCreate)
 
-        expect(sutToPerformLoad, toLoad: [purchase])
+        expect(sutToPerformLoad, toLoadPurchases: [purchase])
         
-        remove(purchase, with: sutToPerformDelete)
+        removePurchase(purchase, with: sutToPerformDelete)
         
-        expect(sutToPerformLoad, toLoad: [])
+        expect(sutToPerformLoad, toLoadPurchases: [])
     }
     
     func test_purchase_change_editsPurchaseSavedOnSeparateInstance() {
@@ -80,19 +86,19 @@ final class ComprasUSAIntegrationTests: XCTestCase {
         let changedPurchase = makePurchase(id: purchase.id, name: "edited name")
         let anotherChangedPurchased = makePurchase(id: purchase.id, name: "another edited name")
         
-        expect(sutToPerformLoad, toLoad: [])
+        expect(sutToPerformLoad, toLoadPurchases: [])
         
-        create(purchase, with: sutToPerformCreate)
+        createPurchase(purchase, with: sutToPerformCreate)
 
-        expect(sutToPerformLoad, toLoad: [purchase])
+        expect(sutToPerformLoad, toLoadPurchases: [purchase])
         
-        expectChange(toReturn: changedPurchase, with: sutToPerformFirstChange)
+        expectPurchaseChange(toReturn: changedPurchase, with: sutToPerformFirstChange)
         
-        expect(sutToPerformLoad, toLoad: [changedPurchase])
+        expect(sutToPerformLoad, toLoadPurchases: [changedPurchase])
         
-        expectChange(toReturn: anotherChangedPurchased, with: sutToPerformLastChange)
+        expectPurchaseChange(toReturn: anotherChangedPurchased, with: sutToPerformLastChange)
         
-        expect(sutToPerformLoad, toLoad: [anotherChangedPurchased])
+        expect(sutToPerformLoad, toLoadPurchases: [anotherChangedPurchased])
     }
     
     // MARK: Helpers
@@ -105,7 +111,16 @@ final class ComprasUSAIntegrationTests: XCTestCase {
         return sut
     }
     
-    private func expect(_ sut: PurchaseFeatureUseCase, toLoad expectedPurchase: [Purchase], file: StaticString = #file, line: UInt = #line) {
+    private func makeStatesFeature(file: StaticString = #file, line: UInt = #line) -> StateFeatureUseCase {
+        let storeURL = testSpecificStoreURL()
+        let store = try! CoreDataStore(storeURL: storeURL)
+        let sut = StateFeatureUseCase(store: store)
+        checkForMemoryLeaks(store, file: file, line: line)
+        checkForMemoryLeaks(sut, file: file, line: line)
+        return sut
+    }
+    
+    private func expect(_ sut: PurchaseFeatureUseCase, toLoadPurchases expectedPurchase: [Purchase], file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for load completion")
         sut.load { result in
             switch result {
@@ -121,7 +136,23 @@ final class ComprasUSAIntegrationTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func create(_ purchase: Purchase, with sut: PurchaseFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: StateFeatureUseCase, toLoadStates expectedState: [State], file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for load completion")
+        sut.load { result in
+            switch result {
+            case let .success(loadedState):
+                XCTAssertEqual(loadedState, expectedState, file: file, line: line)
+                
+            case let .failure(error):
+                XCTFail("Expected successful load result, got \(error) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func createPurchase(_ purchase: Purchase, with sut: PurchaseFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for create completion")
         sut.create(purchase) { result in
             if case let Result.failure(error) = result {
@@ -132,7 +163,7 @@ final class ComprasUSAIntegrationTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func remove(_ purchase: Purchase, with sut: PurchaseFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
+    private func removePurchase(_ purchase: Purchase, with sut: PurchaseFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for remove completion")
         sut.remove(purchase) { result in
             if case let Result.failure(error) = result {
@@ -143,7 +174,7 @@ final class ComprasUSAIntegrationTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func expectChange(toReturn purchase: Purchase, with sut: PurchaseFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
+    private func expectPurchaseChange(toReturn purchase: Purchase, with sut: PurchaseFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "Wait for remove completion")
         sut.change(purchase) { result in
             switch result {

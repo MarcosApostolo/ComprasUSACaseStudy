@@ -548,6 +548,7 @@ final class CoreDataStoreTests: XCTestCase {
         editPurchase(editedPurchase, using: sut)
         
         expect(sut, toRetrievePurchasesWith: .success([editedPurchase]))
+        expect(sut, toRetrieveStatesWith: .success([localState, editedLocalState]))
     }
     
     func test_edit_editingAStateReflectsOnPurchase() {

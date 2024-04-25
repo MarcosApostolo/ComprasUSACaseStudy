@@ -20,7 +20,7 @@ public protocol PurchaseRemover {
 }
 
 public protocol PurchaseChanger {
-    typealias ChangeResult = Result<Void, Error>
+    typealias ChangeResult = Result<Purchase, Error>
     
     func change(_ purchase: Purchase, completion: @escaping (ChangeResult) -> Void)
 }
@@ -32,6 +32,7 @@ public class PurchaseFeatureUseCase: PurchaseLoader {
         case loadError
         case createError
         case removeError
+        case changeError
     }
     
     public init(store: PurchaseStore) {
@@ -67,7 +68,15 @@ extension PurchaseFeatureUseCase: PurchaseRemover {
 
 extension PurchaseFeatureUseCase: PurchaseChanger {
     public func change(_ purchase: Purchase, completion: @escaping (ChangeResult) -> Void) {
-        store.edit(purchase.toLocal, completion: { _ in })
+        store.edit(purchase.toLocal, completion: { result in
+            completion(
+                result
+                    .mapError({ _ in Error.changeError })
+                    .map({ _ in
+                        return Purchase(id: UUID(), name: "any name", imageData: nil, value: 10, paymentType: .card, state: nil)
+                    })
+            )
+        })
     }
 }
 

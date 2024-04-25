@@ -35,7 +35,7 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         })
     }
     
-    func test_load_completesWithErrorOnStoreError() {
+    func test_load_completesWithErrorWhenStoreCompletesWithAnyError() {
         let (sut, store) = makeSUT()
         
         expect(sut, toCompleteLoadWith: .failure(PurchaseFeatureUseCase.Error.loadError), when: {
@@ -74,7 +74,7 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         XCTAssertEqual(store.insertionCompletions.count, 1)
     }
     
-    func test_create_completesWithCreateError() {
+    func test_create_completesWithCreateErrorWhenStoreCompletesWithAnyError() {
         let (sut, store) = makeSUT()
         
         let purchase = makePurchase()
@@ -105,7 +105,7 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         XCTAssertEqual(store.deletionCompletions.count, 1)
     }
     
-    func test_remove_completesWithRemoveError() {
+    func test_remove_completesWithRemoveErrorWhenStoreCompletesWithAnyError() {
         let (sut, store) = makeSUT()
         
         let purchase = makePurchase()
@@ -134,6 +134,16 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         sut.change(purchase) { _ in }
         
         XCTAssertEqual(store.editionCompletions.count, 1)
+    }
+    
+    func test_change_completesWithErrorWhenStoreCompletesWithAnyError() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        expect(sut, toCompleteChangeWith: .failure(PurchaseFeatureUseCase.Error.changeError), using: purchase, when: {
+            store.completeChange(with: anyNSError())
+        })
     }
         
     // MARK: Helpers
@@ -209,6 +219,27 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
     }
+    
+    func expect(_ sut: PurchaseFeatureUseCase, toCompleteChangeWith expectedResult: PurchaseFeatureUseCase.ChangeResult, using purchase: Purchase, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for action to finish")
+        
+        sut.change(purchase) { receivedResult in
+            switch(expectedResult, receivedResult) {
+            case (.success, .success):
+                break
+            case let (.failure(expectedError as PurchaseFeatureUseCase.Error), .failure(receivedError as PurchaseFeatureUseCase.Error)):
+                XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default:
+                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        
+        wait(for: [exp], timeout: 1.0)
+    }
 }
 
 class PurchaseStoreSpy: PurchaseStore {
@@ -263,5 +294,9 @@ extension PurchaseStoreSpy {
 extension PurchaseStoreSpy {
     func edit(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping EditionCompletion) {
         editionCompletions.append(completion)
+    }
+    
+    func completeChange(with error: Error, at index: Int = 0) {
+        editionCompletions[index](.failure(error))
     }
 }

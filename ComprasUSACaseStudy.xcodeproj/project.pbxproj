@@ -14,6 +14,7 @@
 		4A2792D72BDAEA0C00B616EC /* PurchaseRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2792D62BDAEA0C00B616EC /* PurchaseRemover.swift */; };
 		4A2792D92BDAEA1B00B616EC /* PurchaseChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2792D82BDAEA1B00B616EC /* PurchaseChanger.swift */; };
 		4A2792DC2BDAEA5800B616EC /* PurchaseStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2792DB2BDAEA5800B616EC /* PurchaseStoreSpy.swift */; };
+		4A7146842BDAF33800D202BE /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 		4A7ED6DD2BD58593002925A9 /* CoreDataStoreHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */; };
 		4A7ED6DF2BD585BF002925A9 /* ManagedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */; };
 		4A7ED6E12BD58727002925A9 /* StateCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E02BD58727002925A9 /* StateCreator.swift */; };
@@ -41,6 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4A7146852BDAF33800D202BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AF9E2CD2BD41FEC00D4CC11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4AF9E2D52BD41FEC00D4CC11;
+			remoteInfo = ComprasUSACaseStudy;
+		};
 		4AF9E2E02BD41FED00D4CC11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4AF9E2CD2BD41FEC00D4CC11 /* Project object */;
@@ -58,6 +66,7 @@
 		4A2792D62BDAEA0C00B616EC /* PurchaseRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseRemover.swift; sourceTree = "<group>"; };
 		4A2792D82BDAEA1B00B616EC /* PurchaseChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseChanger.swift; sourceTree = "<group>"; };
 		4A2792DB2BDAEA5800B616EC /* PurchaseStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseStoreSpy.swift; sourceTree = "<group>"; };
+		4A7146802BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreHelpers.swift; sourceTree = "<group>"; };
 		4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedState.swift; sourceTree = "<group>"; };
 		4A7ED6E02BD58727002925A9 /* StateCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCreator.swift; sourceTree = "<group>"; };
@@ -87,6 +96,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4A71467D2BDAF33800D202BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A7146842BDAF33800D202BE /* ComprasUSACaseStudy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4AF9E2D32BD41FEC00D4CC11 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -111,6 +128,13 @@
 				4A2792DB2BDAEA5800B616EC /* PurchaseStoreSpy.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4A7146812BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ComprasUSACaseStudyIntegrationTests;
 			sourceTree = "<group>";
 		};
 		4A7FD9ED2BD721F400E791F9 /* Store */ = {
@@ -228,6 +252,7 @@
 			children = (
 				4AF9E2D82BD41FEC00D4CC11 /* ComprasUSACaseStudy */,
 				4AF9E2E22BD41FED00D4CC11 /* ComprasUSACaseStudyTests */,
+				4A7146812BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests */,
 				4AF9E2D72BD41FEC00D4CC11 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -237,6 +262,7 @@
 			children = (
 				4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */,
 				4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */,
+				4A7146802BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,6 +303,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4A71467F2BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A7146892BDAF33800D202BE /* Build configuration list for PBXNativeTarget "ComprasUSACaseStudyIntegrationTests" */;
+			buildPhases = (
+				4A71467C2BDAF33800D202BE /* Sources */,
+				4A71467D2BDAF33800D202BE /* Frameworks */,
+				4A71467E2BDAF33800D202BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A7146862BDAF33800D202BE /* PBXTargetDependency */,
+			);
+			name = ComprasUSACaseStudyIntegrationTests;
+			productName = ComprasUSACaseStudyIntegrationTests;
+			productReference = 4A7146802BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4AF9E2D52BD41FEC00D4CC11 /* ComprasUSACaseStudy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AF9E2E82BD41FED00D4CC11 /* Build configuration list for PBXNativeTarget "ComprasUSACaseStudy" */;
@@ -323,6 +367,9 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					4A71467F2BDAF33800D202BE = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					4AF9E2D52BD41FEC00D4CC11 = {
 						CreatedOnToolsVersion = 15.2;
 						LastSwiftMigration = 1520;
@@ -348,11 +395,19 @@
 			targets = (
 				4AF9E2D52BD41FEC00D4CC11 /* ComprasUSACaseStudy */,
 				4AF9E2DD2BD41FED00D4CC11 /* ComprasUSACaseStudyTests */,
+				4A71467F2BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4A71467E2BDAF33800D202BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4AF9E2D42BD41FEC00D4CC11 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,6 +425,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4A71467C2BDAF33800D202BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4AF9E2D22BD41FEC00D4CC11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -417,6 +479,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4A7146862BDAF33800D202BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4AF9E2D52BD41FEC00D4CC11 /* ComprasUSACaseStudy */;
+			targetProxy = 4A7146852BDAF33800D202BE /* PBXContainerItemProxy */;
+		};
 		4AF9E2E12BD41FED00D4CC11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4AF9E2D52BD41FEC00D4CC11 /* ComprasUSACaseStudy */;
@@ -425,6 +492,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		4A7146872BDAF33800D202BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosapostolo.ComprasUSACaseStudyIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4A7146882BDAF33800D202BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosapostolo.ComprasUSACaseStudyIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		4AF9E2E62BD41FED00D4CC11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -648,6 +743,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4A7146892BDAF33800D202BE /* Build configuration list for PBXNativeTarget "ComprasUSACaseStudyIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7146872BDAF33800D202BE /* Debug */,
+				4A7146882BDAF33800D202BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4AF9E2D02BD41FEC00D4CC11 /* Build configuration list for PBXProject "ComprasUSACaseStudy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

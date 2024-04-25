@@ -45,6 +45,19 @@ final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
         expect(sutToPerformLoad, toLoadPurchases: [purchase])
     }
     
+    func test_states_load_completesWithStatesSavedOnASeparateInstance() {
+        let sutToPerformCreate = makeStatesFeature()
+        let sutToPerformLoad = makeStatesFeature()
+        
+        let state = makeState()
+        
+        expect(sutToPerformLoad, toLoadStates: [])
+        
+        createState(state, with: sutToPerformCreate)
+        
+        expect(sutToPerformLoad, toLoadStates: [state])
+    }
+    
     func test_purchases_create_completesWithPurchasesSavedOnMultipleInstances() {
         let sutToPerformFirstCreate = makePurchasesFeature()
         let sutToPerformLastCreate = makePurchasesFeature()
@@ -157,6 +170,17 @@ final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
         sut.create(purchase) { result in
             if case let Result.failure(error) = result {
                 XCTFail("Expected to save purchase successfully, got error: \(error)", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func createState(_ state: State, with sut: StateFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for create completion")
+        sut.create(state) { result in
+            if case let Result.failure(error) = result {
+                XCTFail("Expected to save state successfully, got error: \(error)", file: file, line: line)
             }
             exp.fulfill()
         }

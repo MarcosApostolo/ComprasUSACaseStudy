@@ -161,6 +161,8 @@ extension CoreDataStore {
 extension CoreDataStore {
     public func retrievePurchases(completion: @escaping PurchaseStore.RetrievalCompletion) {
         completion(Result(catching: {
+            context.refreshAllObjects()
+            
             guard let purchases = try ManagedPurchase.find(context: context)?.compactMap({ managedPurchase in
                 return managedPurchase.localPurchase
             }) else {

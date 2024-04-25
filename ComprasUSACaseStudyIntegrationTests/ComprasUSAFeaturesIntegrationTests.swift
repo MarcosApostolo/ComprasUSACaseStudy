@@ -90,6 +90,23 @@ final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
         expect(sutToPerformLoad, toLoadPurchases: [])
     }
     
+    func test_state_remove_deletesStateSavedOnSeparateInstance() {
+        let sutToPerformCreate = makeStatesFeature()
+        let sutToPerformLoad = makeStatesFeature()
+        let sutToPerformDelete = makeStatesFeature()
+        let state = makeState()
+        
+        expect(sutToPerformLoad, toLoadStates: [])
+        
+        createState(state, with: sutToPerformCreate)
+
+        expect(sutToPerformLoad, toLoadStates: [state])
+        
+        removeState(state, with: sutToPerformDelete)
+        
+        expect(sutToPerformLoad, toLoadStates: [])
+    }
+    
     func test_purchase_change_editsPurchaseSavedOnSeparateInstance() {
         let sutToPerformCreate = makePurchasesFeature()
         let sutToPerformLoad = makePurchasesFeature()
@@ -112,6 +129,30 @@ final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
         expectPurchaseChange(toReturn: anotherChangedPurchased, with: sutToPerformLastChange)
         
         expect(sutToPerformLoad, toLoadPurchases: [anotherChangedPurchased])
+    }
+    
+    func test_state_change_editsPurchaseSavedOnSeparateInstance() {
+        let sutToPerformCreate = makeStatesFeature()
+        let sutToPerformLoad = makeStatesFeature()
+        let sutToPerformFirstChange = makeStatesFeature()
+        let sutToPerformLastChange = makeStatesFeature()
+        let state = makeState(name: "california", taxValue: 0.08)
+        let changedState = makeState(name: "california", taxValue: 0.01)
+        let anotherChangedState = makeState(name: "california", taxValue: 0.05)
+        
+        expect(sutToPerformLoad, toLoadStates: [])
+        
+        createState(state, with: sutToPerformCreate)
+
+        expect(sutToPerformLoad, toLoadStates: [state])
+        
+        expectStateChange(toReturn: changedState, with: sutToPerformFirstChange)
+        
+        expect(sutToPerformLoad, toLoadStates: [changedState])
+        
+        expectStateChange(toReturn: anotherChangedState, with: sutToPerformLastChange)
+        
+        expect(sutToPerformLoad, toLoadStates: [anotherChangedState])
     }
     
     // MARK: Helpers
@@ -169,7 +210,7 @@ final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
         let exp = expectation(description: "Wait for create completion")
         sut.create(purchase) { result in
             if case let Result.failure(error) = result {
-                XCTFail("Expected to save purchase successfully, got error: \(error)", file: file, line: line)
+                XCTFail("Expected to create purchase successfully, got error: \(error)", file: file, line: line)
             }
             exp.fulfill()
         }
@@ -180,7 +221,7 @@ final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
         let exp = expectation(description: "Wait for create completion")
         sut.create(state) { result in
             if case let Result.failure(error) = result {
-                XCTFail("Expected to save state successfully, got error: \(error)", file: file, line: line)
+                XCTFail("Expected to create state successfully, got error: \(error)", file: file, line: line)
             }
             exp.fulfill()
         }
@@ -191,7 +232,18 @@ final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
         let exp = expectation(description: "Wait for remove completion")
         sut.remove(purchase) { result in
             if case let Result.failure(error) = result {
-                XCTFail("Expected to save purchase successfully, got error: \(error)", file: file, line: line)
+                XCTFail("Expected to remove purchase successfully, got error: \(error)", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func removeState(_ state: State, with sut: StateFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for remove completion")
+        sut.remove(state) { result in
+            if case let Result.failure(error) = result {
+                XCTFail("Expected to remove state successfully, got error: \(error)", file: file, line: line)
             }
             exp.fulfill()
         }
@@ -206,7 +258,23 @@ final class ComprasUSAFeaturesIntegrationTests: XCTestCase {
                 XCTAssertEqual(returnedPurchase, purchase, file: file, line: line)
                 
             case let .failure(error):
-                XCTFail("Expected successful feed result, got \(error) instead", file: file, line: line)
+                XCTFail("Expected successful purchase change result, got \(error) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func expectStateChange(toReturn state: State, with sut: StateFeatureUseCase, file: StaticString = #file, line: UInt = #line) {
+        let exp = expectation(description: "Wait for remove completion")
+        sut.change(state) { result in
+            switch result {
+            case let .success(returnedState):
+                XCTAssertEqual(returnedState, state, file: file, line: line)
+                
+            case let .failure(error):
+                XCTFail("Expected successful purchase change result, got \(error) instead", file: file, line: line)
             }
             
             exp.fulfill()

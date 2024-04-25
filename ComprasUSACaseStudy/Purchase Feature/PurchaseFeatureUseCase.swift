@@ -69,13 +69,49 @@ extension PurchaseFeatureUseCase: PurchaseRemover {
 extension PurchaseFeatureUseCase: PurchaseChanger {
     public func change(_ purchase: Purchase, completion: @escaping (ChangeResult) -> Void) {
         store.edit(purchase.toLocal, completion: { result in
-            completion(
-                result
-                    .mapError({ _ in Error.changeError })
-                    .map({ _ in
-                        return Purchase(id: UUID(), name: "any name", imageData: nil, value: 10, paymentType: .card, state: nil)
-                    })
-            )
+            switch result {
+            case .failure:
+                completion(.failure(Error.changeError))
+            case let .success(local):
+                guard let localState = local.state else {
+                    completion(.failure(Error.changeError))
+                    return
+                }
+                
+                guard let paymentType = PaymentType(rawValue: local.paymentType) else {
+                    completion(.failure(Error.changeError))
+                    return
+                }
+                                
+                guard let newState = State(name: localState.name, taxValue: localState.taxValue) else {
+                    completion(
+                        .success(
+                            Purchase(
+                                id: local.id,
+                                name: local.name,
+                                imageData: local.imageData,
+                                value: local.value,
+                                paymentType: paymentType,
+                                state: nil
+                            )
+                        )
+                    )
+                    return
+                }
+                
+                completion(
+                    .success(
+                        Purchase(
+                            id: local.id,
+                            name: local.name,
+                            imageData: local.imageData,
+                            value: local.value,
+                            paymentType: paymentType,
+                            state: newState
+                        )
+                    )
+                )
+            }
         })
     }
 }

@@ -145,6 +145,17 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
             store.completeChange(with: anyNSError())
         })
     }
+    
+    func test_change_completesWithChangedPurchase_whenStoreCompletesSuccessfully() {
+        let (sut, store) = makeSUT()
+        
+        let purchase = makePurchaseObjects()
+        let otherPurchase = makePurchase()
+        
+        expect(sut, toCompleteChangeWith: .success(purchase.model), using: purchase.model, when: {
+            store.completeChangeSuccessfully(with: purchase.local)
+        })
+    }
         
     // MARK: Helpers
     func makeSUT() -> (sut: PurchaseFeatureUseCase, store: PurchaseStoreSpy) {
@@ -225,8 +236,8 @@ final class PurchaseFeatureUseCaseTests: XCTestCase {
         
         sut.change(purchase) { receivedResult in
             switch(expectedResult, receivedResult) {
-            case (.success, .success):
-                break
+            case let (.success(expecedItems), .success(receivedItems)):
+                XCTAssertEqual(expecedItems, receivedItems, file: file, line: line)
             case let (.failure(expectedError as PurchaseFeatureUseCase.Error), .failure(receivedError as PurchaseFeatureUseCase.Error)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
             default:
@@ -247,6 +258,8 @@ class PurchaseStoreSpy: PurchaseStore {
     var insertionCompletions = [InsertionCompletion]()
     var deletionCompletions = [DeletionCompletion]()
     var editionCompletions = [EditionCompletion]()
+    
+    var newPurchasesAfterChange = [LocalPurchase]()
 }
 
 extension PurchaseStoreSpy {
@@ -294,9 +307,14 @@ extension PurchaseStoreSpy {
 extension PurchaseStoreSpy {
     func edit(_ purchase: ComprasUSACaseStudy.LocalPurchase, completion: @escaping EditionCompletion) {
         editionCompletions.append(completion)
+        newPurchasesAfterChange.append(purchase)
     }
     
     func completeChange(with error: Error, at index: Int = 0) {
         editionCompletions[index](.failure(error))
+    }
+    
+    func completeChangeSuccessfully(with purchase: ComprasUSACaseStudy.LocalPurchase, at index: Int = 0) {
+        editionCompletions[index](.success(newPurchasesAfterChange[index]))
     }
 }

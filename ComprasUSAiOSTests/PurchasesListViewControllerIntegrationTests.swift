@@ -6,26 +6,18 @@
 //
 
 import XCTest
-import UIKit
-
-class PurchaseListViewController: UITableViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = "Purchases"
-    }
-}
+import ComprasUSAiOS
 
 final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     func test_init_displayTitle() {
         let sut = makeSUT()
         
-        XCTAssertEqual(sut.title, "Purchases")
+        XCTAssertEqual(sut.title, localized("PURCHASES_TITLE"))
     }
     
     // MARK: Helpers
-    func makeSUT() -> PurchaseListViewController {
-        let sut = PurchaseListViewController()
+    func makeSUT() -> PurchasesListViewController {
+        let sut = PurchasesListViewController()
         
         if !sut.isViewLoaded {
             sut.loadViewIfNeeded()
@@ -39,3 +31,4 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         return sut
     }
 }
+

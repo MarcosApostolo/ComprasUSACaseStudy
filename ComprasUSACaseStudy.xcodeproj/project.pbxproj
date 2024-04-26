@@ -19,8 +19,12 @@
 		4A71468C2BDAFAC000D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */; };
 		4A71468E2BDAFBE400D202BE /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DE2BD4657F00780643 /* TestHelpers.swift */; };
 		4A71469F2BDB24B300D202BE /* ComprasUSAiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7146972BDB24B300D202BE /* ComprasUSAiOS.framework */; };
-		4A7146AE2BDB2A8100D202BE /* PurchaseListViewControllerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146AD2BDB2A8100D202BE /* PurchaseListViewControllerIntegrationTests.swift */; };
+		4A7146AE2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146AD2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift */; };
 		4A7146AF2BDB2B7200D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */; };
+		4A7146B22BDB2EC300D202BE /* PurchasesListViewController+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B12BDB2EC300D202BE /* PurchasesListViewController+Localized.swift */; };
+		4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B42BDB2EFE00D202BE /* PurchasesListViewController.swift */; };
+		4A7146B72BDB2F8F00D202BE /* Purchase.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */; };
+		4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */; };
 		4A7ED6DD2BD58593002925A9 /* CoreDataStoreHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */; };
 		4A7ED6DF2BD585BF002925A9 /* ManagedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */; };
 		4A7ED6E12BD58727002925A9 /* StateCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E02BD58727002925A9 /* StateCreator.swift */; };
@@ -86,7 +90,11 @@
 		4A7146972BDB24B300D202BE /* ComprasUSAiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSAiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A71469E2BDB24B300D202BE /* ComprasUSAiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSAiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7146AC2BDB259500D202BE /* ComprasUSAiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ComprasUSAiOS.xctestplan; sourceTree = "<group>"; };
-		4A7146AD2BDB2A8100D202BE /* PurchaseListViewControllerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseListViewControllerIntegrationTests.swift; sourceTree = "<group>"; };
+		4A7146AD2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesListViewControllerIntegrationTests.swift; sourceTree = "<group>"; };
+		4A7146B12BDB2EC300D202BE /* PurchasesListViewController+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchasesListViewController+Localized.swift"; sourceTree = "<group>"; };
+		4A7146B42BDB2EFE00D202BE /* PurchasesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesListViewController.swift; sourceTree = "<group>"; };
+		4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Purchase.xcstrings; sourceTree = "<group>"; };
+		4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesLocalizationTests.swift; sourceTree = "<group>"; };
 		4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreHelpers.swift; sourceTree = "<group>"; };
 		4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedState.swift; sourceTree = "<group>"; };
 		4A7ED6E02BD58727002925A9 /* StateCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCreator.swift; sourceTree = "<group>"; };
@@ -177,6 +185,7 @@
 		4A7146982BDB24B300D202BE /* ComprasUSAiOS */ = {
 			isa = PBXGroup;
 			children = (
+				4A7146B32BDB2EF000D202BE /* Purchases */,
 			);
 			path = ComprasUSAiOS;
 			sourceTree = "<group>";
@@ -184,10 +193,29 @@
 		4A7146A22BDB24B300D202BE /* ComprasUSAiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				4A7146B02BDB2E9F00D202BE /* Helpers */,
 				4A7146AC2BDB259500D202BE /* ComprasUSAiOS.xctestplan */,
-				4A7146AD2BDB2A8100D202BE /* PurchaseListViewControllerIntegrationTests.swift */,
+				4A7146AD2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift */,
+				4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */,
 			);
 			path = ComprasUSAiOSTests;
+			sourceTree = "<group>";
+		};
+		4A7146B02BDB2E9F00D202BE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4A7146B12BDB2EC300D202BE /* PurchasesListViewController+Localized.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4A7146B32BDB2EF000D202BE /* Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				4A7146B42BDB2EFE00D202BE /* PurchasesListViewController.swift */,
+				4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */,
+			);
+			path = Purchases;
 			sourceTree = "<group>";
 		};
 		4A7FD9ED2BD721F400E791F9 /* Store */ = {
@@ -474,6 +502,7 @@
 					};
 					4A7146962BDB24B300D202BE = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 					4A71469D2BDB24B300D202BE = {
 						CreatedOnToolsVersion = 15.2;
@@ -496,6 +525,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 4AF9E2CC2BD41FEC00D4CC11;
 			productRefGroup = 4AF9E2D72BD41FEC00D4CC11 /* Products */;
@@ -523,6 +553,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A7146B72BDB2F8F00D202BE /* Purchase.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,8 +603,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A7146B22BDB2EC300D202BE /* PurchasesListViewController+Localized.swift in Sources */,
 				4A7146AF2BDB2B7200D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */,
-				4A7146AE2BDB2A8100D202BE /* PurchaseListViewControllerIntegrationTests.swift in Sources */,
+				4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */,
+				4A7146AE2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,9 +709,10 @@
 		4A7146A72BDB24B300D202BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -702,6 +737,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -710,9 +746,10 @@
 		4A7146A82BDB24B300D202BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -746,6 +783,7 @@
 		4A7146AA2BDB24B300D202BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -765,6 +803,7 @@
 		4A7146AB2BDB24B300D202BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

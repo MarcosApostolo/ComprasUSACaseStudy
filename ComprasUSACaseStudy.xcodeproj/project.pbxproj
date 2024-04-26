@@ -25,6 +25,8 @@
 		4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B42BDB2EFE00D202BE /* PurchasesListViewController.swift */; };
 		4A7146B72BDB2F8F00D202BE /* Purchase.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */; };
 		4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */; };
+		4A7146BC2BDB31CF00D202BE /* PurchasesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146BB2BDB31CF00D202BE /* PurchasesListViewModel.swift */; };
+		4A7146BE2BDB330400D202BE /* PurchasesUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146BD2BDB330400D202BE /* PurchasesUIComposer.swift */; };
 		4A7ED6DD2BD58593002925A9 /* CoreDataStoreHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */; };
 		4A7ED6DF2BD585BF002925A9 /* ManagedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */; };
 		4A7ED6E12BD58727002925A9 /* StateCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7ED6E02BD58727002925A9 /* StateCreator.swift */; };
@@ -95,6 +97,8 @@
 		4A7146B42BDB2EFE00D202BE /* PurchasesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesListViewController.swift; sourceTree = "<group>"; };
 		4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Purchase.xcstrings; sourceTree = "<group>"; };
 		4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesLocalizationTests.swift; sourceTree = "<group>"; };
+		4A7146BB2BDB31CF00D202BE /* PurchasesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesListViewModel.swift; sourceTree = "<group>"; };
+		4A7146BD2BDB330400D202BE /* PurchasesUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesUIComposer.swift; sourceTree = "<group>"; };
 		4A7ED6DC2BD58593002925A9 /* CoreDataStoreHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreHelpers.swift; sourceTree = "<group>"; };
 		4A7ED6DE2BD585BF002925A9 /* ManagedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedState.swift; sourceTree = "<group>"; };
 		4A7ED6E02BD58727002925A9 /* StateCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCreator.swift; sourceTree = "<group>"; };
@@ -213,7 +217,9 @@
 			isa = PBXGroup;
 			children = (
 				4A7146B42BDB2EFE00D202BE /* PurchasesListViewController.swift */,
+				4A7146BB2BDB31CF00D202BE /* PurchasesListViewModel.swift */,
 				4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */,
+				4A7146BD2BDB330400D202BE /* PurchasesUIComposer.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -596,6 +602,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */,
+				4A7146BC2BDB31CF00D202BE /* PurchasesListViewModel.swift in Sources */,
+				4A7146BE2BDB330400D202BE /* PurchasesUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,5 @@ import UIKit
 public class PurchasesListViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "Purchases"
     }
 }

@@ -17,7 +17,7 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     
     // MARK: Helpers
     func makeSUT() -> PurchasesListViewController {
-        let sut = PurchasesListViewController()
+        let sut = PurchasesUIComposer.composePurchasesList()
         
         if !sut.isViewLoaded {
             sut.loadViewIfNeeded()

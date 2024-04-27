@@ -110,6 +110,21 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.numberOfRenderedFeedImageViews(), 4, "Expected one cell for each purchase loaded")
     }
     
+    func test_loadPurchase_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
+        
+        sut.simulateAppearance()
+
+        let exp = expectation(description: "Wait for background queue")
+        
+        DispatchQueue.global().async {
+            loader.completeLoadSuccessfully()
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: Helpers
     func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()

@@ -50,7 +50,9 @@ class PurchasesListViewModel {
         onErrorStateChange?(.none)
         onEmptyFeedLoad?(false)
         
-        self.cancellable = loader().sink(
+        self.cancellable = loader()
+            .dispatchOnMainQueue()
+            .sink(
             receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure:

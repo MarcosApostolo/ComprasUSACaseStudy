@@ -13,6 +13,12 @@ public class PurchasesListViewController: UITableViewController {
         didSet { bind() }
     }
     
+    var tableModel = [PurchaseCellController]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     private(set) public lazy var loadingIndicator: UIActivityIndicatorView = {
         let loadingIndicator = UIActivityIndicatorView()
         
@@ -82,5 +88,11 @@ public class PurchasesListViewController: UITableViewController {
     
     @objc func retryLoad() {
         viewModel?.loadPurchases()
+    }
+}
+
+extension PurchasesListViewController {
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableModel.count
     }
 }

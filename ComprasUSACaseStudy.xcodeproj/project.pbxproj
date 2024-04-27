@@ -55,6 +55,8 @@
 		4ABB4DFF2BDD1B74009C2428 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4DFE2BDD1B74009C2428 /* CombineHelpers.swift */; };
 		4ABB4E002BDD3267009C2428 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DE2BD4657F00780643 /* TestHelpers.swift */; };
 		4ABB4E022BDD395E009C2428 /* iOSTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E012BDD395E009C2428 /* iOSTestHelpers.swift */; };
+		4ABB4E072BDD783F009C2428 /* PurchaseCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E062BDD783F009C2428 /* PurchaseCellController.swift */; };
+		4ABB4E092BDD7856009C2428 /* PurchaseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E082BDD7856009C2428 /* PurchaseCellViewModel.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +153,8 @@
 		4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCase.swift; sourceTree = "<group>"; };
 		4ABB4DFE2BDD1B74009C2428 /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		4ABB4E012BDD395E009C2428 /* iOSTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTestHelpers.swift; sourceTree = "<group>"; };
+		4ABB4E062BDD783F009C2428 /* PurchaseCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCellController.swift; sourceTree = "<group>"; };
+		4ABB4E082BDD7856009C2428 /* PurchaseCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCellViewModel.swift; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -251,6 +255,8 @@
 				4A7146BB2BDB31CF00D202BE /* PurchasesListViewModel.swift */,
 				4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */,
 				4A7146BD2BDB330400D202BE /* PurchasesUIComposer.swift */,
+				4ABB4E062BDD783F009C2428 /* PurchaseCellController.swift */,
+				4ABB4E082BDD7856009C2428 /* PurchaseCellViewModel.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -643,6 +649,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */,
+				4ABB4E092BDD7856009C2428 /* PurchaseCellViewModel.swift in Sources */,
+				4ABB4E072BDD783F009C2428 /* PurchaseCellController.swift in Sources */,
 				4A7146BC2BDB31CF00D202BE /* PurchasesListViewModel.swift in Sources */,
 				4A7146BE2BDB330400D202BE /* PurchasesUIComposer.swift in Sources */,
 				4ABB4DFF2BDD1B74009C2428 /* CombineHelpers.swift in Sources */,

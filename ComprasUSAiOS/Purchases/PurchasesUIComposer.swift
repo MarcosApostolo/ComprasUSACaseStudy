@@ -20,6 +20,12 @@ public class PurchasesUIComposer {
         
         vc.viewModel = viewModel
         
+        viewModel.onPurchasesLoad = { [weak vc] purchases in
+            vc?.tableModel = purchases.map({ _ in
+                PurchaseCellController(viewModel: PurchaseCellViewModel())
+            })
+        }
+        
         return vc
     }
 }

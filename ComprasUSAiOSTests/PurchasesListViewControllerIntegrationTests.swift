@@ -93,6 +93,23 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message after load finishes with purchases")
     }
     
+    func test_loadPurchase_displayPurchasesWhenLoadIsSuccessfull() {
+        let (sut, loader) = makeSUT()
+        
+        let purchase0 = makePurchase()
+        let purchase1 = makePurchase()
+        let purchase2 = makePurchase()
+        let purchase3 = makePurchase()
+        
+        XCTAssertEqual(sut.numberOfRenderedFeedImageViews(), 0, "Expected no purchases to be displayed before view loads")
+        
+        sut.simulateAppearance()
+        
+        loader.completeLoadSuccessfully(with: [purchase0, purchase1, purchase2, purchase3])
+        
+        XCTAssertEqual(sut.numberOfRenderedFeedImageViews(), 4, "Expected one cell for each purchase loaded")
+    }
+    
     // MARK: Helpers
     func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
@@ -153,5 +170,13 @@ private extension PurchasesListViewController {
     
     func simulateUserInitiatedLoad() {
         self.retryButton.simulateTap()
+    }
+    
+    func numberOfRenderedFeedImageViews() -> Int {
+        return tableView.numberOfRows(inSection: section)
+    }
+    
+    private var section: Int {
+        0
     }
 }

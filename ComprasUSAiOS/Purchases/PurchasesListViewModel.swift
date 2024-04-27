@@ -18,6 +18,7 @@ class PurchasesListViewModel {
     var onLoadingStateChange: Observer<Bool>?
     var onErrorStateChange: Observer<String?>?
     var onEmptyFeedLoad: Observer<Bool>?
+    var onPurchasesLoad: Observer<[Purchase]>?
     
     var title: String {
         return NSLocalizedString("PURCHASES_TITLE",
@@ -64,6 +65,8 @@ class PurchasesListViewModel {
                     self?.onEmptyFeedLoad?(true)
                     return
                 }
+                
+                self?.onPurchasesLoad?(purchases)
             }
         )
     }

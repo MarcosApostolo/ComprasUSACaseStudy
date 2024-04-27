@@ -27,11 +27,15 @@ public class PurchasesListViewController: UITableViewController {
         return errorView
     }()
     
-    private(set) public var errorMessage: String? {
-        didSet {
-            errorView.isHidden = false
-        }
-    }
+    private(set) public lazy var retryButton: UIButton = {
+        let retryButton = UIButton()
+        
+        retryButton.addTarget(self, action: #selector(retryLoad), for: .touchUpInside)
+        
+        return retryButton
+    }()
+    
+    private(set) public var errorMessage: String?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +51,21 @@ public class PurchasesListViewController: UITableViewController {
                 self?.loadingIndicator.startAnimating()
             } else {
                 self?.loadingIndicator.stopAnimating()
-            }
+            }            
         }
         
         viewModel?.onErrorStateChange = { [weak self] error in
+            if (error != nil) {
+                self?.errorView.isHidden = false
+            } else {
+                self?.errorView.isHidden = true
+            }
+            
             self?.errorMessage = error
         }
+    }
+    
+    @objc func retryLoad() {
+        viewModel?.loadPurchases()
     }
 }

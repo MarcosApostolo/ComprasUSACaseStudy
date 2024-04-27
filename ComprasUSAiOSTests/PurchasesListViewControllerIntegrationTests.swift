@@ -56,6 +56,16 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         
         XCTAssertTrue(sut.isShowingErrorMessage, "Expected error message after load finishes with error")
         XCTAssertEqual(sut.loadErrorMessage, localized("PURCHASES_LOAD_ERROR"))
+        
+        sut.simulateUserInitiatedLoad()
+        
+        XCTAssertFalse(sut.isShowingErrorMessage, "Expected no error message after user initiates a new load")
+        XCTAssertNil(sut.loadErrorMessage)
+        
+        loader.completeLoadSuccessfully()
+        
+        XCTAssertFalse(sut.isShowingErrorMessage, "Expected no error message after load finishes with success")
+        XCTAssertNil(sut.loadErrorMessage)
     }
     
     // MARK: Helpers
@@ -106,5 +116,9 @@ private extension PurchasesListViewController {
     
     var loadErrorMessage: String? {
         self.errorMessage
+    }
+    
+    func simulateUserInitiatedLoad() {
+        self.retryButton.simulateTap()
     }
 }

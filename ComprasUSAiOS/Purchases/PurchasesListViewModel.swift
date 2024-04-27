@@ -38,11 +38,12 @@ class PurchasesListViewModel {
     
     func loadPurchases() {
         onLoadingStateChange?(true)
+        onErrorStateChange?(.none)
         
         self.cancellable = loader().sink(
             receiveCompletion: { [weak self] completion in
                 switch completion {
-                case let .failure(error):
+                case .failure:
                     self?.onErrorStateChange?(self?.errorMessage)
                 default:
                     break

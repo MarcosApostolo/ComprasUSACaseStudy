@@ -57,7 +57,7 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.isShowingErrorMessage, "Expected error message after load finishes with error")
         XCTAssertEqual(sut.loadErrorMessage, localized("PURCHASES_LOAD_ERROR"))
         
-        sut.simulateUserInitiatedLoad()
+        sut.simulateRetryLoad()
         
         XCTAssertFalse(sut.isShowingErrorMessage, "Expected no error message after user initiates a new load")
         XCTAssertNil(sut.loadErrorMessage)
@@ -84,7 +84,7 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         XCTAssertTrue(sut.isShowingEmptyMessage, "Expected empty message after load finishes with empty purchases")
         XCTAssertEqual(sut.emptyPurchasesMessage, localized("PURCHASES_EMPTY_LOAD_MESSAGE"))
         
-        sut.simulateUserInitiatedLoad()
+        sut.simulateRetryLoad()
         
         XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message after load finishes with purchases")
         
@@ -183,7 +183,7 @@ private extension PurchasesListViewController {
         self.emptyMessage
     }
     
-    func simulateUserInitiatedLoad() {
+    func simulateRetryLoad() {
         self.retryButton.simulateTap()
     }
     

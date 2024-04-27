@@ -13,6 +13,10 @@ class PurchasesListViewModel {
     private let loader: () -> PurchaseLoader.Publisher
     private var cancellable: Cancellable?
     
+    typealias Observer<T> = (T) -> Void
+    
+    var onLoadingStateChange: Observer<Bool>?
+    
     var title: String {
         return NSLocalizedString("PURCHASES_TITLE",
             tableName: "Purchase",
@@ -25,8 +29,12 @@ class PurchasesListViewModel {
     }
     
     func loadPurchases() {
+        onLoadingStateChange?(true)
+        
         self.cancellable = loader().sink(
-            receiveCompletion: { _ in },
+            receiveCompletion: { [weak self] _ in
+                self?.onLoadingStateChange?(false)
+            },
             receiveValue: { _ in }
         )
     }

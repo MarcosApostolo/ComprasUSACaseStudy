@@ -22,9 +22,27 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     func test_loadPurchase_requestsPurchasesFromLoader() {
         let (sut, loader) = makeSUT()
         
+        XCTAssertEqual(loader.loadMessages.count, 0)
+        
         sut.simulateAppearance()
         
         XCTAssertEqual(loader.loadMessages.count, 1)
+    }
+    
+    func test_loadPurchase_displayLoadingIndicatorWhileLoadingPurchases() {
+        let (sut, loader) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading before view load")
+        
+        sut.simulateAppearance()
+        
+        XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading after view load")
+        
+        loader.completeLoadSuccessfully()
+        
+        XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading after load finishes")
     }
     
     // MARK: Helpers
@@ -45,6 +63,10 @@ class LoaderSpy: PurchaseLoader {
     func load(completion: @escaping (LoadResult) -> Void) {
         loadMessages.append(completion)
     }
+    
+    func completeLoadSuccessfully(with purchases: [Purchase] = [makePurchase()], at index: Int = 0) {
+        loadMessages[index](.success(purchases))
+    }
 }
 
 private extension PurchasesListViewController {
@@ -55,5 +77,9 @@ private extension PurchasesListViewController {
 
         beginAppearanceTransition(true, animated: false)
         endAppearanceTransition()
+    }
+    
+    var isShowingLoadingIndicator: Bool {
+        self.loadingIndicator.isAnimating == true
     }
 }

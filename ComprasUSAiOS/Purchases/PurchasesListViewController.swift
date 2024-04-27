@@ -13,6 +13,12 @@ public class PurchasesListViewController: UITableViewController {
         didSet { bind() }
     }
     
+    private(set) public lazy var loadingIndicator: UIActivityIndicatorView = {
+        let loadingIndicator = UIActivityIndicatorView()
+        
+        return loadingIndicator
+    }()
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,5 +27,13 @@ public class PurchasesListViewController: UITableViewController {
     
     func bind() {
         title = viewModel?.title
+        
+        viewModel?.onLoadingStateChange = { [weak self] isLoading in
+            if (isLoading) {
+                self?.loadingIndicator.startAnimating()
+            } else {
+                self?.loadingIndicator.stopAnimating()
+            }
+        }
     }
 }

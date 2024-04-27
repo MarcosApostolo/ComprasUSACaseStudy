@@ -53,6 +53,7 @@
 		4ABB4DF72BDD15C8009C2428 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 		4ABB4DF82BDD15C8009C2428 /* ComprasUSACaseStudy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4ABB4DFF2BDD1B74009C2428 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4DFE2BDD1B74009C2428 /* CombineHelpers.swift */; };
+		4ABB4E002BDD3267009C2428 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DE2BD4657F00780643 /* TestHelpers.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -650,6 +651,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A7146B22BDB2EC300D202BE /* PurchasesListViewController+Localized.swift in Sources */,
+				4ABB4E002BDD3267009C2428 /* TestHelpers.swift in Sources */,
 				4A7146AF2BDB2B7200D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */,
 				4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */,
 				4A7146AE2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift in Sources */,

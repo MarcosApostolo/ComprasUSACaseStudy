@@ -31,9 +31,7 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     
     func test_loadPurchase_displayLoadingIndicatorWhileLoadingPurchases() {
         let (sut, loader) = makeSUT()
-        
-        let purchase = makePurchase()
-        
+                
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading before view load")
         
         sut.simulateAppearance()
@@ -43,6 +41,21 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         loader.completeLoadSuccessfully()
         
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading after load finishes")
+    }
+    
+    func test_loadPurchase_displayErrorMessageOnLoadPurchasesError() {
+        let (sut, loader) = makeSUT()
+        
+        XCTAssertFalse(sut.isShowingErrorMessage, "Expected no error message before view load")
+        
+        sut.simulateAppearance()
+        
+        XCTAssertFalse(sut.isShowingErrorMessage, "Expected no error message before load finishes")
+        
+        loader.completeLoadWithError()
+        
+        XCTAssertTrue(sut.isShowingErrorMessage, "Expected error message after load finishes with error")
+        XCTAssertEqual(sut.loadErrorMessage, localized("PURCHASES_LOAD_ERROR"))
     }
     
     // MARK: Helpers
@@ -67,6 +80,10 @@ class LoaderSpy: PurchaseLoader {
     func completeLoadSuccessfully(with purchases: [Purchase] = [makePurchase()], at index: Int = 0) {
         loadMessages[index](.success(purchases))
     }
+    
+    func completeLoadWithError(error: Error = anyNSError(), at index: Int = 0) {
+        loadMessages[index](.failure(error))
+    }
 }
 
 private extension PurchasesListViewController {
@@ -81,5 +98,13 @@ private extension PurchasesListViewController {
     
     var isShowingLoadingIndicator: Bool {
         self.loadingIndicator.isAnimating == true
+    }
+    
+    var isShowingErrorMessage: Bool {
+        self.errorView.isHidden == false
+    }
+    
+    var loadErrorMessage: String? {
+        self.errorMessage
     }
 }

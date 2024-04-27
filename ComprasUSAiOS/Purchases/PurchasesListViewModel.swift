@@ -16,12 +16,20 @@ class PurchasesListViewModel {
     typealias Observer<T> = (T) -> Void
     
     var onLoadingStateChange: Observer<Bool>?
+    var onErrorStateChange: Observer<String?>?
     
     var title: String {
         return NSLocalizedString("PURCHASES_TITLE",
             tableName: "Purchase",
             bundle: Bundle(for: PurchasesListViewController.self),
             comment: "Title for the purchases view")
+    }
+    
+    var errorMessage: String {
+        return NSLocalizedString("PURCHASES_LOAD_ERROR",
+            tableName: "Purchase",
+            bundle: Bundle(for: PurchasesListViewController.self),
+            comment: "Error message for when the load purchases completes with error")
     }
     
     init(loader: @escaping () -> PurchaseLoader.Publisher) {
@@ -32,7 +40,13 @@ class PurchasesListViewModel {
         onLoadingStateChange?(true)
         
         self.cancellable = loader().sink(
-            receiveCompletion: { [weak self] _ in
+            receiveCompletion: { [weak self] completion in
+                switch completion {
+                case let .failure(error):
+                    self?.onErrorStateChange?(self?.errorMessage)
+                default:
+                    break
+                }
                 self?.onLoadingStateChange?(false)
             },
             receiveValue: { _ in }

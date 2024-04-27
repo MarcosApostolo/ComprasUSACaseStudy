@@ -19,6 +19,20 @@ public class PurchasesListViewController: UITableViewController {
         return loadingIndicator
     }()
     
+    private(set) public lazy var errorView: UIView = {
+        let errorView = UIView()
+        
+        errorView.isHidden = true
+        
+        return errorView
+    }()
+    
+    private(set) public var errorMessage: String? {
+        didSet {
+            errorView.isHidden = false
+        }
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +48,10 @@ public class PurchasesListViewController: UITableViewController {
             } else {
                 self?.loadingIndicator.stopAnimating()
             }
+        }
+        
+        viewModel?.onErrorStateChange = { [weak self] error in
+            self?.errorMessage = error
         }
     }
 }

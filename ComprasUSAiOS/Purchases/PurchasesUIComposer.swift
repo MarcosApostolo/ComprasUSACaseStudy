@@ -12,8 +12,9 @@ public class PurchasesUIComposer {
     
     public static func composePurchasesList() -> PurchasesListViewController {
         let vc = PurchasesListViewController()
+        let viewModel = PurchasesListViewModel()
         
-        vc.title = PurchasesListViewModel.title
+        vc.viewModel = viewModel
         
         return vc
     }

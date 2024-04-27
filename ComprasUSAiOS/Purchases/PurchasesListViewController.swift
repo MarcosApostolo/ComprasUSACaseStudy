@@ -9,7 +9,15 @@ import Foundation
 import UIKit
 
 public class PurchasesListViewController: UITableViewController {
+    var viewModel: PurchasesListViewModel? {
+        didSet { bind() }
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func bind() {
+        title = viewModel?.title
     }
 }

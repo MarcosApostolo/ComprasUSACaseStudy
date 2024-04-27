@@ -8,7 +8,7 @@
 import Foundation
 
 class PurchasesListViewModel {
-    static var title: String {
+    var title: String {
         return NSLocalizedString("PURCHASES_TITLE",
             tableName: "Purchase",
             bundle: Bundle(for: PurchasesListViewController.self),

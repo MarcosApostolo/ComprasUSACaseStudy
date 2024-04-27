@@ -57,6 +57,7 @@
 		4ABB4E022BDD395E009C2428 /* iOSTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E012BDD395E009C2428 /* iOSTestHelpers.swift */; };
 		4ABB4E072BDD783F009C2428 /* PurchaseCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E062BDD783F009C2428 /* PurchaseCellController.swift */; };
 		4ABB4E092BDD7856009C2428 /* PurchaseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E082BDD7856009C2428 /* PurchaseCellViewModel.swift */; };
+		4ABB4E0B2BDD7F58009C2428 /* PurchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E0A2BDD7F58009C2428 /* PurchaseCell.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +156,7 @@
 		4ABB4E012BDD395E009C2428 /* iOSTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSTestHelpers.swift; sourceTree = "<group>"; };
 		4ABB4E062BDD783F009C2428 /* PurchaseCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCellController.swift; sourceTree = "<group>"; };
 		4ABB4E082BDD7856009C2428 /* PurchaseCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCellViewModel.swift; sourceTree = "<group>"; };
+		4ABB4E0A2BDD7F58009C2428 /* PurchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCell.swift; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -257,6 +259,7 @@
 				4A7146BD2BDB330400D202BE /* PurchasesUIComposer.swift */,
 				4ABB4E062BDD783F009C2428 /* PurchaseCellController.swift */,
 				4ABB4E082BDD7856009C2428 /* PurchaseCellViewModel.swift */,
+				4ABB4E0A2BDD7F58009C2428 /* PurchaseCell.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ABB4E0B2BDD7F58009C2428 /* PurchaseCell.swift in Sources */,
 				4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */,
 				4ABB4E092BDD7856009C2428 /* PurchaseCellViewModel.swift in Sources */,
 				4ABB4E072BDD783F009C2428 /* PurchaseCellController.swift in Sources */,

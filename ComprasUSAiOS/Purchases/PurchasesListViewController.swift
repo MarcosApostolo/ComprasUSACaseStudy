@@ -95,4 +95,10 @@ extension PurchasesListViewController {
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableModel.count
     }
+    
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellController = tableModel[indexPath.row]
+        
+        return cellController.view(in: tableView)
+    }
 }

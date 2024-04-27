@@ -101,13 +101,13 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         let purchase2 = makePurchase()
         let purchase3 = makePurchase()
         
-        XCTAssertEqual(sut.numberOfRenderedFeedImageViews(), 0, "Expected no purchases to be displayed before view loads")
+        assertThat(sut, isRendering: [])
         
         sut.simulateAppearance()
         
         loader.completeLoadSuccessfully(with: [purchase0, purchase1, purchase2, purchase3])
         
-        XCTAssertEqual(sut.numberOfRenderedFeedImageViews(), 4, "Expected one cell for each purchase loaded")
+        assertThat(sut, isRendering: [purchase0, purchase1, purchase2, purchase3])
     }
     
     func test_loadPurchase_dispatchesFromBackgroundToMainThread() {
@@ -134,6 +134,18 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         checkForMemoryLeaks(loader)
         
         return (sut, loader)
+    }
+    
+    func assertThat(_ sut: PurchasesListViewController, isRendering purchases: [Purchase], file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertEqual(sut.numberOfRenderedFeedImageViews(), purchases.count, "Expected one cell for each purchase loaded")
+        
+        purchases.enumerated().forEach({ index, purchase in
+            let view = sut.purchaseCell(for: index)
+
+            guard let _ = view as? PurchaseCell else {
+                return XCTFail("Expected \(PurchaseCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
+            }
+        })
     }
 }
 
@@ -193,5 +205,9 @@ private extension PurchasesListViewController {
     
     private var section: Int {
         0
+    }
+    
+    func purchaseCell(for index: Int) -> UITableViewCell? {
+        return tableView(tableView, cellForRowAt: IndexPath(row: index, section: section))
     }
 }

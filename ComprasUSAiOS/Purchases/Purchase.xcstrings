@@ -1,6 +1,23 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "PURCHASES_EMPTY_LOAD_MESSAGE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You haven't added any purchases yet."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você ainda não adicionou nenhuma compra."
+          }
+        }
+      }
+    },
     "PURCHASES_LOAD_ERROR" : {
       "extractionState" : "manual",
       "localizations" : {

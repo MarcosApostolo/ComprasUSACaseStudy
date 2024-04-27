@@ -27,6 +27,14 @@ public class PurchasesListViewController: UITableViewController {
         return errorView
     }()
     
+    private(set) public lazy var emptyMessageView: UIView = {
+        let emptyView = UIView()
+        
+        emptyView.isHidden = true
+        
+        return emptyView
+    }()
+    
     private(set) public lazy var retryButton: UIButton = {
         let retryButton = UIButton()
         
@@ -36,6 +44,9 @@ public class PurchasesListViewController: UITableViewController {
     }()
     
     private(set) public var errorMessage: String?
+    public var emptyMessage: String? {
+        viewModel?.emptyPurchasesMessage
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +73,10 @@ public class PurchasesListViewController: UITableViewController {
             }
             
             self?.errorMessage = error
+        }
+        
+        viewModel?.onEmptyFeedLoad = { [weak self] isEmpty in
+            self?.emptyMessageView.isHidden = !isEmpty
         }
     }
     

@@ -17,6 +17,7 @@ class PurchasesListViewModel {
     
     var onLoadingStateChange: Observer<Bool>?
     var onErrorStateChange: Observer<String?>?
+    var onEmptyFeedLoad: Observer<Bool>?
     
     var title: String {
         return NSLocalizedString("PURCHASES_TITLE",
@@ -32,6 +33,13 @@ class PurchasesListViewModel {
             comment: "Error message for when the load purchases completes with error")
     }
     
+    public var emptyPurchasesMessage: String {
+        return NSLocalizedString("PURCHASES_EMPTY_LOAD_MESSAGE",
+            tableName: "Purchase",
+            bundle: Bundle(for: PurchasesListViewController.self),
+            comment: "Message for when the load purchases completes with an empty result")
+    }
+    
     init(loader: @escaping () -> PurchaseLoader.Publisher) {
         self.loader = loader
     }
@@ -39,6 +47,7 @@ class PurchasesListViewModel {
     func loadPurchases() {
         onLoadingStateChange?(true)
         onErrorStateChange?(.none)
+        onEmptyFeedLoad?(false)
         
         self.cancellable = loader().sink(
             receiveCompletion: { [weak self] completion in
@@ -50,7 +59,12 @@ class PurchasesListViewModel {
                 }
                 self?.onLoadingStateChange?(false)
             },
-            receiveValue: { _ in }
+            receiveValue: { [weak self] purchases in
+                if (purchases.isEmpty) {
+                    self?.onEmptyFeedLoad?(true)
+                    return
+                }
+            }
         )
     }
 }

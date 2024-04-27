@@ -68,6 +68,31 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         XCTAssertNil(sut.loadErrorMessage)
     }
     
+    func test_loadPurchase_displayEmptyPurchasesMessageWhenLoadIsCompletesWithEmptyList() {
+        let (sut, loader) = makeSUT()
+        
+        let purchase = makePurchase()
+        
+        XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message before view load")
+        
+        sut.simulateAppearance()
+        
+        XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message before load finishes")
+        
+        loader.completeLoadSuccessfully(with: [])
+        
+        XCTAssertTrue(sut.isShowingEmptyMessage, "Expected empty message after load finishes with empty purchases")
+        XCTAssertEqual(sut.emptyPurchasesMessage, localized("PURCHASES_EMPTY_LOAD_MESSAGE"))
+        
+        sut.simulateUserInitiatedLoad()
+        
+        XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message after load finishes with purchases")
+        
+        loader.completeLoadSuccessfully(with: [purchase])
+        
+        XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message after load finishes with purchases")
+    }
+    
     // MARK: Helpers
     func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
@@ -114,8 +139,16 @@ private extension PurchasesListViewController {
         self.errorView.isHidden == false
     }
     
+    var isShowingEmptyMessage: Bool {
+        self.emptyMessageView.isHidden == false
+    }
+    
     var loadErrorMessage: String? {
         self.errorMessage
+    }
+    
+    var emptyPurchasesMessage: String? {
+        self.emptyMessage
     }
     
     func simulateUserInitiatedLoad() {

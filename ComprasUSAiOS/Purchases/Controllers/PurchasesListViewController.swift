@@ -28,6 +28,8 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
     private(set) public lazy var loadingIndicator: UIActivityIndicatorView = {
         let loadingIndicator = UIActivityIndicatorView()
         
+        loadingIndicator.style = .large
+        
         return loadingIndicator
     }()
     
@@ -124,10 +126,12 @@ extension PurchasesListViewController {
 extension PurchasesListViewController: ViewCode {
     func addSubViews() {
         view.addSubview(emptyMessageView)
+        view.addSubview(loadingIndicator)
     }
     
     func setupConstraints() {
         setupEmptyMessageViewConstraints()
+        setupLoadingIndicatorConstraints()
     }
     
     func setupStyle() {
@@ -142,6 +146,15 @@ extension PurchasesListViewController {
         NSLayoutConstraint.activate([
             emptyMessageView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
             emptyMessageView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+        ])
+    }
+    
+    func setupLoadingIndicatorConstraints() {
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
         ])
     }
 }

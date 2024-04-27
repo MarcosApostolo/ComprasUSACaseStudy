@@ -24,13 +24,30 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Couldn't load purchases. Try again later!"
+            "value" : "Couldn't load purchases"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível carregar suas compras. Tente novamente mais tarde!"
+            "value" : "Não foi possível carregar suas compras"
+          }
+        }
+      }
+    },
+    "PURCHASES_RETRY_MESSAGE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentar novamente"
           }
         }
       }

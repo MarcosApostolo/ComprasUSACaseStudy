@@ -40,7 +40,7 @@ extension PurchasesListViewController {
     }
     
     func simulateRetryLoad() {
-        self.retryButton.simulateTap()
+        self.errorView.button.simulateTap()
     }
     
     func numberOfRenderedFeedImageViews() -> Int {

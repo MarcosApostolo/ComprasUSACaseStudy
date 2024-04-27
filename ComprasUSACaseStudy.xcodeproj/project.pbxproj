@@ -69,6 +69,9 @@
 		4ABB4E252BDDA178009C2428 /* EMPTY_PURCHASES_LIST_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABB4E232BDDA178009C2428 /* EMPTY_PURCHASES_LIST_LIGHT.png */; };
 		4ABB4E282BDDA554009C2428 /* LOADING_PURCHASES_LIST_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABB4E262BDDA554009C2428 /* LOADING_PURCHASES_LIST_LIGHT.png */; };
 		4ABB4E292BDDA554009C2428 /* LOADING_PURCHASES_LIST_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABB4E272BDDA554009C2428 /* LOADING_PURCHASES_LIST_DARK.png */; };
+		4ABB4E2C2BDDA695009C2428 /* LOAD_ERROR_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABB4E2A2BDDA695009C2428 /* LOAD_ERROR_DARK.png */; };
+		4ABB4E2D2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABB4E2B2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png */; };
+		4ABB4E2F2BDDA6C3009C2428 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E2E2BDDA6C3009C2428 /* ErrorView.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +182,9 @@
 		4ABB4E232BDDA178009C2428 /* EMPTY_PURCHASES_LIST_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_PURCHASES_LIST_LIGHT.png; sourceTree = "<group>"; };
 		4ABB4E262BDDA554009C2428 /* LOADING_PURCHASES_LIST_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOADING_PURCHASES_LIST_LIGHT.png; sourceTree = "<group>"; };
 		4ABB4E272BDDA554009C2428 /* LOADING_PURCHASES_LIST_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOADING_PURCHASES_LIST_DARK.png; sourceTree = "<group>"; };
+		4ABB4E2A2BDDA695009C2428 /* LOAD_ERROR_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOAD_ERROR_DARK.png; sourceTree = "<group>"; };
+		4ABB4E2B2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOAD_ERROR_LIGHT.png; sourceTree = "<group>"; };
+		4ABB4E2E2BDDA6C3009C2428 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -409,6 +415,8 @@
 				4ABB4E232BDDA178009C2428 /* EMPTY_PURCHASES_LIST_LIGHT.png */,
 				4ABB4E272BDDA554009C2428 /* LOADING_PURCHASES_LIST_DARK.png */,
 				4ABB4E262BDDA554009C2428 /* LOADING_PURCHASES_LIST_LIGHT.png */,
+				4ABB4E2A2BDDA695009C2428 /* LOAD_ERROR_DARK.png */,
+				4ABB4E2B2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png */,
 			);
 			path = snapshots;
 			sourceTree = "<group>";
@@ -449,6 +457,7 @@
 			children = (
 				4ABB4E0A2BDD7F58009C2428 /* PurchaseCell.swift */,
 				4ABB4E1E2BDD9346009C2428 /* EmptyMessageView.swift */,
+				4ABB4E2E2BDDA6C3009C2428 /* ErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -702,6 +711,8 @@
 				4ABB4E292BDDA554009C2428 /* LOADING_PURCHASES_LIST_DARK.png in Resources */,
 				4ABB4E252BDDA178009C2428 /* EMPTY_PURCHASES_LIST_LIGHT.png in Resources */,
 				4ABB4E242BDDA178009C2428 /* EMPTY_PURCHASES_LIST_DARK.png in Resources */,
+				4ABB4E2C2BDDA695009C2428 /* LOAD_ERROR_DARK.png in Resources */,
+				4ABB4E2D2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +752,7 @@
 				4ABB4E212BDD93BA009C2428 /* ViewCode.swift in Sources */,
 				4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */,
 				4ABB4E092BDD7856009C2428 /* PurchaseCellViewModel.swift in Sources */,
+				4ABB4E2F2BDDA6C3009C2428 /* ErrorView.swift in Sources */,
 				4ABB4E072BDD783F009C2428 /* PurchaseCellController.swift in Sources */,
 				4A7146BC2BDB31CF00D202BE /* PurchasesListViewModel.swift in Sources */,
 				4A7146BE2BDB330400D202BE /* PurchasesUIComposer.swift in Sources */,

@@ -33,10 +33,14 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
         return loadingIndicator
     }()
     
-    private(set) public lazy var errorView: UIView = {
-        let errorView = UIView()
+    private(set) public lazy var errorView: ErrorView = {
+        let errorView = ErrorView()
         
         errorView.isHidden = true
+        
+        errorView.button.addTarget(self, action: #selector(retryLoad), for: .touchUpInside)
+        
+        errorView.button.setTitle(viewModel?.retryMessage, for: .normal)
         
         return errorView
     }()
@@ -50,16 +54,12 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
         
         return emptyView
     }()
-    
-    private(set) public lazy var retryButton: UIButton = {
-        let retryButton = UIButton()
-        
-        retryButton.addTarget(self, action: #selector(retryLoad), for: .touchUpInside)
-        
-        return retryButton
-    }()
-    
-    private(set) public var errorMessage: String?
+
+    private(set) public var errorMessage: String? {
+        didSet {
+            errorView.label.text = errorMessage
+        }
+    }
     public var emptyMessage: String? {
         viewModel?.emptyPurchasesMessage
     }
@@ -127,15 +127,17 @@ extension PurchasesListViewController: ViewCode {
     func addSubViews() {
         view.addSubview(emptyMessageView)
         view.addSubview(loadingIndicator)
+        view.addSubview(errorView)
     }
     
     func setupConstraints() {
         setupEmptyMessageViewConstraints()
         setupLoadingIndicatorConstraints()
+        setupErrorViewContraints()
     }
     
     func setupStyle() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground        
     }
 }
 
@@ -155,6 +157,15 @@ extension PurchasesListViewController {
         NSLayoutConstraint.activate([
             loadingIndicator.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
             loadingIndicator.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+        ])
+    }
+    
+    func setupErrorViewContraints() {
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            errorView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
+            errorView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),        
         ])
     }
 }

@@ -34,6 +34,13 @@ public class PurchasesListViewModel {
             comment: "Error message for when the load purchases completes with error")
     }
     
+    var retryMessage: String? {
+        return NSLocalizedString("PURCHASES_RETRY_MESSAGE",
+            tableName: "Purchase",
+            bundle: Bundle(for: PurchasesListViewController.self),
+            comment: "Message for the retry load button")
+    }
+    
     public var emptyPurchasesMessage: String {
         return NSLocalizedString("PURCHASES_EMPTY_LOAD_MESSAGE",
             tableName: "Purchase",

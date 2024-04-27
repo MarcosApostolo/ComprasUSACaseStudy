@@ -29,6 +29,17 @@ final class PurchaseListSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone(style: .dark, contentSize: .medium)), named: "LOADING_PURCHASES_LIST_DARK")
     }
     
+    func test_render_loadError() {
+        let (sut, loader) = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        loader.completeLoadWithError()
+        
+        assert(snapshot: sut.snapshot(for: .iPhone(style: .light, contentSize: .medium)), named: "LOAD_ERROR_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone(style: .dark, contentSize: .medium)), named: "LOAD_ERROR_DARK")
+    }
+    
     // MARK: Helpers
     func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()

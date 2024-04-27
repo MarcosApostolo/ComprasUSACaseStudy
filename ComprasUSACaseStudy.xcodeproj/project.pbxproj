@@ -50,6 +50,8 @@
 		4A97C6DF2BD4657F00780643 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DE2BD4657F00780643 /* TestHelpers.swift */; };
 		4AA464462BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA464452BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift */; };
 		4AA464482BD87F070036B3DD /* PurchaseFeatureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */; };
+		4ABB4DF72BDD15C8009C2428 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
+		4ABB4DF82BDD15C8009C2428 /* ComprasUSACaseStudy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,13 @@
 			remoteGlobalIDString = 4A7146962BDB24B300D202BE;
 			remoteInfo = ComprasUSAiOS;
 		};
+		4ABB4DF92BDD15C8009C2428 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AF9E2CD2BD41FEC00D4CC11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4AF9E2D52BD41FEC00D4CC11;
+			remoteInfo = ComprasUSACaseStudy;
+		};
 		4AF9E2E02BD41FED00D4CC11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4AF9E2CD2BD41FEC00D4CC11 /* Project object */;
@@ -76,6 +85,20 @@
 			remoteInfo = ComprasUSACaseStudy;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4ABB4DFB2BDD15C8009C2428 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4ABB4DF82BDD15C8009C2428 /* ComprasUSACaseStudy.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4A1F6DCD2BD915100010FBB1 /* PurchaseLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseLoader.swift; sourceTree = "<group>"; };
@@ -140,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ABB4DF72BDD15C8009C2428 /* ComprasUSACaseStudy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +358,13 @@
 			path = Infrastructure;
 			sourceTree = "<group>";
 		};
+		4ABB4DF62BDD15C8009C2428 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4AF9E2CC2BD41FEC00D4CC11 = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +375,7 @@
 				4A7146982BDB24B300D202BE /* ComprasUSAiOS */,
 				4A7146A22BDB24B300D202BE /* ComprasUSAiOSTests */,
 				4AF9E2D72BD41FEC00D4CC11 /* Products */,
+				4ABB4DF62BDD15C8009C2428 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -428,10 +460,12 @@
 				4A7146932BDB24B300D202BE /* Sources */,
 				4A7146942BDB24B300D202BE /* Frameworks */,
 				4A7146952BDB24B300D202BE /* Resources */,
+				4ABB4DFB2BDD15C8009C2428 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4ABB4DFA2BDD15C8009C2428 /* PBXTargetDependency */,
 			);
 			name = ComprasUSAiOS;
 			productName = ComprasUSAiOS;
@@ -539,9 +573,9 @@
 			projectRoot = "";
 			targets = (
 				4AF9E2D52BD41FEC00D4CC11 /* ComprasUSACaseStudy */,
+				4A7146962BDB24B300D202BE /* ComprasUSAiOS */,
 				4AF9E2DD2BD41FED00D4CC11 /* ComprasUSACaseStudyTests */,
 				4A71467F2BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests */,
-				4A7146962BDB24B300D202BE /* ComprasUSAiOS */,
 				4A71469D2BDB24B300D202BE /* ComprasUSAiOSTests */,
 			);
 		};
@@ -674,6 +708,11 @@
 			isa = PBXTargetDependency;
 			target = 4A7146962BDB24B300D202BE /* ComprasUSAiOS */;
 			targetProxy = 4A7146A02BDB24B300D202BE /* PBXContainerItemProxy */;
+		};
+		4ABB4DFA2BDD15C8009C2428 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4AF9E2D52BD41FEC00D4CC11 /* ComprasUSACaseStudy */;
+			targetProxy = 4ABB4DF92BDD15C8009C2428 /* PBXContainerItemProxy */;
 		};
 		4AF9E2E12BD41FED00D4CC11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -978,6 +1017,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcosapostolo.ComprasUSACaseStudy;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos macosx iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1010,6 +1051,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcosapostolo.ComprasUSACaseStudy;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos macosx iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};

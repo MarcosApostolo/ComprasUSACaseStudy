@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import ComprasUSACaseStudy
 
 public class PurchasesUIComposer {
     private init() {}
     
-    public static func composePurchasesList() -> PurchasesListViewController {
+    public static func composePurchasesList(loader: PurchaseLoader) -> PurchasesListViewController {
         let vc = PurchasesListViewController()
-        let viewModel = PurchasesListViewModel()
+        let viewModel = PurchasesListViewModel(loader: loader)
         
         vc.viewModel = viewModel
         

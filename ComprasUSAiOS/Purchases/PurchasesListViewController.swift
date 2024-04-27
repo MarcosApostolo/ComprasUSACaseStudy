@@ -15,6 +15,8 @@ public class PurchasesListViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel?.loadPurchases()
     }
     
     func bind() {

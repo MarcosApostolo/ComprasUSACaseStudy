@@ -52,6 +52,7 @@
 		4AA464482BD87F070036B3DD /* PurchaseFeatureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */; };
 		4ABB4DF72BDD15C8009C2428 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 		4ABB4DF82BDD15C8009C2428 /* ComprasUSACaseStudy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4ABB4DFF2BDD1B74009C2428 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4DFE2BDD1B74009C2428 /* CombineHelpers.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +147,7 @@
 		4A97C6DE2BD4657F00780643 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		4AA464452BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCaseTests.swift; sourceTree = "<group>"; };
 		4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCase.swift; sourceTree = "<group>"; };
+		4ABB4DFE2BDD1B74009C2428 /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				4A7146B32BDB2EF000D202BE /* Purchases */,
+				4ABB4DFE2BDD1B74009C2428 /* CombineHelpers.swift */,
 			);
 			path = ComprasUSAiOS;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */,
 				4A7146BC2BDB31CF00D202BE /* PurchasesListViewModel.swift in Sources */,
 				4A7146BE2BDB330400D202BE /* PurchasesUIComposer.swift in Sources */,
+				4ABB4DFF2BDD1B74009C2428 /* CombineHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

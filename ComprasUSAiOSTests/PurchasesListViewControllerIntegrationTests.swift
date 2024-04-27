@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 import ComprasUSAiOS
 import ComprasUSACaseStudy
 
@@ -13,11 +14,15 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     func test_init_displayTitle() {
         let (sut, _) = makeSUT()
         
+        sut.simulateAppearance()
+        
         XCTAssertEqual(sut.title, localized("PURCHASES_TITLE"))
     }
     
     func test_loadPurchase_requestsPurchasesFromLoader() {
         let (sut, loader) = makeSUT()
+        
+        sut.simulateAppearance()
         
         XCTAssertEqual(loader.loadMessages.count, 1)
     }
@@ -25,14 +30,7 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     // MARK: Helpers
     func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = PurchasesUIComposer.composePurchasesList(loader: loader)
-        
-        if !sut.isViewLoaded {
-            sut.loadViewIfNeeded()
-        }
-
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
+        let sut = PurchasesUIComposer.composePurchasesList(loader: loader.loadPurchasesPublisher)
         
         checkForMemoryLeaks(sut)
         checkForMemoryLeaks(loader)
@@ -46,5 +44,16 @@ class LoaderSpy: PurchaseLoader {
     
     func load(completion: @escaping (LoadResult) -> Void) {
         loadMessages.append(completion)
+    }
+}
+
+private extension PurchasesListViewController {
+    func simulateAppearance() {
+        if !isViewLoaded {
+            loadViewIfNeeded()
+        }
+
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
     }
 }

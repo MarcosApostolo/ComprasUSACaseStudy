@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Combine
 import ComprasUSACaseStudy
 
 class PurchasesListViewModel {
-    private let loader: PurchaseLoader
+    private let loader: () -> PurchaseLoader.Publisher
+    private var cancellable: Cancellable?
     
     var title: String {
         return NSLocalizedString("PURCHASES_TITLE",
@@ -18,11 +20,14 @@ class PurchasesListViewModel {
             comment: "Title for the purchases view")
     }
     
-    init(loader: PurchaseLoader) {
+    init(loader: @escaping () -> PurchaseLoader.Publisher) {
         self.loader = loader
     }
     
     func loadPurchases() {
-        loader.load(completion: { _ in })
+        self.cancellable = loader().sink(
+            receiveCompletion: { _ in },
+            receiveValue: { _ in }
+        )
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class PurchasesListViewController: UITableViewController {
+public class PurchasesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var viewModel: PurchasesListViewModel? {
         didSet { bind() }
     }
@@ -18,6 +18,12 @@ public class PurchasesListViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    
+    private(set) public lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        
+        return tableView
+    }()
     
     private(set) public lazy var loadingIndicator: UIActivityIndicatorView = {
         let loadingIndicator = UIActivityIndicatorView()
@@ -33,10 +39,12 @@ public class PurchasesListViewController: UITableViewController {
         return errorView
     }()
     
-    private(set) public lazy var emptyMessageView: UIView = {
-        let emptyView = UIView()
-        
+    private(set) public lazy var emptyMessageView: EmptyMessageView = {
+        let emptyView = EmptyMessageView()
+                
         emptyView.isHidden = true
+        
+        emptyView.label.text = viewModel?.emptyPurchasesMessage
         
         return emptyView
     }()
@@ -57,7 +65,13 @@ public class PurchasesListViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         viewModel?.loadPurchases()
+        
+        registerCells()
+        setupViews()
     }
     
     func bind() {
@@ -86,19 +100,48 @@ public class PurchasesListViewController: UITableViewController {
         }
     }
     
+    func registerCells() {
+        tableView.register(PurchaseCell.self, forCellReuseIdentifier: String(describing: PurchaseCell.self))
+    }
+    
     @objc func retryLoad() {
         viewModel?.loadPurchases()
     }
 }
 
 extension PurchasesListViewController {
-    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableModel.count
     }
     
-    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellController = tableModel[indexPath.row]
         
         return cellController.view(in: tableView)
+    }
+}
+
+extension PurchasesListViewController: ViewCode {
+    func addSubViews() {
+        view.addSubview(emptyMessageView)
+    }
+    
+    func setupConstraints() {
+        setupEmptyMessageViewConstraints()
+    }
+    
+    func setupStyle() {
+        view.backgroundColor = .systemBackground
+    }
+}
+
+extension PurchasesListViewController {
+    func setupEmptyMessageViewConstraints() {
+        emptyMessageView.translatesAutoresizingMaskIntoConstraints = false
+                        
+        NSLayoutConstraint.activate([
+            emptyMessageView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
+            emptyMessageView.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+        ])
     }
 }

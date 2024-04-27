@@ -21,8 +21,8 @@ public class PurchasesUIComposer {
         vc.viewModel = viewModel
         
         viewModel.onPurchasesLoad = { [weak vc] purchases in
-            vc?.tableModel = purchases.map({ _ in
-                PurchaseCellController(viewModel: PurchaseCellViewModel())
+            vc?.tableModel = purchases.map({ purchase in
+                PurchaseCellController(viewModel: PurchaseCellViewModel(model: purchase))
             })
         }
         

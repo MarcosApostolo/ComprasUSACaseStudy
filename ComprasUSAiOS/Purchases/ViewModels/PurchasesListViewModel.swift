@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import ComprasUSACaseStudy
 
-class PurchasesListViewModel {
+public class PurchasesListViewModel {
     private let loader: () -> PurchaseLoader.Publisher
     private var cancellable: Cancellable?
     
@@ -41,7 +41,7 @@ class PurchasesListViewModel {
             comment: "Message for when the load purchases completes with an empty result")
     }
     
-    init(loader: @escaping () -> PurchaseLoader.Publisher) {
+    public init(loader: @escaping () -> PurchaseLoader.Publisher) {
         self.loader = loader
     }
     

@@ -16,6 +16,10 @@
 		4A2792DC2BDAEA5800B616EC /* PurchaseStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2792DB2BDAEA5800B616EC /* PurchaseStoreSpy.swift */; };
 		4A2FC8A32BDE6DDE00BF6693 /* PURCHASES_LIST_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FC8A12BDE6DDE00BF6693 /* PURCHASES_LIST_LIGHT.png */; };
 		4A2FC8A42BDE6DDE00BF6693 /* PURCHASES_LIST_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FC8A22BDE6DDE00BF6693 /* PURCHASES_LIST_DARK.png */; };
+		4A2FC8AE2BDEA25100BF6693 /* PurchaseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FC8AD2BDEA25100BF6693 /* PurchaseDetailsViewController.swift */; };
+		4A2FC8B12BDEA2AD00BF6693 /* PurchaseDetailsSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2FC8B02BDEA2AD00BF6693 /* PurchaseDetailsSnapshotTests.swift */; };
+		4A2FC8B42BDEA52400BF6693 /* PURCHASE_DETAILS_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FC8B22BDEA52400BF6693 /* PURCHASE_DETAILS_DARK.png */; };
+		4A2FC8B52BDEA52400BF6693 /* PURCHASE_DETAILS_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A2FC8B32BDEA52400BF6693 /* PURCHASE_DETAILS_LIGHT.png */; };
 		4A7146842BDAF33800D202BE /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 		4A71468B2BDAF9BB00D202BE /* ComprasUSAFeaturesIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A71468A2BDAF9BB00D202BE /* ComprasUSAFeaturesIntegrationTests.swift */; };
 		4A71468C2BDAFAC000D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */; };
@@ -132,6 +136,10 @@
 		4A2792DB2BDAEA5800B616EC /* PurchaseStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseStoreSpy.swift; sourceTree = "<group>"; };
 		4A2FC8A12BDE6DDE00BF6693 /* PURCHASES_LIST_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PURCHASES_LIST_LIGHT.png; sourceTree = "<group>"; };
 		4A2FC8A22BDE6DDE00BF6693 /* PURCHASES_LIST_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PURCHASES_LIST_DARK.png; sourceTree = "<group>"; };
+		4A2FC8AD2BDEA25100BF6693 /* PurchaseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsViewController.swift; sourceTree = "<group>"; };
+		4A2FC8B02BDEA2AD00BF6693 /* PurchaseDetailsSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsSnapshotTests.swift; sourceTree = "<group>"; };
+		4A2FC8B22BDEA52400BF6693 /* PURCHASE_DETAILS_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PURCHASE_DETAILS_DARK.png; sourceTree = "<group>"; };
+		4A2FC8B32BDEA52400BF6693 /* PURCHASE_DETAILS_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PURCHASE_DETAILS_LIGHT.png; sourceTree = "<group>"; };
 		4A7146802BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A71468A2BDAF9BB00D202BE /* ComprasUSAFeaturesIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprasUSAFeaturesIntegrationTests.swift; sourceTree = "<group>"; };
 		4A71468D2BDAFB3500D202BE /* ComprasUSACaseStudyIntegrationTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ComprasUSACaseStudyIntegrationTests.xctestplan; sourceTree = "<group>"; };
@@ -244,6 +252,70 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		4A2FC8A52BDE9F7500BF6693 /* PurchasesList */ = {
+			isa = PBXGroup;
+			children = (
+				4ABB4E0C2BDD8AB0009C2428 /* snapshots */,
+				4A7146AD2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift */,
+				4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */,
+				4ABB4E0D2BDD8AC8009C2428 /* PurchaseListSnapshotTests.swift */,
+			);
+			path = PurchasesList;
+			sourceTree = "<group>";
+		};
+		4A2FC8A62BDE9F8500BF6693 /* PurchaseDetails */ = {
+			isa = PBXGroup;
+			children = (
+				4A2FC8AF2BDEA29500BF6693 /* snapshots */,
+				4A2FC8B02BDEA2AD00BF6693 /* PurchaseDetailsSnapshotTests.swift */,
+			);
+			path = PurchaseDetails;
+			sourceTree = "<group>";
+		};
+		4A2FC8A92BDEA1F800BF6693 /* PurchasesList */ = {
+			isa = PBXGroup;
+			children = (
+				4ABB4E1D2BDD9335009C2428 /* ViewModels */,
+				4ABB4E1C2BDD9327009C2428 /* Views */,
+				4ABB4E1B2BDD931B009C2428 /* Controllers */,
+				4A7146BD2BDB330400D202BE /* PurchasesUIComposer.swift */,
+			);
+			path = PurchasesList;
+			sourceTree = "<group>";
+		};
+		4A2FC8AA2BDEA21A00BF6693 /* PurcaseDetails */ = {
+			isa = PBXGroup;
+			children = (
+				4A2FC8AC2BDEA24100BF6693 /* ViewModels */,
+				4A2FC8AB2BDEA23500BF6693 /* Controllers */,
+			);
+			path = PurcaseDetails;
+			sourceTree = "<group>";
+		};
+		4A2FC8AB2BDEA23500BF6693 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4A2FC8AD2BDEA25100BF6693 /* PurchaseDetailsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4A2FC8AC2BDEA24100BF6693 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4A2FC8AF2BDEA29500BF6693 /* snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				4A2FC8B22BDEA52400BF6693 /* PURCHASE_DETAILS_DARK.png */,
+				4A2FC8B32BDEA52400BF6693 /* PURCHASE_DETAILS_LIGHT.png */,
+			);
+			path = snapshots;
+			sourceTree = "<group>";
+		};
 		4A7146812BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,11 +358,9 @@
 		4A7146B32BDB2EF000D202BE /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
-				4ABB4E1D2BDD9335009C2428 /* ViewModels */,
-				4ABB4E1C2BDD9327009C2428 /* Views */,
-				4ABB4E1B2BDD931B009C2428 /* Controllers */,
+				4A2FC8AA2BDEA21A00BF6693 /* PurcaseDetails */,
+				4A2FC8A92BDEA1F800BF6693 /* PurchasesList */,
 				4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */,
-				4A7146BD2BDB330400D202BE /* PurchasesUIComposer.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -430,11 +500,9 @@
 		4ABB4E132BDD8CB8009C2428 /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
+				4A2FC8A62BDE9F8500BF6693 /* PurchaseDetails */,
+				4A2FC8A52BDE9F7500BF6693 /* PurchasesList */,
 				4ABB4E142BDD8CCD009C2428 /* Helpers */,
-				4ABB4E0C2BDD8AB0009C2428 /* snapshots */,
-				4A7146AD2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift */,
-				4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */,
-				4ABB4E0D2BDD8AC8009C2428 /* PurchaseListSnapshotTests.swift */,
 			);
 			path = Purchases;
 			sourceTree = "<group>";
@@ -717,7 +785,9 @@
 				4ABB4E292BDDA554009C2428 /* LOADING_PURCHASES_LIST_DARK.png in Resources */,
 				4A2FC8A32BDE6DDE00BF6693 /* PURCHASES_LIST_LIGHT.png in Resources */,
 				4ABB4E252BDDA178009C2428 /* EMPTY_PURCHASES_LIST_LIGHT.png in Resources */,
+				4A2FC8B42BDEA52400BF6693 /* PURCHASE_DETAILS_DARK.png in Resources */,
 				4A2FC8A42BDE6DDE00BF6693 /* PURCHASES_LIST_DARK.png in Resources */,
+				4A2FC8B52BDEA52400BF6693 /* PURCHASE_DETAILS_LIGHT.png in Resources */,
 				4ABB4E242BDDA178009C2428 /* EMPTY_PURCHASES_LIST_DARK.png in Resources */,
 				4ABB4E2C2BDDA695009C2428 /* LOAD_ERROR_DARK.png in Resources */,
 				4ABB4E2D2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png in Resources */,
@@ -755,6 +825,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A2FC8AE2BDEA25100BF6693 /* PurchaseDetailsViewController.swift in Sources */,
 				4ABB4E1F2BDD9346009C2428 /* EmptyMessageView.swift in Sources */,
 				4ABB4E0B2BDD7F58009C2428 /* PurchaseCell.swift in Sources */,
 				4ABB4E212BDD93BA009C2428 /* ViewCode.swift in Sources */,
@@ -777,6 +848,7 @@
 				4A7146B22BDB2EC300D202BE /* PurchasesListViewController+Localized.swift in Sources */,
 				4ABB4E002BDD3267009C2428 /* TestHelpers.swift in Sources */,
 				4A7146AF2BDB2B7200D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */,
+				4A2FC8B12BDEA2AD00BF6693 /* PurchaseDetailsSnapshotTests.swift in Sources */,
 				4ABB4E122BDD8B5F009C2428 /* UIViewController+Snapshot.swift in Sources */,
 				4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */,
 				4A7146AE2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift in Sources */,

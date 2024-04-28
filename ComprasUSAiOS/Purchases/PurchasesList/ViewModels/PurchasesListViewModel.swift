@@ -13,8 +13,6 @@ public class PurchasesListViewModel {
     private let loader: () -> PurchaseLoader.Publisher
     private var cancellable: Cancellable?
     
-    typealias Observer<T> = (T) -> Void
-    
     var onLoadingStateChange: Observer<Bool>?
     var onErrorStateChange: Observer<String?>?
     var onEmptyFeedLoad: Observer<Bool>?

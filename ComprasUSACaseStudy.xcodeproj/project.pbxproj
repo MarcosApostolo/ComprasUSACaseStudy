@@ -45,6 +45,9 @@
 		4A9624632BD5BBE300336B46 /* StateRemover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9624622BD5BBE300336B46 /* StateRemover.swift */; };
 		4A9624652BD5BF5600336B46 /* StateChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9624642BD5BF5600336B46 /* StateChanger.swift */; };
 		4A9624672BD5C1CF00336B46 /* LocaState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9624662BD5C1CF00336B46 /* LocaState.swift */; };
+		4A97BD4F2BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A97BD4D2BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_LIGHT.png */; };
+		4A97BD502BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A97BD4E2BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_DARK.png */; };
+		4A97BD522BDEDBAF00F2CC36 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97BD512BDEDBAF00F2CC36 /* Observer.swift */; };
 		4A97C6C22BD42E0700780643 /* StateFeatureUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C12BD42E0700780643 /* StateFeatureUseCaseTests.swift */; };
 		4A97C6C52BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */; };
 		4A97C6C72BD448BD00780643 /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C62BD448BD00780643 /* StateStore.swift */; };
@@ -171,6 +174,9 @@
 		4A9624622BD5BBE300336B46 /* StateRemover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRemover.swift; sourceTree = "<group>"; };
 		4A9624642BD5BF5600336B46 /* StateChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateChanger.swift; sourceTree = "<group>"; };
 		4A9624662BD5C1CF00336B46 /* LocaState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaState.swift; sourceTree = "<group>"; };
+		4A97BD4D2BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PURCHASE_DETAILS_WITHOUT_STATE_LIGHT.png; sourceTree = "<group>"; };
+		4A97BD4E2BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PURCHASE_DETAILS_WITHOUT_STATE_DARK.png; sourceTree = "<group>"; };
+		4A97BD512BDEDBAF00F2CC36 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		4A97C6C02BD42DC500780643 /* ComprasUSACaseStudy.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ComprasUSACaseStudy.xctestplan; sourceTree = "<group>"; };
 		4A97C6C12BD42E0700780643 /* StateFeatureUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateFeatureUseCaseTests.swift; sourceTree = "<group>"; };
 		4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakCheck.swift"; sourceTree = "<group>"; };
@@ -325,6 +331,8 @@
 			children = (
 				4A2FC8B22BDEA52400BF6693 /* PURCHASE_DETAILS_DARK.png */,
 				4A2FC8B32BDEA52400BF6693 /* PURCHASE_DETAILS_LIGHT.png */,
+				4A97BD4E2BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_DARK.png */,
+				4A97BD4D2BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_LIGHT.png */,
 			);
 			path = snapshots;
 			sourceTree = "<group>";
@@ -345,6 +353,7 @@
 				4A7146B32BDB2EF000D202BE /* Purchases */,
 				4ABB4DFE2BDD1B74009C2428 /* CombineHelpers.swift */,
 				4ABB4E202BDD93BA009C2428 /* ViewCode.swift */,
+				4A97BD512BDEDBAF00F2CC36 /* Observer.swift */,
 			);
 			path = ComprasUSAiOS;
 			sourceTree = "<group>";
@@ -815,8 +824,10 @@
 				4ABB4E282BDDA554009C2428 /* LOADING_PURCHASES_LIST_LIGHT.png in Resources */,
 				4ABB4E292BDDA554009C2428 /* LOADING_PURCHASES_LIST_DARK.png in Resources */,
 				4A2FC8A32BDE6DDE00BF6693 /* PURCHASES_LIST_LIGHT.png in Resources */,
+				4A97BD4F2BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_LIGHT.png in Resources */,
 				4ABB4E252BDDA178009C2428 /* EMPTY_PURCHASES_LIST_LIGHT.png in Resources */,
 				4A2FC8B42BDEA52400BF6693 /* PURCHASE_DETAILS_DARK.png in Resources */,
+				4A97BD502BDEDA9500F2CC36 /* PURCHASE_DETAILS_WITHOUT_STATE_DARK.png in Resources */,
 				4A2FC8A42BDE6DDE00BF6693 /* PURCHASES_LIST_DARK.png in Resources */,
 				4A2FC8B52BDEA52400BF6693 /* PURCHASE_DETAILS_LIGHT.png in Resources */,
 				4ABB4E242BDDA178009C2428 /* EMPTY_PURCHASES_LIST_DARK.png in Resources */,
@@ -857,6 +868,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A2FC8AE2BDEA25100BF6693 /* PurchaseDetailsViewController.swift in Sources */,
+				4A97BD522BDEDBAF00F2CC36 /* Observer.swift in Sources */,
 				4ABB4E1F2BDD9346009C2428 /* EmptyMessageView.swift in Sources */,
 				4ABB4E0B2BDD7F58009C2428 /* PurchaseCell.swift in Sources */,
 				4ABA8D672BDEC54E0088E344 /* UITableView+DequeueCell.swift in Sources */,

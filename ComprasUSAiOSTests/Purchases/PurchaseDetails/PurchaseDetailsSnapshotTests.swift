@@ -20,6 +20,17 @@ final class PurchaseDetailsSnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone(style: .light, contentSize: .medium)), named: "PURCHASE_DETAILS_LIGHT")
         assert(snapshot: sut.snapshot(for: .iPhone(style: .dark, contentSize: .medium)), named: "PURCHASE_DETAILS_DARK")
     }
+    
+    func test_render_purchaseDetails_withoutStateInfo() {
+        let image = UIImage.make(withColor: .lightGray).pngData()
+        
+        let purchase = makePurchase(name: "A Purchase", imageData: image, state: nil)
+        
+        let sut = makeSUT(with: purchase)
+        
+        assert(snapshot: sut.snapshot(for: .iPhone(style: .light, contentSize: .medium)), named: "PURCHASE_DETAILS_WITHOUT_STATE_LIGHT")
+        assert(snapshot: sut.snapshot(for: .iPhone(style: .dark, contentSize: .medium)), named: "PURCHASE_DETAILS_WITHOUT_STATE_DARK")
+    }
 
     // MARK: Helpers
     func makeSUT(with purchase: Purchase) -> PurchaseDetailsViewController {

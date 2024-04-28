@@ -42,6 +42,9 @@ public class PurchaseDetailsViewController: UIViewController {
         
         tableView.register(PurchaseInfoCell.self, forCellReuseIdentifier: String(describing: PurchaseInfoCell.self))
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         return tableView
     }()
     
@@ -59,11 +62,13 @@ extension PurchaseDetailsViewController: ViewCode {
     func addSubViews() {
         view.addSubview(purchaseImageView)
         view.addSubview(purchaseNameLabel)
+        view.addSubview(purchaseInfoTableView)
     }
     
     func setupConstraints() {
         setupPurchaseImageViewConstraints()
         setupPurchaseNameLabelConstraints()
+        setupPurchaseInfoTableViewConstraints()
     }
     
     func setupPurchaseImageViewConstraints() {
@@ -73,7 +78,7 @@ extension PurchaseDetailsViewController: ViewCode {
             purchaseImageView.heightAnchor.constraint(equalToConstant: 80),
             purchaseImageView.widthAnchor.constraint(equalToConstant: 80),
             purchaseImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            purchaseImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
+            purchaseImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12)
         ])
     }
     
@@ -83,7 +88,18 @@ extension PurchaseDetailsViewController: ViewCode {
         NSLayoutConstraint.activate([
             purchaseNameLabel.topAnchor.constraint(equalTo: purchaseImageView.topAnchor),
             purchaseNameLabel.leadingAnchor.constraint(equalTo: purchaseImageView.trailingAnchor, constant: 12),
-            purchaseNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            purchaseNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
+        ])
+    }
+    
+    func setupPurchaseInfoTableViewConstraints() {
+        purchaseInfoTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            purchaseInfoTableView.topAnchor.constraint(equalTo: purchaseImageView.bottomAnchor, constant: 16),
+            purchaseInfoTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            purchaseInfoTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            purchaseInfoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
@@ -92,3 +108,25 @@ extension PurchaseDetailsViewController: ViewCode {
     }
 }
 
+extension PurchaseDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = viewModel?.makePurchaseInfo().count ?? 0
+        
+        return count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: PurchaseInfoCell = tableView.dequeueReusableCell()
+        
+        let info = viewModel?.makePurchaseInfo()[indexPath.row]
+        
+        cell.infoKeyLabel.text = info?.key
+        cell.infoValueLabel.text = info?.value
+        
+        return cell
+    }
+}

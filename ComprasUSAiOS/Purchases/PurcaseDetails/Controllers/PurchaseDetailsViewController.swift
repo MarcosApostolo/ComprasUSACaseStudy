@@ -48,13 +48,26 @@ public class PurchaseDetailsViewController: UIViewController {
         return tableView
     }()
     
+    private(set) public lazy var stateInfoError: UILabel = {
+        let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .red
+        label.isHidden = true
+        
+        return label
+    }()
+    
     public override func viewDidLoad() {
         setupViews()
     }
     
     func bind() {
-        purchaseImageView.image = viewModel?.image
-        purchaseNameLabel.text = viewModel?.productNameLabel
+        if let viewModel = viewModel {
+            purchaseImageView.image = viewModel.image
+            purchaseNameLabel.text = viewModel.productNameLabel
+            stateInfoError.isHidden = viewModel.hasStateInfo            
+        }
     }
 }
 

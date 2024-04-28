@@ -13,7 +13,8 @@ public class PurchasesUIComposer {
     private init() {}
     
     public static func composePurchasesList(
-        loader: @escaping () -> PurchaseLoader.Publisher
+        loader: @escaping () -> PurchaseLoader.Publisher,
+        onPurchaseRegister: @escaping () -> Void
     ) -> PurchasesListViewController {
         let vc = PurchasesListViewController()
         let viewModel = PurchasesListViewModel(loader: loader)
@@ -25,6 +26,8 @@ public class PurchasesUIComposer {
                 PurchaseCellController(viewModel: PurchaseCellViewModel(model: purchase))
             })
         }
+        
+        vc.onPurchaseRegister = onPurchaseRegister
         
         return vc
     }

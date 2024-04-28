@@ -52,6 +52,10 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
         
         emptyView.label.text = viewModel?.emptyPurchasesMessage
         
+        emptyView.button.addTarget(self, action: #selector(handlePurchaseRegister), for: .touchUpInside)
+        
+        emptyView.button.setTitle(viewModel?.emptyButtonLabel, for: .normal)
+        
         return emptyView
     }()
 
@@ -63,6 +67,8 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
     public var emptyMessage: String? {
         viewModel?.emptyPurchasesMessage
     }
+    
+    var onPurchaseRegister: (() -> Void)?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +114,10 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
     
     @objc func retryLoad() {
         viewModel?.loadPurchases()
+    }
+    
+    @objc func handlePurchaseRegister() {
+        onPurchaseRegister?()
     }
 }
 

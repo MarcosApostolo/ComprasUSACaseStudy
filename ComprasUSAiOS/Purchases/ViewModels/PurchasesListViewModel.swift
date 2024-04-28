@@ -48,6 +48,13 @@ public class PurchasesListViewModel {
             comment: "Message for when the load purchases completes with an empty result")
     }
     
+    public var emptyButtonLabel: String {
+        return NSLocalizedString("PURCHASES_EMPTY_BUTTON_MESSAGE",
+            tableName: "Purchase",
+            bundle: Bundle(for: PurchasesListViewController.self),
+            comment: "Button message to register a purchase")
+    }
+    
     public init(loader: @escaping () -> PurchaseLoader.Publisher) {
         self.loader = loader
     }

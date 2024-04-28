@@ -1,6 +1,23 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "PURCHASES_EMPTY_BUTTON_MESSAGE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register a purchase"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cadastrar compra"
+          }
+        }
+      }
+    },
     "PURCHASES_EMPTY_LOAD_MESSAGE" : {
       "extractionState" : "manual",
       "localizations" : {

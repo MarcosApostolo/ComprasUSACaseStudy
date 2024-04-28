@@ -43,6 +43,10 @@ extension PurchasesListViewController {
         self.errorView.button.simulateTap()
     }
     
+    func simulateRegisterPurchaseTap() {
+        self.emptyMessageView.button.simulateTap()
+    }
+    
     func numberOfRenderedFeedImageViews() -> Int {
         return tableView.numberOfRows(inSection: section)
     }

@@ -13,6 +13,10 @@ public class EmptyMessageView: UIView, ViewCode {
         UILabel()
     }()
     
+    public lazy var button: UIButton = {
+        UIButton()
+    }()
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -25,22 +29,32 @@ public class EmptyMessageView: UIView, ViewCode {
     
     func addSubViews() {
         addSubview(label)
+        addSubview(button)
     }
     
     func setupConstraints() {
         label.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
                 
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             label.topAnchor.constraint(equalTo: topAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
     
     func setupStyle() {
         label.textColor = .secondaryLabel
         label.font = .preferredFont(forTextStyle: .body)
+        
+        button.setTitleColor(.systemBlue, for: .normal)
     }
     
 }

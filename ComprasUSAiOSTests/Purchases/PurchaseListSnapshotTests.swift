@@ -43,7 +43,10 @@ final class PurchaseListSnapshotTests: XCTestCase {
     // MARK: Helpers
     func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = PurchasesUIComposer.composePurchasesList(loader: loader.loadPurchasesPublisher)
+        let sut = PurchasesUIComposer.composePurchasesList(
+            loader: loader.loadPurchasesPublisher,
+            onPurchaseRegister: {}
+        )
         
         checkForMemoryLeaks(sut)
         checkForMemoryLeaks(loader)

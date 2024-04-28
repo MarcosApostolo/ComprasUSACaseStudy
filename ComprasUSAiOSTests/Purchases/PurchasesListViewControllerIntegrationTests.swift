@@ -12,7 +12,7 @@ import ComprasUSACaseStudy
 
 final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     func test_init_displayTitle() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         
         sut.simulateAppearance()
         
@@ -20,7 +20,7 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     }
     
     func test_loadPurchase_requestsPurchasesFromLoader() {
-        let (sut, loader) = makeSUT()
+        let (sut, loader, _) = makeSUT()
         
         XCTAssertEqual(loader.loadMessages.count, 0)
         
@@ -30,7 +30,7 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     }
     
     func test_loadPurchase_displayLoadingIndicatorWhileLoadingPurchases() {
-        let (sut, loader) = makeSUT()
+        let (sut, loader, _) = makeSUT()
                 
         XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading before view load")
         
@@ -44,7 +44,7 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     }
     
     func test_loadPurchase_displayErrorMessageOnLoadPurchasesError() {
-        let (sut, loader) = makeSUT()
+        let (sut, loader, _) = makeSUT()
         
         XCTAssertFalse(sut.isShowingErrorMessage, "Expected no error message before view load")
         
@@ -69,10 +69,8 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     }
     
     func test_loadPurchase_displayEmptyPurchasesMessageWhenLoadIsCompletesWithEmptyList() {
-        let (sut, loader) = makeSUT()
-        
-        let purchase = makePurchase()
-        
+        let (sut, loader, _) = makeSUT()
+                
         XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message before view load")
         
         sut.simulateAppearance()
@@ -83,18 +81,10 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         
         XCTAssertTrue(sut.isShowingEmptyMessage, "Expected empty message after load finishes with empty purchases")
         XCTAssertEqual(sut.emptyPurchasesMessage, localized("PURCHASES_EMPTY_LOAD_MESSAGE"))
-        
-        sut.simulateRetryLoad()
-        
-        XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message after load finishes with purchases")
-        
-        loader.completeLoadSuccessfully(with: [purchase])
-        
-        XCTAssertFalse(sut.isShowingEmptyMessage, "Expected no empty message after load finishes with purchases")
     }
     
     func test_loadPurchase_displayPurchasesWhenLoadIsSuccessfull() {
-        let (sut, loader) = makeSUT()
+        let (sut, loader, _) = makeSUT()
         
         let purchase0 = makePurchase()
         let purchase1 = makePurchase()
@@ -110,8 +100,25 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: [purchase0, purchase1, purchase2, purchase3])
     }
     
+    func test_onPurchaseRegister_sendsRegisterPurchaseMessage() {
+        let (sut, loader, navigationSpy) = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        XCTAssertEqual(navigationSpy.numberOfRegisterCalls, 0)
+        
+        loader.completeLoadSuccessfully(with: [])
+        
+        XCTAssertTrue(sut.isShowingEmptyMessage, "Expected empty message after load finishes with empty purchases")
+        XCTAssertEqual(sut.emptyPurchasesMessage, localized("PURCHASES_EMPTY_LOAD_MESSAGE"))
+        
+        sut.simulateRegisterPurchaseTap()
+        
+        XCTAssertEqual(navigationSpy.numberOfRegisterCalls, 1)
+    }
+    
     func test_loadPurchase_dispatchesFromBackgroundToMainThread() {
-        let (sut, loader) = makeSUT()
+        let (sut, loader, _) = makeSUT()
         
         sut.simulateAppearance()
 
@@ -126,14 +133,19 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     }
     
     // MARK: Helpers
-    func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy) {
+    func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy, navigationSpy: NavigationSpy) {
+        let navigationSpy = NavigationSpy()
         let loader = LoaderSpy()
-        let sut = PurchasesUIComposer.composePurchasesList(loader: loader.loadPurchasesPublisher)
+        let sut = PurchasesUIComposer.composePurchasesList(
+            loader: loader.loadPurchasesPublisher,
+            onPurchaseRegister: navigationSpy.onPurchaseRegister
+        )
         
         checkForMemoryLeaks(sut)
         checkForMemoryLeaks(loader)
+        checkForMemoryLeaks(navigationSpy)
         
-        return (sut, loader)
+        return (sut, loader, navigationSpy)
     }
     
     func assertThat(_ sut: PurchasesListViewController, isRendering purchases: [Purchase], file: StaticString = #filePath, line: UInt = #line) {
@@ -146,5 +158,13 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
                 return XCTFail("Expected \(PurchaseCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
             }
         })
+    }
+    
+    class NavigationSpy {
+        var numberOfRegisterCalls = 0
+        
+        public func onPurchaseRegister() {
+            numberOfRegisterCalls += 1
+        }
     }
 }

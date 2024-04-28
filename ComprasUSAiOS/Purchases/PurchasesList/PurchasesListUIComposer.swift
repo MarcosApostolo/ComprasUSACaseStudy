@@ -10,7 +10,7 @@ import Combine
 import UIKit
 import ComprasUSACaseStudy
 
-public class PurchasesUIComposer {
+public class PurchasesListUIComposer {
     private init() {}
     
     public static func composePurchasesList(

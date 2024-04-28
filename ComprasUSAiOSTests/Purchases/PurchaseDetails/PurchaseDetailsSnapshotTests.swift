@@ -11,7 +11,9 @@ import ComprasUSACaseStudy
 
 final class PurchaseDetailsSnapshotTests: XCTestCase {
     func test_render_purchaseDetails() {
-        let purchase = makePurchase(name: "A Purchase", imageData: Data())
+        let image = UIImage.make(withColor: .lightGray).pngData()
+        
+        let purchase = makePurchase(name: "A Purchase", imageData: image)
         
         let sut = makeSUT(with: purchase)
         
@@ -21,7 +23,8 @@ final class PurchaseDetailsSnapshotTests: XCTestCase {
 
     // MARK: Helpers
     func makeSUT(with purchase: Purchase) -> PurchaseDetailsViewController {
-        let sut = PurchaseDetailsViewController(purchase: purchase)
+        let sut = PurchaseDetailsUIComposer
+            .composePurchaseDetails(purchase)
         
         checkForMemoryLeaks(sut)
         

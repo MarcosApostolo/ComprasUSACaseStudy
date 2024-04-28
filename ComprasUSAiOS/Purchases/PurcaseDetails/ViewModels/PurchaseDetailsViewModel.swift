@@ -8,17 +8,28 @@
 import Foundation
 import ComprasUSACaseStudy
 
-class PurchaseDetailsViewModel {
+class PurchaseDetailsViewModel<Image> {
     private var model: Purchase
+    private let imageTransformer: (Data) -> Image?
     
-    public init(model: Purchase) {
+    public init(model: Purchase, imageTransformer: @escaping (Data) -> Image?) {
         self.model = model
+        self.imageTransformer = imageTransformer
     }
     
-    var productNameLabel: String {
-        return NSLocalizedString("PURCHASE_DETAIL_PRODUCT_NAME",
-            tableName: "Purchase",
-            bundle: Bundle(for: PurchaseDetailsViewController.self),
-            comment: "Label for the product name")
+    public var productNameLabel: String {
+        return model.name
+    }
+    
+    public var image: Image? {
+        guard let imageData = model.imageData else {
+            return nil
+        }
+        
+        return imageTransformer(imageData)
+    }
+    
+    public var purchaseInfo: [[String: String]] {
+        return [[:]]
     }
 }

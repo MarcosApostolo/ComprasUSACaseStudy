@@ -64,7 +64,7 @@ final class PurchaseListSnapshotTests: XCTestCase {
     // MARK: Helpers
     func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = PurchasesUIComposer.composePurchasesList(
+        let sut = PurchasesListUIComposer.composePurchasesList(
             loader: loader.loadPurchasesPublisher,
             onPurchaseRegister: {}
         )

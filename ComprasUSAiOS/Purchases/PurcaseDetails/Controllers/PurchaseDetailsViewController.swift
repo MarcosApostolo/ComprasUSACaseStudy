@@ -10,45 +10,63 @@ import UIKit
 import ComprasUSACaseStudy
 
 public class PurchaseDetailsViewController: UIViewController {
-    private var purchase: Purchase?
-    
-    var viewModel: PurchaseCellViewModel<UIImage>? {
+    var viewModel: PurchaseDetailsViewModel<UIImage>? {
         didSet { bind() }
     }
     
     private(set) public lazy var purchaseNameLabel: UILabel = {
-        UILabel()
+        let label = UILabel()
+        
+        label.font = .preferredFont(forTextStyle: .title2)
+        
+        return label
     }()
     
     private(set) public lazy var purchaseImageView: UIImageView = {
         let imageView = UIImageView()
         
         imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         
         return imageView
     }()
     
-    public convenience init(purchase: Purchase) {
-        self.init()
+    private(set) public lazy var purchaseInfoTableView: UITableView = {
+        let tableView = UITableView()
         
-        self.purchase = purchase
-    }
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .singleLine
+        tableView.allowsSelection = true
+        tableView.allowsMultipleSelection = false
+        tableView.isUserInteractionEnabled = true
+        
+        tableView.register(PurchaseInfoCell.self, forCellReuseIdentifier: String(describing: PurchaseInfoCell.self))
+        
+        return tableView
+    }()
     
     public override func viewDidLoad() {
         setupViews()
     }
     
     func bind() {
-        
+        purchaseImageView.image = viewModel?.image
+        purchaseNameLabel.text = viewModel?.productNameLabel
     }
 }
 
 extension PurchaseDetailsViewController: ViewCode {
     func addSubViews() {
         view.addSubview(purchaseImageView)
+        view.addSubview(purchaseNameLabel)
     }
     
     func setupConstraints() {
+        setupPurchaseImageViewConstraints()
+        setupPurchaseNameLabelConstraints()
+    }
+    
+    func setupPurchaseImageViewConstraints() {
         purchaseImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -59,7 +77,18 @@ extension PurchaseDetailsViewController: ViewCode {
         ])
     }
     
+    func setupPurchaseNameLabelConstraints() {
+        purchaseNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            purchaseNameLabel.topAnchor.constraint(equalTo: purchaseImageView.topAnchor),
+            purchaseNameLabel.leadingAnchor.constraint(equalTo: purchaseImageView.trailingAnchor, constant: 12),
+            purchaseNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        ])
+    }
+    
     func setupStyle() {
         view.backgroundColor = .systemBackground
     }
 }
+

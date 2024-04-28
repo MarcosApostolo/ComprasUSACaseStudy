@@ -11,7 +11,7 @@ import ComprasUSACaseStudy
 
 final class PurchaseDetailsSnapshotTests: XCTestCase {
     func test_render_purchaseDetails() {
-        let purchase = makePurchase()
+        let purchase = makePurchase(name: "A Purchase", imageData: Data())
         
         let sut = makeSUT(with: purchase)
         

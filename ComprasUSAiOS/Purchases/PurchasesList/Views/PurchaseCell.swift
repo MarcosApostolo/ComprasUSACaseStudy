@@ -12,12 +12,6 @@ public class PurchaseCell: UITableViewCell, ViewCode {
     public lazy var purchaseImageView: UIImageView = {
         let imageView = UIImageView()
         
-        if (imageView.image != nil) {
-            imageView.backgroundColor = .clear
-        } else {
-            imageView.backgroundColor = .lightGray
-        }
-        
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
         

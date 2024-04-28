@@ -8,11 +8,13 @@
 import Foundation
 import ComprasUSACaseStudy
 
-public class PurchaseCellViewModel {
+public class PurchaseCellViewModel<Image> {
     private let model: Purchase
+    private let imageTransformer: (Data) -> Image?
     
-    public init(model: Purchase) {
+    public init(model: Purchase, imageTransformer: @escaping (Data) -> Image?) {
         self.model = model
+        self.imageTransformer = imageTransformer
     }
     
     public var name: String {
@@ -26,5 +28,13 @@ public class PurchaseCellViewModel {
         formatter.locale = Locale(identifier: "en-US")
         
         return formatter.string(from: NSNumber(value: model.value)) ?? ""
+    }
+    
+    public var image: Image? {
+        guard let imageData = model.imageData else {
+            return nil
+        }
+        
+        return imageTransformer(imageData)
     }
 }

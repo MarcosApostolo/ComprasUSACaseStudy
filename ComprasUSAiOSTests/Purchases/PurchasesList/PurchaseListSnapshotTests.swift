@@ -43,10 +43,15 @@ final class PurchaseListSnapshotTests: XCTestCase {
     func test_render_purchases() {
         let (sut, loader) = makeSUT()
         
-        let purchase0 = makePurchase(name: "a purchase", value: 10)
-        let purchase1 = makePurchase(name: "short", value: 0.2)
-        let purchase2 = makePurchase(name: "purchase with very very very very very very very long name", value: 1)
-        let purchase3 = makePurchase(name: "purchase with medium name size", value: 1000)
+        let image0 = UIImage.make(withColor: .red).pngData()
+        let image1 = UIImage.make(withColor: .blue).pngData()
+        let image2 = UIImage.make(withColor: .green).pngData()
+        let image3 = UIImage.make(withColor: .orange).pngData()
+        
+        let purchase0 = makePurchase(name: "a purchase", imageData: image0, value: 10)
+        let purchase1 = makePurchase(name: "short", imageData: image1, value: 0.2)
+        let purchase2 = makePurchase(name: "purchase with very very very very very very very long name", imageData: image2, value: 1)
+        let purchase3 = makePurchase(name: "purchase with medium name size", imageData: image3, value: 1000)
         
         sut.simulateAppearance()
         

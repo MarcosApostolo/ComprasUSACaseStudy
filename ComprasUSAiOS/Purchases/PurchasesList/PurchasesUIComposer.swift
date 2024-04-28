@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 import ComprasUSACaseStudy
 
 public class PurchasesUIComposer {
@@ -23,7 +24,12 @@ public class PurchasesUIComposer {
         
         viewModel.onPurchasesLoad = { [weak vc] purchases in
             vc?.tableModel = purchases.map({ purchase in
-                PurchaseCellController(viewModel: PurchaseCellViewModel(model: purchase))
+                PurchaseCellController(
+                    viewModel: PurchaseCellViewModel(
+                        model: purchase,
+                        imageTransformer: UIImage.init
+                    )
+                )
             })
         }
         

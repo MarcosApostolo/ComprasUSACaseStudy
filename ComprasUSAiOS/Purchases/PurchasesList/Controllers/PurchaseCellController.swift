@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 public class PurchaseCellController {
-    private let viewModel: PurchaseCellViewModel
+    private let viewModel: PurchaseCellViewModel<UIImage>
     
-    public init(viewModel: PurchaseCellViewModel) {
+    public init(viewModel: PurchaseCellViewModel<UIImage>) {
         self.viewModel = viewModel
     }
     
@@ -23,6 +23,7 @@ public class PurchaseCellController {
     func bind(_ cell: PurchaseCell) -> PurchaseCell {
         cell.nameLabel.text = viewModel.name
         cell.valueLabel.text = viewModel.value
+        cell.purchaseImageView.image = viewModel.image
         
         return cell
     }

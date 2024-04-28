@@ -92,6 +92,13 @@ class PurchaseDetailsViewModel<Image> {
             comment: "Label for the payment type info")
     }
     
+    public var stateInfoErrorLabel: String {
+        return NSLocalizedString("PURCHASE_INFO_STATE_INFO_ERROR",
+            tableName: "Purchase",
+            bundle: Bundle(for: PurchasesListViewController.self),
+            comment: "Label for the payment type info")
+    }
+    
     private func makeValueInUSD(_ value: Double) -> String {
         let formatter = NumberFormatter()
         

@@ -52,6 +52,23 @@
         }
       }
     },
+    "PURCHASE_INFO_STATE_INFO_ERROR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It was not possible to display the state info because there's no state registered for this purchase."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível exibir os dados do estado para essa compra porque nenhum estado foi cadastrado para ela."
+          }
+        }
+      }
+    },
     "PURCHASE_INFO_STATE_NAME" : {
       "extractionState" : "manual",
       "localizations" : {

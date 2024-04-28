@@ -48,14 +48,12 @@ public class PurchaseDetailsViewController: UIViewController {
         return tableView
     }()
     
-    private(set) public lazy var stateInfoError: UILabel = {
-        let label = UILabel()
+    private(set) public lazy var footerView: FooterView = {
+        let view = FooterView()
         
-        label.font = .systemFont(ofSize: 12)
-        label.textColor = .red
-        label.isHidden = true
+        view.stateInfoErrorLabel.text = viewModel?.stateInfoErrorLabel
         
-        return label
+        return view
     }()
     
     public override func viewDidLoad() {
@@ -66,7 +64,7 @@ public class PurchaseDetailsViewController: UIViewController {
         if let viewModel = viewModel {
             purchaseImageView.image = viewModel.image
             purchaseNameLabel.text = viewModel.productNameLabel
-            stateInfoError.isHidden = viewModel.hasStateInfo            
+            footerView.stateInfoErrorLabel.isHidden = viewModel.hasStateInfo            
         }
     }
 }
@@ -112,7 +110,7 @@ extension PurchaseDetailsViewController: ViewCode {
             purchaseInfoTableView.topAnchor.constraint(equalTo: purchaseImageView.bottomAnchor, constant: 16),
             purchaseInfoTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             purchaseInfoTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            purchaseInfoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            purchaseInfoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -141,5 +139,50 @@ extension PurchaseDetailsViewController: UITableViewDelegate, UITableViewDataSou
         cell.infoValueLabel.text = info?.value
         
         return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        footerView
+    }
+}
+
+public class FooterView: UIView, ViewCode {
+    private(set) public lazy var stateInfoErrorLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .red
+        label.isHidden = true
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        setupViews()
+    }
+    
+    func addSubViews() {
+        addSubview(stateInfoErrorLabel)
+    }
+    
+    func setupConstraints() {
+        stateInfoErrorLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            stateInfoErrorLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            stateInfoErrorLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 12),
+            stateInfoErrorLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
+            stateInfoErrorLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -12),
+        ])
     }
 }

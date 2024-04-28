@@ -33,7 +33,7 @@ final class PurchaseDetailsIntegrationTests: XCTestCase {
 
 private extension PurchaseDetailsViewController {
     var isShowingStateInfoError: Bool? {
-        !stateInfoError.isHidden
+        !footerView.stateInfoErrorLabel.isHidden
     }
     
     func simulateAppearance() {

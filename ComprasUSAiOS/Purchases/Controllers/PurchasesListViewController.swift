@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class PurchasesListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+public class PurchasesListViewController: UITableViewController {
     var viewModel: PurchasesListViewModel? {
         didSet { bind() }
     }
@@ -18,12 +18,6 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
             tableView.reloadData()
         }
     }
-    
-    private(set) public lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        
-        return tableView
-    }()
     
     private(set) public lazy var loadingIndicator: UIActivityIndicatorView = {
         let loadingIndicator = UIActivityIndicatorView()
@@ -78,7 +72,8 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
         
         viewModel?.loadPurchases()
         
-        registerCells()
+        tableView.register(PurchaseCell.self, forCellReuseIdentifier: String(describing: PurchaseCell.self))
+        
         setupViews()
     }
     
@@ -108,10 +103,6 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
         }
     }
     
-    func registerCells() {
-        tableView.register(PurchaseCell.self, forCellReuseIdentifier: String(describing: PurchaseCell.self))
-    }
-    
     @objc func retryLoad() {
         viewModel?.loadPurchases()
     }
@@ -122,11 +113,15 @@ public class PurchasesListViewController: UIViewController, UITableViewDelegate,
 }
 
 extension PurchasesListViewController {
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public override func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableModel.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellController = tableModel[indexPath.row]
         
         return cellController.view(in: tableView)
@@ -147,7 +142,13 @@ extension PurchasesListViewController: ViewCode {
     }
     
     func setupStyle() {
-        view.backgroundColor = .systemBackground        
+        view.backgroundColor = .secondarySystemBackground
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .singleLine
+        tableView.allowsSelection = true
+        tableView.allowsMultipleSelection = false
+        tableView.isUserInteractionEnabled = true
     }
 }
 

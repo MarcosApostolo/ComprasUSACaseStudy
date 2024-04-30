@@ -191,7 +191,7 @@
 		4A97C6DE2BD4657F00780643 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		4AA464452BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCaseTests.swift; sourceTree = "<group>"; };
 		4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCase.swift; sourceTree = "<group>"; };
-		4AAFF0F82BE0FE01000128BF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4AAFF0FE2BE10456000128BF /* ComprasUSAApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSAApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABA8D5C2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsViewModel.swift; sourceTree = "<group>"; };
 		4ABA8D5E2BDEBD6D0088E344 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		4ABA8D602BDEBE520088E344 /* PurchaseDetailsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsUIComposer.swift; sourceTree = "<group>"; };
@@ -242,6 +242,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A71469F2BDB24B300D202BE /* ComprasUSAiOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AAFF0FB2BE10456000128BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +599,6 @@
 		4AF9E2CC2BD41FEC00D4CC11 = {
 			isa = PBXGroup;
 			children = (
-				4AAFF0F82BE0FE01000128BF /* README.md */,
 				4A7146912BDB23CE00D202BE /* CI_MacOS.xctestplan */,
 				4AF9E2D82BD41FEC00D4CC11 /* ComprasUSACaseStudy */,
 				4AF9E2E22BD41FED00D4CC11 /* ComprasUSACaseStudyTests */,
@@ -612,6 +618,7 @@
 				4A7146802BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests.xctest */,
 				4A7146972BDB24B300D202BE /* ComprasUSAiOS.framework */,
 				4A71469E2BDB24B300D202BE /* ComprasUSAiOSTests.xctest */,
+				4AAFF0FE2BE10456000128BF /* ComprasUSAApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -715,6 +722,23 @@
 			productReference = 4A71469E2BDB24B300D202BE /* ComprasUSAiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4AAFF0FD2BE10456000128BF /* ComprasUSAApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AAFF10F2BE10457000128BF /* Build configuration list for PBXNativeTarget "ComprasUSAApp" */;
+			buildPhases = (
+				4AAFF0FA2BE10456000128BF /* Sources */,
+				4AAFF0FB2BE10456000128BF /* Frameworks */,
+				4AAFF0FC2BE10456000128BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ComprasUSAApp;
+			productName = ComprasUSAApp;
+			productReference = 4AAFF0FE2BE10456000128BF /* ComprasUSAApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4AF9E2D52BD41FEC00D4CC11 /* ComprasUSACaseStudy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AF9E2E82BD41FED00D4CC11 /* Build configuration list for PBXNativeTarget "ComprasUSACaseStudy" */;
@@ -773,6 +797,9 @@
 						CreatedOnToolsVersion = 15.2;
 						LastSwiftMigration = 1520;
 					};
+					4AAFF0FD2BE10456000128BF = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					4AF9E2D52BD41FEC00D4CC11 = {
 						CreatedOnToolsVersion = 15.2;
 						LastSwiftMigration = 1520;
@@ -802,6 +829,7 @@
 				4AF9E2DD2BD41FED00D4CC11 /* ComprasUSACaseStudyTests */,
 				4A71467F2BDAF33800D202BE /* ComprasUSACaseStudyIntegrationTests */,
 				4A71469D2BDB24B300D202BE /* ComprasUSAiOSTests */,
+				4AAFF0FD2BE10456000128BF /* ComprasUSAApp */,
 			);
 		};
 /* End PBXProject section */
@@ -838,6 +866,13 @@
 				4ABB4E242BDDA178009C2428 /* EMPTY_PURCHASES_LIST_DARK.png in Resources */,
 				4ABB4E2C2BDDA695009C2428 /* LOAD_ERROR_DARK.png in Resources */,
 				4ABB4E2D2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AAFF0FC2BE10456000128BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +944,13 @@
 				4ABB4E102BDD8B46009C2428 /* XCTestCase+Snapshot.swift in Sources */,
 				4ABB4E182BDD8D12009C2428 /* PurchasesListViewController+Helpers.swift in Sources */,
 				4ABB4E022BDD395E009C2428 /* iOSTestHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AAFF0FA2BE10456000128BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1163,65 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4AAFF1102BE10457000128BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ComprasUSAApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosapostolo.ComprasUSAApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4AAFF1112BE10457000128BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ComprasUSAApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosapostolo.ComprasUSAApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1377,6 +1478,15 @@
 			buildConfigurations = (
 				4A7146AA2BDB24B300D202BE /* Debug */,
 				4A7146AB2BDB24B300D202BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4AAFF10F2BE10457000128BF /* Build configuration list for PBXNativeTarget "ComprasUSAApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AAFF1102BE10457000128BF /* Debug */,
+				4AAFF1112BE10457000128BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

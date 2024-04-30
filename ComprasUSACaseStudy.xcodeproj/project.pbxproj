@@ -191,6 +191,7 @@
 		4A97C6DE2BD4657F00780643 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		4AA464452BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCaseTests.swift; sourceTree = "<group>"; };
 		4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCase.swift; sourceTree = "<group>"; };
+		4AAFF0F82BE0FE01000128BF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4ABA8D5C2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsViewModel.swift; sourceTree = "<group>"; };
 		4ABA8D5E2BDEBD6D0088E344 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		4ABA8D602BDEBE520088E344 /* PurchaseDetailsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsUIComposer.swift; sourceTree = "<group>"; };
@@ -591,6 +592,7 @@
 		4AF9E2CC2BD41FEC00D4CC11 = {
 			isa = PBXGroup;
 			children = (
+				4AAFF0F82BE0FE01000128BF /* README.md */,
 				4A7146912BDB23CE00D202BE /* CI_MacOS.xctestplan */,
 				4AF9E2D82BD41FEC00D4CC11 /* ComprasUSACaseStudy */,
 				4AF9E2E22BD41FED00D4CC11 /* ComprasUSACaseStudyTests */,

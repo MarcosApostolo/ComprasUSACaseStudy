@@ -13,18 +13,18 @@ public class RegisterPurchaseViewController: UIViewController {
         didSet { bind() }
     }
     
-    private(set) public lazy var productNameTextField: UITextField = {
-        let textField = UITextField()
+    private(set) public lazy var productNameTextField: TextFieldView = {
+        let textField = TextFieldView()
         
-        textField.placeholder = viewModel?.productNameTFPlaceholder
+        textField.textField.placeholder = viewModel?.productNameTFPlaceholder
         
         return textField
     }()
     
-    private(set) public lazy var valueTextField: UITextField = {
-        let textField = UITextField()
+    private(set) public lazy var valueTextField: TextFieldView = {
+        let textField = TextFieldView()
         
-        textField.placeholder = viewModel?.valueTFPlaceholder
+        textField.textField.placeholder = viewModel?.valueTFPlaceholder
         
         return textField
     }()

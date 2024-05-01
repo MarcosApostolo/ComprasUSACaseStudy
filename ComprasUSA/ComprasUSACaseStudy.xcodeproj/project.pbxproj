@@ -91,6 +91,7 @@
 		4AC9ADCE2BE27B390014142C /* RegisterPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADCD2BE27B390014142C /* RegisterPurchaseViewController.swift */; };
 		4AC9ADD22BE27E340014142C /* RegisterPurchaseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD12BE27E340014142C /* RegisterPurchaseUIComposer.swift */; };
 		4AC9ADD52BE27F3E0014142C /* RegisterPurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD42BE27F3E0014142C /* RegisterPurchaseViewModel.swift */; };
+		4AC9ADD82BE285CF0014142C /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD72BE285CF0014142C /* TextFieldView.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -224,6 +225,7 @@
 		4AC9ADCD2BE27B390014142C /* RegisterPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseViewController.swift; sourceTree = "<group>"; };
 		4AC9ADD12BE27E340014142C /* RegisterPurchaseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseUIComposer.swift; sourceTree = "<group>"; };
 		4AC9ADD42BE27F3E0014142C /* RegisterPurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseViewModel.swift; sourceTree = "<group>"; };
+		4AC9ADD72BE285CF0014142C /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -609,6 +611,7 @@
 		4AC9ADCC2BE27B260014142C /* RegisterPurchase */ = {
 			isa = PBXGroup;
 			children = (
+				4AC9ADD62BE285C20014142C /* Views */,
 				4AC9ADD32BE27F310014142C /* ViewModels */,
 				4AC9ADD02BE27E220014142C /* Controllers */,
 				4AC9ADD12BE27E340014142C /* RegisterPurchaseUIComposer.swift */,
@@ -638,6 +641,14 @@
 				4AC9ADD42BE27F3E0014142C /* RegisterPurchaseViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4AC9ADD62BE285C20014142C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4AC9ADD72BE285CF0014142C /* TextFieldView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4AF9E2CC2BD41FEC00D4CC11 = {
@@ -954,6 +965,7 @@
 				4AC9ADD22BE27E340014142C /* RegisterPurchaseUIComposer.swift in Sources */,
 				4A2FC8AE2BDEA25100BF6693 /* PurchaseDetailsViewController.swift in Sources */,
 				4A97BD522BDEDBAF00F2CC36 /* Observer.swift in Sources */,
+				4AC9ADD82BE285CF0014142C /* TextFieldView.swift in Sources */,
 				4ABB4E1F2BDD9346009C2428 /* EmptyMessageView.swift in Sources */,
 				4ABB4E0B2BDD7F58009C2428 /* PurchaseCell.swift in Sources */,
 				4AC9ADCE2BE27B390014142C /* RegisterPurchaseViewController.swift in Sources */,

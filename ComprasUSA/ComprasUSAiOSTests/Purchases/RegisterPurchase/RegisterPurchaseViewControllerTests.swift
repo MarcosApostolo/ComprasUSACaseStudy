@@ -41,18 +41,18 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
 
 private extension RegisterPurchaseViewController {
     var productNameTextFieldPlaceholder: String? {
-        productNameTextField.placeholder
+        productNameTextField.textField.placeholder
     }
     
     var productNameTextFieldValue: String? {
-        productNameTextField.text
+        productNameTextField.textField.text
     }
     
     var valueTextFieldPlaceholder: String? {
-        valueTextField.placeholder
+        valueTextField.textField.placeholder
     }
     
     var valueTextFieldValue: String? {
-        valueTextField.text
+        valueTextField.textField.text
     }
 }

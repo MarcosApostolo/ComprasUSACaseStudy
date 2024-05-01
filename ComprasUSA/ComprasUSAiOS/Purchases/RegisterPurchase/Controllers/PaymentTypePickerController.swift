@@ -9,12 +9,19 @@ import Foundation
 import UIKit
 import ComprasUSACaseStudy
 
-public protocol PaymentTypePickerDelegate {
-    func didSelectPaymentType(_ paymentType: PaymentType)
-}
-
 public final class PaymentTypePickerController: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     public let paymentTypes: [PaymentType]
+    
+    public var selectedType: PaymentType?
+    
+    private(set) public lazy var pickerView: UIPickerView = {
+        let picker = UIPickerView()
+        
+        picker.delegate = self
+        picker.dataSource = self
+        
+        return picker
+    }()
     
     public init(paymentTypes: [PaymentType]) {
         self.paymentTypes = paymentTypes
@@ -26,5 +33,9 @@ public final class PaymentTypePickerController: NSObject, UIPickerViewDataSource
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         paymentTypes.count
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedType = paymentTypes[row]
     }
 }

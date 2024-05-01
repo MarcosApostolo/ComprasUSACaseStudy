@@ -7,6 +7,7 @@
 
 import XCTest
 import ComprasUSAiOS
+import ComprasUSACaseStudy
 
 final class RegisterPurchaseViewControllerTests: XCTestCase {
     func test_init_display() {
@@ -119,7 +120,19 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         
         sut.simulateAppearance()
         
-        XCTAssertEqual(sut.paymentTypesPickerController.paymentTypes.count, 2)
+        XCTAssertEqual(sut.paymentTypePickerNumberOfRows, 2)
+    }
+    
+    func test_paymentTypesPicker_whenPickingType_updatesPickerLocalState() {
+        let sut = makeSUT()
+        
+        let cardPaymentTypeRowNumber = 0
+        
+        sut.simulateAppearance()
+        
+        sut.selectPaymentType(cardPaymentTypeRowNumber)
+        
+        XCTAssertEqual(sut.paymentTypesPickerController.selectedType, .card)
     }
     
     // MARK: Helpers
@@ -212,5 +225,17 @@ private extension RegisterPurchaseViewController {
     
     var valueTextFieldKeyboardType: UIKeyboardType {
         valueTextField.keyboardType
+    }
+    
+    func selectPaymentType(_ row: Int) {
+        paymentTypesPickerController.pickerView.delegate?.pickerView?(paymentTypesPickerController.pickerView, didSelectRow: row, inComponent: 0)
+    }
+    
+    var paymentTypePickerNumberOfRows: Int {
+        paymentTypesPickerController.pickerView.numberOfRows(inComponent: pickerComponentIndex)
+    }
+    
+    var pickerComponentIndex: Int {
+        0
     }
 }

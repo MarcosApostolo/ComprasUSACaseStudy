@@ -10,15 +10,6 @@ import ComprasUSAiOS
 import UIKit
 
 extension PurchasesListViewController {
-    func simulateAppearance() {
-        if !isViewLoaded {
-            loadViewIfNeeded()
-        }
-
-        beginAppearanceTransition(true, animated: false)
-        endAppearanceTransition()
-    }
-    
     var isShowingLoadingIndicator: Bool {
         self.loadingIndicator.isAnimating == true
     }

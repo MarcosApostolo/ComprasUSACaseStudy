@@ -45,13 +45,4 @@ private extension PurchaseDetailsViewController {
     var isShowingStateInfoError: Bool? {
         !footerView.stateInfoErrorLabel.isHidden
     }
-    
-    func simulateAppearance() {
-        if !isViewLoaded {
-            loadViewIfNeeded()
-        }
-
-        beginAppearanceTransition(true, animated: false)
-        endAppearanceTransition()
-    }
 }

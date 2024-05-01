@@ -34,4 +34,13 @@ class RegisterPurchaseViewModel {
             comment: "Placeholder label for the value text field"
         )
     }
+    
+    var productNameTFRequiredError: String {
+        NSLocalizedString(
+            "REGISTER_PURCHASE_PRODUCT_NAME_REQUIRED_ERROR_LABEL",
+            tableName: "Purchase",
+            bundle: Bundle(for: RegisterPurchaseViewController.self),
+            comment: "Placeholder label for the value text field"
+        )
+    }
 }

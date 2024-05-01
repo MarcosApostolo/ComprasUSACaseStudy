@@ -13,23 +13,25 @@ public class RegisterPurchaseViewController: UIViewController {
         didSet { bind() }
     }
     
-    private(set) public lazy var productNameTextField: TextFieldView = {
-        let textField = TextFieldView()
-        
-        textField.textField.placeholder = viewModel?.productNameTFPlaceholder
-        
-        return textField
-    }()
-    
+    private(set) public var productNameTextFieldController = ProductNameTextFieldController()
     private(set) public lazy var valueTextField: TextFieldView = {
         let textField = TextFieldView()
         
-        textField.textField.placeholder = viewModel?.valueTFPlaceholder
+        textField.placeholder = viewModel?.valueTFPlaceholder
         
         return textField
     }()
-    
+        
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addSubview(productNameTextFieldController.productNameTextField)
+    }
+
     private func bind() {
         title = viewModel?.title
+        
+        productNameTextFieldController.productNameTextField.placeholder = viewModel?.productNameTFPlaceholder
+        productNameTextFieldController.errorLabel.text = viewModel?.productNameTFRequiredError
     }
 }

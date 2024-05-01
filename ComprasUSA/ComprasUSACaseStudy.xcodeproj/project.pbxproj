@@ -60,6 +60,7 @@
 		4A97C6DF2BD4657F00780643 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6DE2BD4657F00780643 /* TestHelpers.swift */; };
 		4AA464462BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA464452BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift */; };
 		4AA464482BD87F070036B3DD /* PurchaseFeatureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */; };
+		4AB230FE2BE2BEF60048CEA8 /* ProductNameTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB230FD2BE2BEF60048CEA8 /* ProductNameTextFieldController.swift */; };
 		4ABA8D5D2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA8D5C2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift */; };
 		4ABA8D5F2BDEBD6D0088E344 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA8D5E2BDEBD6D0088E344 /* UIImage+TestHelpers.swift */; };
 		4ABA8D612BDEBE520088E344 /* PurchaseDetailsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA8D602BDEBE520088E344 /* PurchaseDetailsUIComposer.swift */; };
@@ -92,6 +93,7 @@
 		4AC9ADD22BE27E340014142C /* RegisterPurchaseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD12BE27E340014142C /* RegisterPurchaseUIComposer.swift */; };
 		4AC9ADD52BE27F3E0014142C /* RegisterPurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD42BE27F3E0014142C /* RegisterPurchaseViewModel.swift */; };
 		4AC9ADD82BE285CF0014142C /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD72BE285CF0014142C /* TextFieldView.swift */; };
+		4AC9ADDA2BE288C80014142C /* UIViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD92BE288C80014142C /* UIViewController+TestHelpers.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -197,6 +199,7 @@
 		4AA464452BD87ED90036B3DD /* PurchaseFeatureUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCaseTests.swift; sourceTree = "<group>"; };
 		4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCase.swift; sourceTree = "<group>"; };
 		4AAFF0FE2BE10456000128BF /* ComprasUSAApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSAApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AB230FD2BE2BEF60048CEA8 /* ProductNameTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNameTextFieldController.swift; sourceTree = "<group>"; };
 		4ABA8D5C2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsViewModel.swift; sourceTree = "<group>"; };
 		4ABA8D5E2BDEBD6D0088E344 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		4ABA8D602BDEBE520088E344 /* PurchaseDetailsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsUIComposer.swift; sourceTree = "<group>"; };
@@ -226,6 +229,7 @@
 		4AC9ADD12BE27E340014142C /* RegisterPurchaseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseUIComposer.swift; sourceTree = "<group>"; };
 		4AC9ADD42BE27F3E0014142C /* RegisterPurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseViewModel.swift; sourceTree = "<group>"; };
 		4AC9ADD72BE285CF0014142C /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		4AC9ADD92BE288C80014142C /* UIViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -396,6 +400,7 @@
 				4ABB4E0F2BDD8B46009C2428 /* XCTestCase+Snapshot.swift */,
 				4ABB4E112BDD8B5F009C2428 /* UIViewController+Snapshot.swift */,
 				4ABA8D5E2BDEBD6D0088E344 /* UIImage+TestHelpers.swift */,
+				4AC9ADD92BE288C80014142C /* UIViewController+TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -631,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC9ADCD2BE27B390014142C /* RegisterPurchaseViewController.swift */,
+				4AB230FD2BE2BEF60048CEA8 /* ProductNameTextFieldController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -972,6 +978,7 @@
 				4ABA8D672BDEC54E0088E344 /* UITableView+DequeueCell.swift in Sources */,
 				4ABB4E212BDD93BA009C2428 /* ViewCode.swift in Sources */,
 				4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */,
+				4AB230FE2BE2BEF60048CEA8 /* ProductNameTextFieldController.swift in Sources */,
 				4ABB4E092BDD7856009C2428 /* PurchaseCellViewModel.swift in Sources */,
 				4ABB4E2F2BDDA6C3009C2428 /* ErrorView.swift in Sources */,
 				4ABB4E072BDD783F009C2428 /* PurchaseCellController.swift in Sources */,
@@ -997,6 +1004,7 @@
 				4A7146AF2BDB2B7200D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */,
 				4ABA8D5F2BDEBD6D0088E344 /* UIImage+TestHelpers.swift in Sources */,
 				4A2FC8B12BDEA2AD00BF6693 /* PurchaseDetailsSnapshotTests.swift in Sources */,
+				4AC9ADDA2BE288C80014142C /* UIViewController+TestHelpers.swift in Sources */,
 				4AC9ADCB2BE27AF30014142C /* RegisterPurchaseViewControllerTests.swift in Sources */,
 				4ABB4E122BDD8B5F009C2428 /* UIViewController+Snapshot.swift in Sources */,
 				4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */,

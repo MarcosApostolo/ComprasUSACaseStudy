@@ -12,7 +12,7 @@ public final class RegisterPurchaseUIComposer {
     
     public static func composeCreatePurchase() -> RegisterPurchaseViewController {
         let vc = RegisterPurchaseViewController()
-        
+                
         let viewModel = RegisterPurchaseViewModel()
         
         vc.viewModel = viewModel

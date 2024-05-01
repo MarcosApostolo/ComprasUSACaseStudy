@@ -8,11 +8,7 @@
 import Foundation
 import UIKit
 
-public class TextFieldView: UIView {
-    private(set) public lazy var textField: UITextField = {
-        UITextField()
-    }()
-    
+public class TextFieldView: UITextField {    
     private(set) public lazy var errorLabel: UILabel = {
         UILabel()
     }()

@@ -12,14 +12,39 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     func test_init_display() {
         let sut = makeSUT()
         
+        sut.simulateAppearance()
+        
         XCTAssertEqual(sut.title, localized("REGISTER_PURCHASE_TITLE"))
     }
     
     func test_init_hasProductNameTextFieldWithCorrectProperties() {
         let sut = makeSUT()
         
+        sut.simulateAppearance()
+        
         XCTAssertEqual(sut.productNameTextFieldPlaceholder, localized("REGISTER_PURCHASE_PRODUCT_NAME_PLACEHOLDER_LABEL"))
         XCTAssertEqual(sut.productNameTextFieldValue, "")
+    }
+    
+    func test_productNameTF_whenEmptyAndTouched_displaysErrorMessage() {
+        let sut = makeSUT()
+        
+        putInViewHierarchy(sut)
+        
+        sut.simulateAppearance()
+        
+        sut.simulateFocus(on: sut.productNameTextFieldController.productNameTextField)
+        
+        XCTAssertTrue(sut.productNameTextFieldIsFocused)
+        
+        sut.simulateUnfocus(on: sut.productNameTextFieldController.productNameTextField)
+
+        XCTAssertFalse(sut.productNameTextFieldIsFocused)
+        
+        XCTAssertEqual(sut.productNameTextFieldValue, "")
+        
+        XCTAssertEqual(sut.productNameTextFieldErrorMessage, localized("REGISTER_PURCHASE_PRODUCT_NAME_REQUIRED_ERROR_LABEL"))
+        XCTAssertTrue(sut.productNameTextFieldErrorMessageIsVisible)
     }
     
     func test_init_hasValueTextFieldWithCorrectProperties() {
@@ -37,22 +62,48 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         
         return sut
     }
+    
+    func putInViewHierarchy(_ vc: UIViewController) {
+        let window = UIWindow()
+        
+        window.addSubview(vc.view)
+    }
 }
 
 private extension RegisterPurchaseViewController {
     var productNameTextFieldPlaceholder: String? {
-        productNameTextField.textField.placeholder
+        productNameTextFieldController.productNameTextField.placeholder
     }
     
     var productNameTextFieldValue: String? {
-        productNameTextField.textField.text
+        productNameTextFieldController.productNameTextField.text
     }
     
     var valueTextFieldPlaceholder: String? {
-        valueTextField.textField.placeholder
+        valueTextField.placeholder
     }
     
     var valueTextFieldValue: String? {
-        valueTextField.textField.text
+        valueTextField.text
+    }
+    
+    var productNameTextFieldIsFocused: Bool {
+        productNameTextFieldController.productNameTextField.isFirstResponder
+    }
+    
+    var productNameTextFieldErrorMessage: String? {
+        productNameTextFieldController.errorLabel.text
+    }
+    
+    var productNameTextFieldErrorMessageIsVisible: Bool {
+        !productNameTextFieldController.errorLabel.isHidden
+    }
+    
+    func simulateFocus(on textField: TextFieldView) {
+        textField.becomeFirstResponder()
+    }
+    
+    func simulateUnfocus(on textField: TextFieldView) {
+        textField.resignFirstResponder()
     }
 }

@@ -239,6 +239,23 @@
         }
       }
     },
+    "REGISTER_PURCHASE_PRODUCT_NAME_REQUIRED_ERROR_LABEL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Product name is required!"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome do produto é obrigatório!"
+          }
+        }
+      }
+    },
     "REGISTER_PURCHASE_TITLE" : {
       "extractionState" : "manual",
       "localizations" : {

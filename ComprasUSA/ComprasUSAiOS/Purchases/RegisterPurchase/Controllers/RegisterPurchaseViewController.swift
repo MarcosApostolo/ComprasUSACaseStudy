@@ -21,6 +21,14 @@ public class RegisterPurchaseViewController: UIViewController {
         return textField
     }()
     
+    private(set) public lazy var valueTextField: UITextField = {
+        let textField = UITextField()
+        
+        textField.placeholder = viewModel?.valueTFPlaceholder
+        
+        return textField
+    }()
+    
     private func bind() {
         title = viewModel?.title
     }

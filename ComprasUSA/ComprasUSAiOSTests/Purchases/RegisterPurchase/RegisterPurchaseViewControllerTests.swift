@@ -22,6 +22,13 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.productNameTextFieldValue, "")
     }
     
+    func test_init_hasValueTextFieldWithCorrectProperties() {
+        let sut = makeSUT()
+        
+        XCTAssertEqual(sut.valueTextFieldPlaceholder, localized("REGISTER_PURCHASE_VALUE_PLACEHOLDER_LABEL"))
+        XCTAssertEqual(sut.valueTextFieldValue, "")
+    }
+    
     // MARK: Helpers
     func makeSUT() -> RegisterPurchaseViewController {
         let sut = RegisterPurchaseUIComposer.composeCreatePurchase()
@@ -39,5 +46,13 @@ private extension RegisterPurchaseViewController {
     
     var productNameTextFieldValue: String? {
         productNameTextField.text
+    }
+    
+    var valueTextFieldPlaceholder: String? {
+        valueTextField.placeholder
+    }
+    
+    var valueTextFieldValue: String? {
+        valueTextField.text
     }
 }

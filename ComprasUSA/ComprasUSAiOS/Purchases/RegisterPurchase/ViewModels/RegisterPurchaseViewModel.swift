@@ -25,4 +25,13 @@ class RegisterPurchaseViewModel {
             comment: "Placeholder label for the product name text field"
         )
     }
+    
+    var valueTFPlaceholder: String {
+        NSLocalizedString(
+            "REGISTER_PURCHASE_VALUE_PLACEHOLDER_LABEL",
+            tableName: "Purchase",
+            bundle: Bundle(for: RegisterPurchaseViewController.self),
+            comment: "Placeholder label for the value text field"
+        )
+    }
 }

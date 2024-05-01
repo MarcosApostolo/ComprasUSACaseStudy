@@ -255,6 +255,23 @@
           }
         }
       }
+    },
+    "REGISTER_PURCHASE_VALUE_PLACEHOLDER_LABEL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Value"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valor"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

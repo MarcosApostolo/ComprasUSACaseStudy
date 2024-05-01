@@ -18,4 +18,10 @@ final class FormatToCurrencyTests: XCTestCase {
         
         XCTAssertTrue(value.isEmpty)
     }
+    
+    func test_returnsEmpty_whenReceivingNonNumericValuesOrSymbols() {
+        let value = formatToCurrency(from: "?!@#_+ˆ&%(")
+        
+        XCTAssertEqual(value, "")
+    }
 }

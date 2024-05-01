@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A6693ED2BE26335002B46C9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A6693EC2BE26335002B46C9 /* README.md */; };
 		4A80CF462BE10A65009D2139 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A80CF452BE10A65009D2139 /* AppDelegate.swift */; };
 		4A80CF482BE10A65009D2139 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A80CF472BE10A65009D2139 /* SceneDelegate.swift */; };
 		4A80CF4F2BE10A66009D2139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A80CF4E2BE10A66009D2139 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A6693EC2BE26335002B46C9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		4A80CF422BE10A65009D2139 /* ComprasUSACaseStudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSACaseStudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A80CF452BE10A65009D2139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A80CF472BE10A65009D2139 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		4A80CF392BE10A65009D2139 = {
 			isa = PBXGroup;
 			children = (
+				4A6693EC2BE26335002B46C9 /* README.md */,
 				4A80CF442BE10A65009D2139 /* ComprasUSACaseStudyApp */,
 				4A80CF432BE10A65009D2139 /* Products */,
 				4AE202932BE10D2100FA1A29 /* Frameworks */,
@@ -153,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A6693ED2BE26335002B46C9 /* README.md in Resources */,
 				4A80CF522BE10A66009D2139 /* LaunchScreen.storyboard in Resources */,
 				4A80CF4F2BE10A66009D2139 /* Assets.xcassets in Resources */,
 			);

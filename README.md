@@ -1,5 +1,7 @@
 ##  ComprasUSACaseStudy
 
+**This project is a work in progress**
+
 This is a project to practice iOS skills. It is a remastered version of the [ComprasUSA](https://github.com/MarcosApostolo/ComprasUSA) project that was the solution to a code challenge I had during my MBA graduation.
 
 It's purpose is to allow users to register purchases they made during their trip to the USA and check the total amount they spent considering taxes for each state and Brazilian taxes on financial transactions (iof) as well as the dollar value.

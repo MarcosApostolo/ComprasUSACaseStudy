@@ -33,7 +33,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         
         sut.simulateAppearance()
         
-        sut.simulateFocus(on: sut.productNameTextFieldController.productNameTextField)
+        sut.simulateFocus(on: sut.productNameTextField)
         
         XCTAssertTrue(sut.productNameTextFieldIsFocused)
         
@@ -45,6 +45,8 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         
         XCTAssertEqual(sut.productNameTextFieldErrorMessage, localized("REGISTER_PURCHASE_PRODUCT_NAME_REQUIRED_ERROR_LABEL"))
         XCTAssertTrue(sut.productNameTextFieldErrorMessageIsVisible)
+        
+        
     }
     
     func test_init_hasValueTextFieldWithCorrectProperties() {
@@ -71,12 +73,20 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
 }
 
 private extension RegisterPurchaseViewController {
+    var productNameTextField: UITextField {
+        productNameTextFieldController.productNameTextField
+    }
+    
+    var productNameErrorLabel: UILabel {
+        productNameTextFieldController.errorLabel
+    }
+    
     var productNameTextFieldPlaceholder: String? {
-        productNameTextFieldController.productNameTextField.placeholder
+        productNameTextField.placeholder
     }
     
     var productNameTextFieldValue: String? {
-        productNameTextFieldController.productNameTextField.text
+        productNameTextField.text
     }
     
     var valueTextFieldPlaceholder: String? {
@@ -88,22 +98,22 @@ private extension RegisterPurchaseViewController {
     }
     
     var productNameTextFieldIsFocused: Bool {
-        productNameTextFieldController.productNameTextField.isFirstResponder
+        productNameTextField.isFirstResponder
     }
     
     var productNameTextFieldErrorMessage: String? {
-        productNameTextFieldController.errorLabel.text
+        productNameErrorLabel.text
     }
     
     var productNameTextFieldErrorMessageIsVisible: Bool {
-        !productNameTextFieldController.errorLabel.isHidden
+        !productNameErrorLabel.isHidden
     }
     
-    func simulateFocus(on textField: TextFieldView) {
+    func simulateFocus(on textField: UITextField) {
         textField.becomeFirstResponder()
     }
     
-    func simulateUnfocus(on textField: TextFieldView) {
+    func simulateUnfocus(on textField: UITextField) {
         textField.resignFirstResponder()
     }
 }

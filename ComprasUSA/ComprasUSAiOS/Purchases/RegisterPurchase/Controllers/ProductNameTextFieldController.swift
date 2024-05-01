@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 public class ProductNameTextFieldController: NSObject, UITextFieldDelegate {
-    private(set) public lazy var productNameTextField: TextFieldView = {
-        let textField = TextFieldView()
+    private(set) public lazy var productNameTextField: UITextField = {
+        let textField = UITextField()
         
         textField.delegate = self
                 

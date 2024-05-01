@@ -14,8 +14,8 @@ public class RegisterPurchaseViewController: UIViewController {
     }
     
     private(set) public var productNameTextFieldController = ProductNameTextFieldController()
-    private(set) public lazy var valueTextField: TextFieldView = {
-        let textField = TextFieldView()
+    private(set) public lazy var valueTextField: UITextField = {
+        let textField = UITextField()
         
         textField.placeholder = viewModel?.valueTextFieldPlaceholder
         

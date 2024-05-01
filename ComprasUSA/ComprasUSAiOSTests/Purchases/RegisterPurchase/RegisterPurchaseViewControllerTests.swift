@@ -37,12 +37,12 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         
         XCTAssertTrue(sut.productNameTextFieldIsFocused)
         
-        sut.simulateUnfocus(on: sut.productNameTextFieldController.productNameTextField)
+        sut.simulateUnfocus(on: sut.productNameTextField)
 
         XCTAssertFalse(sut.productNameTextFieldIsFocused)
         
         XCTAssertEqual(sut.productNameTextFieldValue, "")
-        XCTAssertEqual(sut.productNameTextFieldErrorMessage, localized("REGISTER_PURCHASE_PRODUCT_NAME_REQUIRED_ERROR_LABEL"))
+        XCTAssertEqual(sut.productNameTextFieldErrorMessage, localized("REGISTER_PURCHASE_GENERIC_REQUIRED_ERROR_LABEL"))
         XCTAssertTrue(sut.productNameTextFieldErrorMessageIsVisible)
         
         sut.simulateFocus(on: sut.productNameTextField)
@@ -56,6 +56,31 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         
         XCTAssertEqual(sut.valueTextFieldPlaceholder, localized("REGISTER_PURCHASE_VALUE_PLACEHOLDER_LABEL"))
         XCTAssertEqual(sut.valueTextFieldValue, "")
+    }
+    
+    func test_valueTextField_whenEmptyAndTouched_displaysErrorMessage_andHidesAfterFocusedAgain() {
+        let sut = makeSUT()
+        
+        putInViewHierarchy(sut)
+        
+        sut.simulateAppearance()
+        
+        sut.simulateFocus(on: sut.valueTextField)
+        
+        XCTAssertTrue(sut.valueTextFieldIsFocused)
+        
+        sut.simulateUnfocus(on: sut.valueTextField)
+        
+        XCTAssertFalse(sut.valueTextFieldIsFocused)
+        
+        XCTAssertEqual(sut.valueTextFieldValue, "")
+        XCTAssertEqual(sut.valueTextFieldErrorMessage, localized("REGISTER_PURCHASE_GENERIC_REQUIRED_ERROR_LABEL"))
+        XCTAssertTrue(sut.valueTextFieldErrorMessageIsVisible)
+        
+        sut.simulateFocus(on: sut.valueTextField)
+        
+        XCTAssertTrue(sut.valueTextFieldIsFocused)
+        XCTAssertFalse(sut.valueTextFieldErrorMessageIsVisible)
     }
     
     // MARK: Helpers
@@ -81,6 +106,14 @@ private extension RegisterPurchaseViewController {
     
     var productNameErrorLabel: UILabel {
         productNameTextFieldController.errorLabel
+    }
+    
+    var valueTextField: UITextField {
+        valueTextFieldController.valueTextField
+    }
+    
+    var valueErrorLabel: UILabel {
+        valueTextFieldController.errorLabel
     }
     
     var productNameTextFieldPlaceholder: String? {
@@ -117,5 +150,17 @@ private extension RegisterPurchaseViewController {
     
     func simulateUnfocus(on textField: UITextField) {
         textField.resignFirstResponder()
+    }
+    
+    var valueTextFieldIsFocused: Bool {
+        valueTextField.isFirstResponder
+    }
+    
+    var valueTextFieldErrorMessage: String? {
+        valueErrorLabel.text
+    }
+    
+    var valueTextFieldErrorMessageIsVisible: Bool {
+        !valueErrorLabel.isHidden
     }
 }

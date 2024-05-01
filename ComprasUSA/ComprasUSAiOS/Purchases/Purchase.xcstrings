@@ -222,6 +222,23 @@
         }
       }
     },
+    "REGISTER_PURCHASE_GENERIC_REQUIRED_ERROR_LABEL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Field required!"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Campo obrigatório!"
+          }
+        }
+      }
+    },
     "REGISTER_PURCHASE_PRODUCT_NAME_PLACEHOLDER_LABEL" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -235,23 +252,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nome do Produto"
-          }
-        }
-      }
-    },
-    "REGISTER_PURCHASE_PRODUCT_NAME_REQUIRED_ERROR_LABEL" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Product name is required!"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome do produto é obrigatório!"
           }
         }
       }

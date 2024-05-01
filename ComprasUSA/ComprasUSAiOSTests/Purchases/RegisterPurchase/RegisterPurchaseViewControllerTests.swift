@@ -15,6 +15,13 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.title, localized("REGISTER_PURCHASE_TITLE"))
     }
     
+    func test_init_hasProductNameTextFieldWithCorrectProperties() {
+        let sut = makeSUT()
+        
+        XCTAssertEqual(sut.productNameTextFieldPlaceholder, localized("REGISTER_PURCHASE_PRODUCT_NAME_PLACEHOLDER_LABEL"))
+        XCTAssertEqual(sut.productNameTextFieldValue, "")
+    }
+    
     // MARK: Helpers
     func makeSUT() -> RegisterPurchaseViewController {
         let sut = RegisterPurchaseUIComposer.composeCreatePurchase()
@@ -22,5 +29,15 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         checkForMemoryLeaks(sut)
         
         return sut
+    }
+}
+
+private extension RegisterPurchaseViewController {
+    var productNameTextFieldPlaceholder: String? {
+        productNameTextField.placeholder
+    }
+    
+    var productNameTextFieldValue: String? {
+        productNameTextField.text
     }
 }

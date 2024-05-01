@@ -16,4 +16,13 @@ class RegisterPurchaseViewModel {
             comment: "Title for the Create Purchase page"
         )
     }
+    
+    var productNameTFPlaceholder: String {
+        NSLocalizedString(
+            "REGISTER_PURCHASE_PRODUCT_NAME_PLACEHOLDER_LABEL",
+            tableName: "Purchase",
+            bundle: Bundle(for: RegisterPurchaseViewController.self),
+            comment: "Placeholder label for the product name text field"
+        )
+    }
 }

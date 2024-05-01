@@ -222,6 +222,23 @@
         }
       }
     },
+    "REGISTER_PURCHASE_PRODUCT_NAME_PLACEHOLDER_LABEL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Product Name"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome do Produto"
+          }
+        }
+      }
+    },
     "REGISTER_PURCHASE_TITLE" : {
       "extractionState" : "manual",
       "localizations" : {

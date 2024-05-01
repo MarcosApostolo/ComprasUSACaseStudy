@@ -1,6 +1,6 @@
 ##  ComprasUSACaseStudy
 
-**This project is a work in progress**
+**This project in a work in progress**
 
 This is a project to practice iOS skills. It is a remastered version of the [ComprasUSA](https://github.com/MarcosApostolo/ComprasUSA) project that was the solution to a code challenge I had during my MBA graduation.
 

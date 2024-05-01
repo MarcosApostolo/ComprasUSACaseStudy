@@ -31,4 +31,8 @@ public class ProductNameTextFieldController: NSObject, UITextFieldDelegate {
             return
         }
     }
+    
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        errorLabel.isHidden = true
+    }
 }

@@ -26,7 +26,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.productNameTextFieldValue, "")
     }
     
-    func test_productNameTextField_whenEmptyAndTouched_displaysErrorMessage() {
+    func test_productNameTextField_whenEmptyAndTouched_displaysErrorMessage_andHidesAfterFocusedAgain() {
         let sut = makeSUT()
         
         putInViewHierarchy(sut)
@@ -42,11 +42,13 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.productNameTextFieldIsFocused)
         
         XCTAssertEqual(sut.productNameTextFieldValue, "")
-        
         XCTAssertEqual(sut.productNameTextFieldErrorMessage, localized("REGISTER_PURCHASE_PRODUCT_NAME_REQUIRED_ERROR_LABEL"))
         XCTAssertTrue(sut.productNameTextFieldErrorMessageIsVisible)
         
+        sut.simulateFocus(on: sut.productNameTextField)
         
+        XCTAssertTrue(sut.productNameTextFieldIsFocused)
+        XCTAssertFalse(sut.productNameTextFieldErrorMessageIsVisible)
     }
     
     func test_init_hasValueTextFieldWithCorrectProperties() {

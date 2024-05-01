@@ -13,6 +13,8 @@ public class ValueTextFieldController: NSObject, UITextFieldDelegate {
         let textField = UITextField()
         
         textField.delegate = self
+        
+        textField.keyboardType = .decimalPad
                 
         return textField
     }()

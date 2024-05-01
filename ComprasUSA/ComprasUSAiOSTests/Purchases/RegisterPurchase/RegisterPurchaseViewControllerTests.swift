@@ -83,6 +83,14 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.valueTextFieldErrorMessageIsVisible)
     }
     
+    func test_valueTextField_hasCorrectProperties() {
+        let sut = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        XCTAssertEqual(sut.valueTextFieldKeyboardType, .decimalPad)
+    }
+    
     // MARK: Helpers
     func makeSUT() -> RegisterPurchaseViewController {
         let sut = RegisterPurchaseUIComposer.composeCreatePurchase()
@@ -162,5 +170,9 @@ private extension RegisterPurchaseViewController {
     
     var valueTextFieldErrorMessageIsVisible: Bool {
         !valueErrorLabel.isHidden
+    }
+    
+    var valueTextFieldKeyboardType: UIKeyboardType {
+        valueTextField.keyboardType
     }
 }

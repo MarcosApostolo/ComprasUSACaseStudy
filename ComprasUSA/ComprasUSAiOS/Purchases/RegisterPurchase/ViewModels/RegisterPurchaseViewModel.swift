@@ -17,7 +17,7 @@ class RegisterPurchaseViewModel {
         )
     }
     
-    var productNameTFPlaceholder: String {
+    var productNameTextFieldPlaceholder: String {
         NSLocalizedString(
             "REGISTER_PURCHASE_PRODUCT_NAME_PLACEHOLDER_LABEL",
             tableName: "Purchase",
@@ -26,7 +26,7 @@ class RegisterPurchaseViewModel {
         )
     }
     
-    var valueTFPlaceholder: String {
+    var valueTextFieldPlaceholder: String {
         NSLocalizedString(
             "REGISTER_PURCHASE_VALUE_PLACEHOLDER_LABEL",
             tableName: "Purchase",

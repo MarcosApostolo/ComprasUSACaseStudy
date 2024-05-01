@@ -17,7 +17,7 @@ public class RegisterPurchaseViewController: UIViewController {
     private(set) public lazy var valueTextField: TextFieldView = {
         let textField = TextFieldView()
         
-        textField.placeholder = viewModel?.valueTFPlaceholder
+        textField.placeholder = viewModel?.valueTextFieldPlaceholder
         
         return textField
     }()
@@ -31,7 +31,7 @@ public class RegisterPurchaseViewController: UIViewController {
     private func bind() {
         title = viewModel?.title
         
-        productNameTextFieldController.productNameTextField.placeholder = viewModel?.productNameTFPlaceholder
+        productNameTextFieldController.productNameTextField.placeholder = viewModel?.productNameTextFieldPlaceholder
         productNameTextFieldController.errorLabel.text = viewModel?.productNameTFRequiredError
     }
 }

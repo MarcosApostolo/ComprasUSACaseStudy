@@ -26,7 +26,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.productNameTextFieldValue, "")
     }
     
-    func test_productNameTF_whenEmptyAndTouched_displaysErrorMessage() {
+    func test_productNameTextField_whenEmptyAndTouched_displaysErrorMessage() {
         let sut = makeSUT()
         
         putInViewHierarchy(sut)

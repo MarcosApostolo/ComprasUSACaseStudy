@@ -114,6 +114,14 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         assertThat(sut, hasValueTextFieldValue: "", whenValueTyped: "-")
     }
     
+    func test_paymentTypesPicker_hasAllPaymentMethods() {
+        let sut = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        XCTAssertEqual(sut.paymentTypesPickerController.paymentTypes.count, 2)
+    }
+    
     // MARK: Helpers
     func makeSUT() -> RegisterPurchaseViewController {
         let sut = RegisterPurchaseUIComposer.composeCreatePurchase()

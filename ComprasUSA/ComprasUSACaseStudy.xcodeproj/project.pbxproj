@@ -27,7 +27,7 @@
 		4A71469F2BDB24B300D202BE /* ComprasUSAiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7146972BDB24B300D202BE /* ComprasUSAiOS.framework */; };
 		4A7146AE2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146AD2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift */; };
 		4A7146AF2BDB2B7200D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A97C6C42BD43CD700780643 /* XCTestCase+MemoryLeakCheck.swift */; };
-		4A7146B22BDB2EC300D202BE /* PurchasesListViewController+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B12BDB2EC300D202BE /* PurchasesListViewController+Localized.swift */; };
+		4A7146B22BDB2EC300D202BE /* XCTestCase+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B12BDB2EC300D202BE /* XCTestCase+Localized.swift */; };
 		4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B42BDB2EFE00D202BE /* PurchasesListViewController.swift */; };
 		4A7146B72BDB2F8F00D202BE /* Purchase.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */; };
 		4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */; };
@@ -87,6 +87,10 @@
 		4ABB4E2C2BDDA695009C2428 /* LOAD_ERROR_DARK.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABB4E2A2BDDA695009C2428 /* LOAD_ERROR_DARK.png */; };
 		4ABB4E2D2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABB4E2B2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png */; };
 		4ABB4E2F2BDDA6C3009C2428 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E2E2BDDA6C3009C2428 /* ErrorView.swift */; };
+		4AC9ADCB2BE27AF30014142C /* RegisterPurchaseViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADCA2BE27AF30014142C /* RegisterPurchaseViewControllerTests.swift */; };
+		4AC9ADCE2BE27B390014142C /* RegisterPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADCD2BE27B390014142C /* RegisterPurchaseViewController.swift */; };
+		4AC9ADD22BE27E340014142C /* RegisterPurchaseUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD12BE27E340014142C /* RegisterPurchaseUIComposer.swift */; };
+		4AC9ADD52BE27F3E0014142C /* RegisterPurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC9ADD42BE27F3E0014142C /* RegisterPurchaseViewModel.swift */; };
 		4AF9E2DF2BD41FED00D4CC11 /* ComprasUSACaseStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */; };
 /* End PBXBuildFile section */
 
@@ -157,7 +161,7 @@
 		4A71469E2BDB24B300D202BE /* ComprasUSAiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSAiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7146AC2BDB259500D202BE /* ComprasUSAiOS.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ComprasUSAiOS.xctestplan; sourceTree = "<group>"; };
 		4A7146AD2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesListViewControllerIntegrationTests.swift; sourceTree = "<group>"; };
-		4A7146B12BDB2EC300D202BE /* PurchasesListViewController+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchasesListViewController+Localized.swift"; sourceTree = "<group>"; };
+		4A7146B12BDB2EC300D202BE /* XCTestCase+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Localized.swift"; sourceTree = "<group>"; };
 		4A7146B42BDB2EFE00D202BE /* PurchasesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesListViewController.swift; sourceTree = "<group>"; };
 		4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Purchase.xcstrings; sourceTree = "<group>"; };
 		4A7146B82BDB306600D202BE /* PurchasesLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesLocalizationTests.swift; sourceTree = "<group>"; };
@@ -216,6 +220,10 @@
 		4ABB4E2A2BDDA695009C2428 /* LOAD_ERROR_DARK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOAD_ERROR_DARK.png; sourceTree = "<group>"; };
 		4ABB4E2B2BDDA695009C2428 /* LOAD_ERROR_LIGHT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOAD_ERROR_LIGHT.png; sourceTree = "<group>"; };
 		4ABB4E2E2BDDA6C3009C2428 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		4AC9ADCA2BE27AF30014142C /* RegisterPurchaseViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseViewControllerTests.swift; sourceTree = "<group>"; };
+		4AC9ADCD2BE27B390014142C /* RegisterPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseViewController.swift; sourceTree = "<group>"; };
+		4AC9ADD12BE27E340014142C /* RegisterPurchaseUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseUIComposer.swift; sourceTree = "<group>"; };
+		4AC9ADD42BE27F3E0014142C /* RegisterPurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseViewModel.swift; sourceTree = "<group>"; };
 		4AF9E2D62BD41FEC00D4CC11 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF9E2DE2BD41FED00D4CC11 /* ComprasUSACaseStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -393,6 +401,7 @@
 		4A7146B32BDB2EF000D202BE /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
+				4AC9ADCC2BE27B260014142C /* RegisterPurchase */,
 				4A2FC8AA2BDEA21A00BF6693 /* PurcaseDetails */,
 				4A2FC8A92BDEA1F800BF6693 /* PurchasesList */,
 				4A7146B62BDB2F8F00D202BE /* Purchase.xcstrings */,
@@ -551,6 +560,7 @@
 		4ABB4E132BDD8CB8009C2428 /* Purchases */ = {
 			isa = PBXGroup;
 			children = (
+				4AC9ADCF2BE27D200014142C /* RegisterPurchase */,
 				4A2FC8A62BDE9F8500BF6693 /* PurchaseDetails */,
 				4A2FC8A52BDE9F7500BF6693 /* PurchasesList */,
 				4ABB4E142BDD8CCD009C2428 /* Helpers */,
@@ -561,7 +571,7 @@
 		4ABB4E142BDD8CCD009C2428 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				4A7146B12BDB2EC300D202BE /* PurchasesListViewController+Localized.swift */,
+				4A7146B12BDB2EC300D202BE /* XCTestCase+Localized.swift */,
 				4ABB4E152BDD8CE8009C2428 /* LoaderSpy.swift */,
 				4ABB4E172BDD8D12009C2428 /* PurchasesListViewController+Helpers.swift */,
 			);
@@ -592,6 +602,40 @@
 			children = (
 				4A7146BB2BDB31CF00D202BE /* PurchasesListViewModel.swift */,
 				4ABB4E082BDD7856009C2428 /* PurchaseCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4AC9ADCC2BE27B260014142C /* RegisterPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				4AC9ADD32BE27F310014142C /* ViewModels */,
+				4AC9ADD02BE27E220014142C /* Controllers */,
+				4AC9ADD12BE27E340014142C /* RegisterPurchaseUIComposer.swift */,
+			);
+			path = RegisterPurchase;
+			sourceTree = "<group>";
+		};
+		4AC9ADCF2BE27D200014142C /* RegisterPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				4AC9ADCA2BE27AF30014142C /* RegisterPurchaseViewControllerTests.swift */,
+			);
+			path = RegisterPurchase;
+			sourceTree = "<group>";
+		};
+		4AC9ADD02BE27E220014142C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4AC9ADCD2BE27B390014142C /* RegisterPurchaseViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4AC9ADD32BE27F310014142C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4AC9ADD42BE27F3E0014142C /* RegisterPurchaseViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -907,10 +951,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AC9ADD22BE27E340014142C /* RegisterPurchaseUIComposer.swift in Sources */,
 				4A2FC8AE2BDEA25100BF6693 /* PurchaseDetailsViewController.swift in Sources */,
 				4A97BD522BDEDBAF00F2CC36 /* Observer.swift in Sources */,
 				4ABB4E1F2BDD9346009C2428 /* EmptyMessageView.swift in Sources */,
 				4ABB4E0B2BDD7F58009C2428 /* PurchaseCell.swift in Sources */,
+				4AC9ADCE2BE27B390014142C /* RegisterPurchaseViewController.swift in Sources */,
 				4ABA8D672BDEC54E0088E344 /* UITableView+DequeueCell.swift in Sources */,
 				4ABB4E212BDD93BA009C2428 /* ViewCode.swift in Sources */,
 				4A7146B52BDB2EFE00D202BE /* PurchasesListViewController.swift in Sources */,
@@ -920,6 +966,7 @@
 				4A7146BC2BDB31CF00D202BE /* PurchasesListViewModel.swift in Sources */,
 				4ABA8D612BDEBE520088E344 /* PurchaseDetailsUIComposer.swift in Sources */,
 				4ABA8D642BDEC46B0088E344 /* PurchaseInfoCell.swift in Sources */,
+				4AC9ADD52BE27F3E0014142C /* RegisterPurchaseViewModel.swift in Sources */,
 				4A7146BE2BDB330400D202BE /* PurchasesListUIComposer.swift in Sources */,
 				4ABA8D5D2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift in Sources */,
 				4ABB4DFF2BDD1B74009C2428 /* CombineHelpers.swift in Sources */,
@@ -933,11 +980,12 @@
 				4ABB4E162BDD8CE8009C2428 /* LoaderSpy.swift in Sources */,
 				4ABB4E0E2BDD8AC8009C2428 /* PurchaseListSnapshotTests.swift in Sources */,
 				4A97BD542BDEDCD500F2CC36 /* PurchaseDetailsIntegrationTests.swift in Sources */,
-				4A7146B22BDB2EC300D202BE /* PurchasesListViewController+Localized.swift in Sources */,
+				4A7146B22BDB2EC300D202BE /* XCTestCase+Localized.swift in Sources */,
 				4ABB4E002BDD3267009C2428 /* TestHelpers.swift in Sources */,
 				4A7146AF2BDB2B7200D202BE /* XCTestCase+MemoryLeakCheck.swift in Sources */,
 				4ABA8D5F2BDEBD6D0088E344 /* UIImage+TestHelpers.swift in Sources */,
 				4A2FC8B12BDEA2AD00BF6693 /* PurchaseDetailsSnapshotTests.swift in Sources */,
+				4AC9ADCB2BE27AF30014142C /* RegisterPurchaseViewControllerTests.swift in Sources */,
 				4ABB4E122BDD8B5F009C2428 /* UIViewController+Snapshot.swift in Sources */,
 				4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */,
 				4A7146AE2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift in Sources */,

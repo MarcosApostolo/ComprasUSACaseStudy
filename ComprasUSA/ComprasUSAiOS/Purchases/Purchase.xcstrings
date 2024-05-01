@@ -221,6 +221,23 @@
           }
         }
       }
+    },
+    "REGISTER_PURCHASE_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register Purchase"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cadastrar Compra"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

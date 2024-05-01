@@ -62,6 +62,7 @@
 		4AA464482BD87F070036B3DD /* PurchaseFeatureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */; };
 		4AB230FE2BE2BEF60048CEA8 /* ProductNameTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB230FD2BE2BEF60048CEA8 /* ProductNameTextFieldController.swift */; };
 		4AB231032BE2D4DA0048CEA8 /* ValueTextFieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB231022BE2D4DA0048CEA8 /* ValueTextFieldController.swift */; };
+		4AB2310B2BE2EA010048CEA8 /* FormatToCurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB2310A2BE2EA010048CEA8 /* FormatToCurrencyTests.swift */; };
 		4ABA8D5D2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA8D5C2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift */; };
 		4ABA8D5F2BDEBD6D0088E344 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA8D5E2BDEBD6D0088E344 /* UIImage+TestHelpers.swift */; };
 		4ABA8D612BDEBE520088E344 /* PurchaseDetailsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABA8D602BDEBE520088E344 /* PurchaseDetailsUIComposer.swift */; };
@@ -200,6 +201,7 @@
 		4AA464472BD87F070036B3DD /* PurchaseFeatureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFeatureUseCase.swift; sourceTree = "<group>"; };
 		4AB230FD2BE2BEF60048CEA8 /* ProductNameTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNameTextFieldController.swift; sourceTree = "<group>"; };
 		4AB231022BE2D4DA0048CEA8 /* ValueTextFieldController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTextFieldController.swift; sourceTree = "<group>"; };
+		4AB2310A2BE2EA010048CEA8 /* FormatToCurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatToCurrencyTests.swift; sourceTree = "<group>"; };
 		4ABA8D5C2BDEB82E0088E344 /* PurchaseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsViewModel.swift; sourceTree = "<group>"; };
 		4ABA8D5E2BDEBD6D0088E344 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		4ABA8D602BDEBE520088E344 /* PurchaseDetailsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsUIComposer.swift; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				4AC9ADCA2BE27AF30014142C /* RegisterPurchaseViewControllerTests.swift */,
+				4AB2310A2BE2EA010048CEA8 /* FormatToCurrencyTests.swift */,
 			);
 			path = RegisterPurchase;
 			sourceTree = "<group>";
@@ -971,6 +974,7 @@
 				4AC9ADCB2BE27AF30014142C /* RegisterPurchaseViewControllerTests.swift in Sources */,
 				4ABB4E122BDD8B5F009C2428 /* UIViewController+Snapshot.swift in Sources */,
 				4A7146B92BDB306600D202BE /* PurchasesLocalizationTests.swift in Sources */,
+				4AB2310B2BE2EA010048CEA8 /* FormatToCurrencyTests.swift in Sources */,
 				4A7146AE2BDB2A8100D202BE /* PurchasesListViewControllerIntegrationTests.swift in Sources */,
 				4ABB4E102BDD8B46009C2428 /* XCTestCase+Snapshot.swift in Sources */,
 				4ABB4E182BDD8D12009C2428 /* PurchasesListViewController+Helpers.swift in Sources */,

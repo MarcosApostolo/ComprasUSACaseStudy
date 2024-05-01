@@ -104,6 +104,16 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         assertThat(sut, hasValueTextFieldValue: "$0.01", whenValueTyped: "1")
     }
     
+    func test_valueTextField_whenReceivingInvalidInput_doesNotUpdateValue() {
+        let sut = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        assertThat(sut, hasValueTextFieldValue: "", whenValueTyped: "a")
+        assertThat(sut, hasValueTextFieldValue: "", whenValueTyped: "?")
+        assertThat(sut, hasValueTextFieldValue: "", whenValueTyped: "-")
+    }
+    
     // MARK: Helpers
     func makeSUT() -> RegisterPurchaseViewController {
         let sut = RegisterPurchaseUIComposer.composeCreatePurchase()
@@ -117,7 +127,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         sut.valueTextField.text = typed
         sut.valueTextField.simulateType()
         
-        XCTAssertEqual(sut.valueTextFieldValue, value)
+        XCTAssertEqual(sut.valueTextFieldValue, value, file: file, line: line)
     }
     
     func putInViewHierarchy(_ vc: UIViewController) {

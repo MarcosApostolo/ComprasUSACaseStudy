@@ -20,7 +20,7 @@ public class RegisterPurchaseViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(productNameTextFieldController.productNameTextField)
-        view.addSubview(valueTextFieldController.valueTextField)
+        view.addSubview(valueTextFieldController.valueTextField)        
     }
 
     private func bind() {

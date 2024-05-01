@@ -23,3 +23,9 @@ extension UIButton {
         simulate(event: .touchUpInside)
     }
 }
+
+extension UITextField {
+    func simulateType() {
+        simulate(event: .editingChanged)
+    }
+}

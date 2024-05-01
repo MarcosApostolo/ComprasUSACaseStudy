@@ -7,34 +7,7 @@
 
 import Foundation
 import XCTest
-
-func formatToCurrency(from text: String, locale: Locale = .init(identifier: "en-US")) -> String {
-    let formatter = NumberFormatter()
-    formatter.locale = locale
-    formatter.numberStyle = .currencyAccounting
-    formatter.maximumFractionDigits = 2
-    formatter.minimumFractionDigits = 2
-    
-    guard let regex = try? NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive) else {
-        return ""
-    }
-    let cleanText = regex.stringByReplacingMatches(
-        in: text,
-        options: NSRegularExpression.MatchingOptions(rawValue: 0),
-        range: NSMakeRange(0, text.count),
-        withTemplate: ""
-    )
-    
-    let double = (cleanText as NSString).doubleValue
-    
-    let number = NSNumber(value: (double / 100))
-    
-    guard number != 0, let formattedNumber = formatter.string(from: number) else {
-        return ""
-    }
-    
-    return formattedNumber
-}
+@testable import ComprasUSAiOS
 
 final class FormatToCurrencyTests: XCTestCase {
     func test_returnsEmpty_whenEmptyText() {

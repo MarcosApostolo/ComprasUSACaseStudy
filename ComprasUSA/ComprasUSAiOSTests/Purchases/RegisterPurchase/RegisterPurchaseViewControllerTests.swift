@@ -91,6 +91,19 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.valueTextFieldKeyboardType, .decimalPad)
     }
     
+    func test_valueTextField_applyCurrencyFormattingToValue() {
+        let sut = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        assertThat(sut, hasValueTextFieldValue: "$0.01", whenValueTyped: "1")
+        assertThat(sut, hasValueTextFieldValue: "$0.12", whenValueTyped: "12")
+        assertThat(sut, hasValueTextFieldValue: "$1.23", whenValueTyped: "123")
+        assertThat(sut, hasValueTextFieldValue: "$12.34", whenValueTyped: "1234")
+        assertThat(sut, hasValueTextFieldValue: "$0.12", whenValueTyped: "12")
+        assertThat(sut, hasValueTextFieldValue: "$0.01", whenValueTyped: "1")
+    }
+    
     // MARK: Helpers
     func makeSUT() -> RegisterPurchaseViewController {
         let sut = RegisterPurchaseUIComposer.composeCreatePurchase()
@@ -98,6 +111,13 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         checkForMemoryLeaks(sut)
         
         return sut
+    }
+    
+    func assertThat(_ sut: RegisterPurchaseViewController, hasValueTextFieldValue value: String, whenValueTyped typed: String, file: StaticString = #file, line: UInt = #line) {
+        sut.valueTextField.text = typed
+        sut.valueTextField.simulateType()
+        
+        XCTAssertEqual(sut.valueTextFieldValue, value)
     }
     
     func putInViewHierarchy(_ vc: UIViewController) {

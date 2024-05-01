@@ -15,6 +15,7 @@ public class ValueTextFieldController: NSObject, UITextFieldDelegate {
         textField.delegate = self
         
         textField.keyboardType = .decimalPad
+        textField.addTarget(self, action: #selector(didChangeTextFieldValue), for: .editingChanged)
                 
         return textField
     }()
@@ -37,4 +38,37 @@ public class ValueTextFieldController: NSObject, UITextFieldDelegate {
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         errorLabel.isHidden = true
     }
+    
+    @objc func didChangeTextFieldValue() {
+        valueTextField.text = formatToCurrency(from: valueTextField.text)
+    }
+}
+
+func formatToCurrency(from text: String?, locale: Locale = .init(identifier: "en-US")) -> String {
+    guard let text = text, let regex = try? NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive) else {
+        return ""
+    }
+    
+    let formatter = NumberFormatter()
+    formatter.locale = locale
+    formatter.numberStyle = .currencyAccounting
+    formatter.maximumFractionDigits = 2
+    formatter.minimumFractionDigits = 2
+    
+    let cleanText = regex.stringByReplacingMatches(
+        in: text,
+        options: NSRegularExpression.MatchingOptions(rawValue: 0),
+        range: NSMakeRange(0, text.count),
+        withTemplate: ""
+    )
+    
+    let double = (cleanText as NSString).doubleValue
+    
+    let number = NSNumber(value: (double / 100))
+    
+    guard number != 0, let formattedNumber = formatter.string(from: number) else {
+        return ""
+    }
+    
+    return formattedNumber
 }

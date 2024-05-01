@@ -62,6 +62,7 @@ public class PurchaseDetailsViewController: UIViewController {
     
     func bind() {
         if let viewModel = viewModel {
+            title = viewModel.title
             purchaseImageView.image = viewModel.image
             purchaseNameLabel.text = viewModel.productNameLabel
             footerView.stateInfoErrorLabel.isHidden = viewModel.hasStateInfo            

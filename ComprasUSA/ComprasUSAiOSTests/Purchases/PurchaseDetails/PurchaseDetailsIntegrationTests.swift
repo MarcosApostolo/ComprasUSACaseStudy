@@ -10,6 +10,16 @@ import ComprasUSACaseStudy
 import ComprasUSAiOS
 
 final class PurchaseDetailsIntegrationTests: XCTestCase {
+    func test_init_displayProductNameOnTitle() {
+        let purchase = makePurchase(state: nil)
+        
+        let sut = makeSUT(with: purchase)
+        
+        sut.simulateAppearance()
+        
+        XCTAssertEqual(sut.title, purchase.name)
+    }
+    
     func test_stateInfo_displayErrorMessageWhenStateInfoIsMissing() {
         let purchase = makePurchase(state: nil)
         

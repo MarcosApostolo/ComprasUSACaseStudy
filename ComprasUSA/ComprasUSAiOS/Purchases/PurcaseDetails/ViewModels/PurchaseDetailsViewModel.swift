@@ -42,6 +42,10 @@ class PurchaseDetailsViewModel<Image> {
     public var hasStateInfo: Bool {
         return model.state != nil
     }
+    
+    public var title: String {
+        model.name
+    }
         
     private var valueInUSDLabel: String {
         return NSLocalizedString("PURCHASE_INFO_VALUE_IN_USD",

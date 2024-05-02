@@ -16,8 +16,8 @@ public class RegisterPurchaseViewController: UIViewController {
     
     private(set) public var productNameTextFieldController = ProductNameTextFieldController()
     private(set) public var valueTextFieldController = ValueTextFieldController()
-    private(set) public var paymentTypesPickerController = PaymentTypePickerController(paymentTypes: PaymentType.allCases)
-        
+    private(set) public var paymentTypesPickerController = PickerController<PaymentType>(options: PaymentType.allCases)
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         

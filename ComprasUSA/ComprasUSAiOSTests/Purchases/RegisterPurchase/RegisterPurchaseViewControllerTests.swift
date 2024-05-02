@@ -132,7 +132,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         
         sut.selectPaymentType(cardPaymentTypeRowNumber)
         
-        XCTAssertEqual(sut.paymentTypesPickerController.selectedType, .card)
+        XCTAssertEqual(sut.pickerSelectedOption, .card)
     }
     
     func test_paymentTypesPicker_whenTappingTypeLabel_opensPicker() {
@@ -250,10 +250,14 @@ private extension RegisterPurchaseViewController {
     }
     
     var paymentTypePickerNumberOfRows: Int {
-        paymentTypesPickerController.pickerView.numberOfRows(inComponent: pickerComponentIndex)
+        paymentTypesPickerController.pickerView.numberOfRows(inComponent: paymentTypePickerComponentIndex)
     }
     
-    var pickerComponentIndex: Int {
+    var pickerSelectedOption: PaymentType? {
+        paymentTypesPickerController.selectedOption
+    }
+    
+    var paymentTypePickerComponentIndex: Int {
         0
     }
     

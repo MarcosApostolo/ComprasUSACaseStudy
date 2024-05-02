@@ -1,18 +1,18 @@
 //
-//  PaymentMethodPickerController.swift
+//  PickerController.swift
 //  ComprasUSAiOS
 //
-//  Created by Marcos Amaral on 01/05/24.
+//  Created by Marcos Amaral on 02/05/24.
 //
 
 import Foundation
 import UIKit
 import ComprasUSACaseStudy
 
-public final class PaymentTypePickerController: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
-    public let paymentTypes: [PaymentType]
+public final class PickerController<Option>: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
+    public let options: [Option]
     
-    public var selectedType: PaymentType?
+    public var selectedOption: Option?
     
     private(set) public lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
@@ -48,8 +48,8 @@ public final class PaymentTypePickerController: NSObject, UIPickerViewDataSource
         return button
     }()
     
-    public init(paymentTypes: [PaymentType]) {
-        self.paymentTypes = paymentTypes
+    public init(options: [Option]) {
+        self.options = options
         
         super.init()
         
@@ -66,11 +66,11 @@ public final class PaymentTypePickerController: NSObject, UIPickerViewDataSource
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        paymentTypes.count
+        options.count
     }
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedType = paymentTypes[row]
+        selectedOption = options[row]
     }
     
     @objc private func didTapTypeButton() {

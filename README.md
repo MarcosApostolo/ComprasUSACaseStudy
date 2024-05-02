@@ -22,3 +22,17 @@ Plans for the future:
 - Adopt SwiftUI to replace gradually UIKit implementations
 - Experiement with other tools such as RxSwift, Realm, etc.
 
+### Project Structure
+
+#### ComprasUsaCaseStudy
+
+- Domain module containing UseCases and CoreData implementation.
+
+#### ComprasUSAiOS
+
+- iOS specific module containing all ViewControllers, Views and Presentation classes (ViewModels).
+
+#### ComprasUSACaseStudyApp
+
+- iOS App that serves as Composition Root to compose all modules 
+

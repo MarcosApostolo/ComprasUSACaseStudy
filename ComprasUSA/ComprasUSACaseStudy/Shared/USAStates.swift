@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum USAStates: String {
+public enum USAStates: String, CaseIterable {
     case alaska
     case alabama
     case arkansas

@@ -153,6 +153,14 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.pickerViewIsOpen)
     }
     
+    func test_statesPicker_hasAllStates() {
+        let sut = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        XCTAssertEqual(sut.statesPickerNumberOfRows, 52)
+    }
+    
     // MARK: Helpers
     func makeSUT() -> RegisterPurchaseViewController {
         let sut = RegisterPurchaseUIComposer.composeCreatePurchase()
@@ -257,7 +265,15 @@ private extension RegisterPurchaseViewController {
         paymentTypesPickerController.selectedOption
     }
     
+    var statesPickerNumberOfRows: Int {
+        statesPickerController.pickerView.numberOfRows(inComponent: statesPickerComponentIndex)
+    }
+    
     var paymentTypePickerComponentIndex: Int {
+        0
+    }
+    
+    var statesPickerComponentIndex: Int {
         0
     }
     

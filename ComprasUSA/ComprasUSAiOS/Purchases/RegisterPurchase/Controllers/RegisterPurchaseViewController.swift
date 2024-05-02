@@ -22,7 +22,10 @@ public class RegisterPurchaseViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(productNameTextFieldController.productNameTextField)
-        view.addSubview(valueTextFieldController.valueTextField)        
+        view.addSubview(valueTextFieldController.valueTextField)
+        view.addSubview(paymentTypesPickerController.typeButton)
+        view.addSubview(paymentTypesPickerController.pickerView)
+        view.addSubview(paymentTypesPickerController.textField)
     }
 
     private func bind() {

@@ -23,8 +23,42 @@ public final class PaymentTypePickerController: NSObject, UIPickerViewDataSource
         return picker
     }()
     
+    private(set) public lazy var textField = UITextView(frame: .zero)
+    
+    private(set) public lazy var doneToolbar: UIToolbar = {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDoneButton))
+        
+        doneButton.isEnabled = false
+
+        let items = [flexSpace, doneButton]
+        toolbar.items = items
+        toolbar.sizeToFit()
+
+        return toolbar
+    }()
+    
+    private(set) public lazy var typeButton: UIButton = {
+        let button = UIButton()
+        
+        button.addTarget(self, action: #selector(didTapTypeButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
     public init(paymentTypes: [PaymentType]) {
         self.paymentTypes = paymentTypes
+        
+        super.init()
+        
+        setup()
+    }
+    
+    func setup() {
+        textField.inputView = pickerView
+        textField.inputAccessoryView = doneToolbar
     }
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -37,5 +71,13 @@ public final class PaymentTypePickerController: NSObject, UIPickerViewDataSource
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedType = paymentTypes[row]
+    }
+    
+    @objc private func didTapTypeButton() {
+        textField.becomeFirstResponder()
+    }
+    
+    @objc public func didTapDoneButton() {
+        textField.resignFirstResponder()
     }
 }

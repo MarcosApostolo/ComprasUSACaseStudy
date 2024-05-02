@@ -135,6 +135,24 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.paymentTypesPickerController.selectedType, .card)
     }
     
+    func test_paymentTypesPicker_whenTappingTypeLabel_opensPicker() {
+        let sut = makeSUT()
+        
+        sut.simulateAppearance()
+        
+        putInViewHierarchy(sut)
+        
+        XCTAssertFalse(sut.pickerViewIsOpen)
+        
+        sut.paymentTypeButton.simulateTap()
+        
+        XCTAssertTrue(sut.pickerViewIsOpen)
+        
+        sut.tapPaymentDoneButton()
+        
+        XCTAssertFalse(sut.pickerViewIsOpen)
+    }
+    
     // MARK: Helpers
     func makeSUT() -> RegisterPurchaseViewController {
         let sut = RegisterPurchaseUIComposer.composeCreatePurchase()
@@ -237,5 +255,17 @@ private extension RegisterPurchaseViewController {
     
     var pickerComponentIndex: Int {
         0
+    }
+    
+    var paymentTypeButton: UIButton {
+        paymentTypesPickerController.typeButton
+    }
+    
+    var pickerViewIsOpen: Bool {
+        paymentTypesPickerController.textField.isFirstResponder
+    }
+    
+    func tapPaymentDoneButton() {
+        paymentTypesPickerController.didTapDoneButton()
     }
 }

@@ -18,6 +18,16 @@
 		4AE202992BE10D2100FA1A29 /* ComprasUSAiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE202952BE10D2100FA1A29 /* ComprasUSAiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4A7D3A762BE58BC10082B284 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A80CF3A2BE10A65009D2139 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A80CF412BE10A65009D2139;
+			remoteInfo = ComprasUSACaseStudyApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		4AE2029A2BE10D2100FA1A29 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -35,6 +45,9 @@
 
 /* Begin PBXFileReference section */
 		4A6693EC2BE26335002B46C9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4A7D3A722BE58BC10082B284 /* ComprasUSACaseStudyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7D3A7B2BE58BD80082B284 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7D3A7C2BE58BD80082B284 /* ComprasUSAiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ComprasUSAiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A80CF422BE10A65009D2139 /* ComprasUSACaseStudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSACaseStudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A80CF452BE10A65009D2139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A80CF472BE10A65009D2139 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +59,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4A7D3A6F2BE58BC10082B284 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4A80CF3F2BE10A65009D2139 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,11 +78,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A7D3A732BE58BC10082B284 /* ComprasUSACaseStudyAppTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ComprasUSACaseStudyAppTests;
+			sourceTree = "<group>";
+		};
 		4A80CF392BE10A65009D2139 = {
 			isa = PBXGroup;
 			children = (
 				4A6693EC2BE26335002B46C9 /* README.md */,
 				4A80CF442BE10A65009D2139 /* ComprasUSACaseStudyApp */,
+				4A7D3A732BE58BC10082B284 /* ComprasUSACaseStudyAppTests */,
 				4A80CF432BE10A65009D2139 /* Products */,
 				4AE202932BE10D2100FA1A29 /* Frameworks */,
 			);
@@ -72,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				4A80CF422BE10A65009D2139 /* ComprasUSACaseStudyApp.app */,
+				4A7D3A722BE58BC10082B284 /* ComprasUSACaseStudyAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +120,8 @@
 		4AE202932BE10D2100FA1A29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A7D3A7B2BE58BD80082B284 /* ComprasUSACaseStudy.framework */,
+				4A7D3A7C2BE58BD80082B284 /* ComprasUSAiOS.framework */,
 				4AE202942BE10D2100FA1A29 /* ComprasUSACaseStudy.framework */,
 				4AE202952BE10D2100FA1A29 /* ComprasUSAiOS.framework */,
 			);
@@ -100,6 +131,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4A7D3A712BE58BC10082B284 /* ComprasUSACaseStudyAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A7D3A7A2BE58BC10082B284 /* Build configuration list for PBXNativeTarget "ComprasUSACaseStudyAppTests" */;
+			buildPhases = (
+				4A7D3A6E2BE58BC10082B284 /* Sources */,
+				4A7D3A6F2BE58BC10082B284 /* Frameworks */,
+				4A7D3A702BE58BC10082B284 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A7D3A772BE58BC10082B284 /* PBXTargetDependency */,
+			);
+			name = ComprasUSACaseStudyAppTests;
+			productName = ComprasUSACaseStudyAppTests;
+			productReference = 4A7D3A722BE58BC10082B284 /* ComprasUSACaseStudyAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4A80CF412BE10A65009D2139 /* ComprasUSACaseStudyApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A80CF562BE10A66009D2139 /* Build configuration list for PBXNativeTarget "ComprasUSACaseStudyApp" */;
@@ -128,6 +177,10 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					4A7D3A712BE58BC10082B284 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 4A80CF412BE10A65009D2139;
+					};
 					4A80CF412BE10A65009D2139 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -147,11 +200,19 @@
 			projectRoot = "";
 			targets = (
 				4A80CF412BE10A65009D2139 /* ComprasUSACaseStudyApp */,
+				4A7D3A712BE58BC10082B284 /* ComprasUSACaseStudyAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4A7D3A702BE58BC10082B284 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4A80CF402BE10A65009D2139 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -165,6 +226,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4A7D3A6E2BE58BC10082B284 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4A80CF3E2BE10A65009D2139 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,6 +243,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4A7D3A772BE58BC10082B284 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A80CF412BE10A65009D2139 /* ComprasUSACaseStudyApp */;
+			targetProxy = 4A7D3A762BE58BC10082B284 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4A80CF502BE10A66009D2139 /* LaunchScreen.storyboard */ = {
@@ -188,6 +264,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4A7D3A782BE58BC10082B284 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosapostolo.ComprasUSACaseStudyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComprasUSACaseStudyApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ComprasUSACaseStudyApp";
+			};
+			name = Debug;
+		};
+		4A7D3A792BE58BC10082B284 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosapostolo.ComprasUSACaseStudyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComprasUSACaseStudyApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ComprasUSACaseStudyApp";
+			};
+			name = Release;
+		};
 		4A80CF542BE10A66009D2139 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -368,6 +478,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4A7D3A7A2BE58BC10082B284 /* Build configuration list for PBXNativeTarget "ComprasUSACaseStudyAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A7D3A782BE58BC10082B284 /* Debug */,
+				4A7D3A792BE58BC10082B284 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4A80CF3D2BE10A65009D2139 /* Build configuration list for PBXProject "ComprasUSACaseStudyApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

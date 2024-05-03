@@ -8,7 +8,7 @@
 import Foundation
 import ComprasUSACaseStudy
 
-class LoaderSpy: PurchaseLoader {
+class PurchaseLoaderSpy: PurchaseLoader {
     var loadMessages = [(LoadResult) -> Void]()
     
     func load(completion: @escaping (LoadResult) -> Void) {

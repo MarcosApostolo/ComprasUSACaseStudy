@@ -6,14 +6,18 @@
 //
 
 import Foundation
+import Combine
+import ComprasUSACaseStudy
 
 public final class RegisterPurchaseUIComposer {
     private init() {}
     
-    public static func composeCreatePurchase() -> RegisterPurchaseViewController {
+    public static func composeCreatePurchase(
+        loader: @escaping () -> StateLoader.Publisher
+    ) -> RegisterPurchaseViewController {
         let vc = RegisterPurchaseViewController()
                 
-        let viewModel = RegisterPurchaseViewModel()
+        let viewModel = RegisterPurchaseViewModel(loader: loader)
         
         vc.viewModel = viewModel
         

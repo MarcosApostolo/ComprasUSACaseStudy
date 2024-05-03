@@ -6,8 +6,16 @@
 //
 
 import Foundation
+import Combine
+import ComprasUSACaseStudy
 
 class RegisterPurchaseViewModel {
+    private let loader: () -> StateLoader.Publisher
+    
+    init(loader: @escaping () -> StateLoader.Publisher) {
+        self.loader = loader
+    }
+    
     var title: String {
         NSLocalizedString(
             "REGISTER_PURCHASE_TITLE",
@@ -42,5 +50,13 @@ class RegisterPurchaseViewModel {
             bundle: Bundle(for: RegisterPurchaseViewController.self),
             comment: "Placeholder label for the value text field"
         )
+    }
+    
+    func loadStates() {
+        loader()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { _ in }
+            )
     }
 }

@@ -14,6 +14,8 @@ public final class PickerController<Option>: NSObject, UIPickerViewDataSource, U
     
     public var selectedOption: Option?
     
+    var onOptionSelect: ((Option) -> Void)?
+        
     private(set) public lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         
@@ -71,6 +73,8 @@ public final class PickerController<Option>: NSObject, UIPickerViewDataSource, U
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedOption = options[row]
+        
+        onOptionSelect?(options[row])
     }
     
     @objc private func didTapTypeButton() {

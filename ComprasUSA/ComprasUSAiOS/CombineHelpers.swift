@@ -19,6 +19,16 @@ public extension PurchaseLoader {
     }
 }
 
+public extension StateLoader {
+    typealias Publisher = AnyPublisher<[State], Error>
+    
+    func loadStatesPublisher() -> Publisher {
+        Deferred {
+            Future(self.load)
+        }.eraseToAnyPublisher()
+    }
+}
+
 extension Publisher {
     func dispatchOnMainQueue() -> AnyPublisher<Output, Failure> {
         receive(on: DispatchQueue.immediateWhenOnMainQueueScheduler).eraseToAnyPublisher()

@@ -11,7 +11,7 @@ import ComprasUSACaseStudy
 
 final class RegisterPurchaseViewControllerTests: XCTestCase {
     func test_init_display() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
         
@@ -19,7 +19,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_init_hasProductNameTextFieldWithCorrectProperties() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
         
@@ -28,7 +28,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_productNameTextField_whenEmptyAndTouched_displaysErrorMessage_andHidesAfterFocusedAgain() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         putInViewHierarchy(sut)
         
@@ -53,14 +53,14 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_init_hasValueTextFieldWithCorrectProperties() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         XCTAssertEqual(sut.valueTextFieldPlaceholder, localized("REGISTER_PURCHASE_VALUE_PLACEHOLDER_LABEL"))
         XCTAssertEqual(sut.valueTextFieldValue, "")
     }
     
     func test_valueTextField_whenEmptyAndTouched_displaysErrorMessage_andHidesAfterFocusedAgain() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         putInViewHierarchy(sut)
         
@@ -85,7 +85,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_valueTextField_hasCorrectProperties() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
         
@@ -93,7 +93,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_valueTextField_applyCurrencyFormattingToValue() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
         
@@ -106,7 +106,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_valueTextField_whenReceivingInvalidInput_doesNotUpdateValue() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
         
@@ -116,7 +116,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_paymentTypesPicker_hasAllPaymentMethods() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
         
@@ -124,7 +124,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_picker_whenPickingOption_updatesPickerLocalState() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         let cardPaymentTypeRowNumber = 0
         
@@ -136,7 +136,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_picker_whenTappingLabel_opensPicker() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
         
@@ -154,20 +154,40 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
     }
     
     func test_statesPicker_hasAllStates() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
         
         XCTAssertEqual(sut.statesPickerNumberOfRows, 52)
     }
     
+    func test_stateTaxValueTextField_whenSelectingState_loadsStates() {
+        let (sut, loader) = makeSUT()
+        
+        let stateRowNumber = 0
+        
+        XCTAssertEqual(loader.loadMessages.count, 0)
+        
+        XCTAssertNil(sut.selectedState)
+        
+        sut.simulateAppearance()
+        
+        sut.selectState(stateRowNumber)
+        
+        XCTAssertEqual(sut.selectedState, .alaska)
+        
+        XCTAssertEqual(loader.loadMessages.count, 1)
+    }
+    
     // MARK: Helpers
-    func makeSUT() -> RegisterPurchaseViewController {
-        let sut = RegisterPurchaseUIComposer.composeCreatePurchase()
+    func makeSUT() -> (sut: RegisterPurchaseViewController, loader: StateLoaderSpy) {
+        let loader = StateLoaderSpy()
+        
+        let sut = RegisterPurchaseUIComposer.composeCreatePurchase(loader: loader.loadStatesPublisher)
         
         checkForMemoryLeaks(sut)
         
-        return sut
+        return (sut, loader)
     }
     
     func assertThat(_ sut: RegisterPurchaseViewController, hasValueTextFieldValue value: String, whenValueTyped typed: String, file: StaticString = #file, line: UInt = #line) {
@@ -181,6 +201,14 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         let window = UIWindow()
         
         window.addSubview(vc.view)
+    }
+}
+
+class StateLoaderSpy: StateLoader {
+    var loadMessages = [(LoadResult) -> Void]()
+    
+    func load(completion: @escaping (LoadResult) -> Void) {
+        loadMessages.append(completion)
     }
 }
 
@@ -287,5 +315,13 @@ private extension RegisterPurchaseViewController {
     
     func tapPaymentDoneButton() {
         paymentTypesPickerController.didTapDoneButton()
+    }
+    
+    func selectState(_ row: Int) {
+        statesPickerController.pickerView.delegate?.pickerView?(statesPickerController.pickerView, didSelectRow: row, inComponent: 0)
+    }
+    
+    var selectedState: USAStates? {
+        statesPickerController.selectedOption
     }
 }

@@ -133,9 +133,9 @@ final class PurchaseListViewControllerIntegrationTests: XCTestCase {
     }
     
     // MARK: Helpers
-    func makeSUT() -> (sut: PurchasesListViewController, loader: LoaderSpy, navigationSpy: NavigationSpy) {
+    func makeSUT() -> (sut: PurchasesListViewController, loader: PurchaseLoaderSpy, navigationSpy: NavigationSpy) {
         let navigationSpy = NavigationSpy()
-        let loader = LoaderSpy()
+        let loader = PurchaseLoaderSpy()
         let sut = PurchasesListUIComposer.composePurchasesList(
             loader: loader.loadPurchasesPublisher,
             onPurchaseRegister: navigationSpy.onPurchaseRegister

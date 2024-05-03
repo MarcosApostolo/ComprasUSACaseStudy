@@ -79,7 +79,7 @@
 		4ABB4E0E2BDD8AC8009C2428 /* PurchaseListSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E0D2BDD8AC8009C2428 /* PurchaseListSnapshotTests.swift */; };
 		4ABB4E102BDD8B46009C2428 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E0F2BDD8B46009C2428 /* XCTestCase+Snapshot.swift */; };
 		4ABB4E122BDD8B5F009C2428 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E112BDD8B5F009C2428 /* UIViewController+Snapshot.swift */; };
-		4ABB4E162BDD8CE8009C2428 /* LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E152BDD8CE8009C2428 /* LoaderSpy.swift */; };
+		4ABB4E162BDD8CE8009C2428 /* PurchaseLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E152BDD8CE8009C2428 /* PurchaseLoaderSpy.swift */; };
 		4ABB4E182BDD8D12009C2428 /* PurchasesListViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E172BDD8D12009C2428 /* PurchasesListViewController+Helpers.swift */; };
 		4ABB4E1F2BDD9346009C2428 /* EmptyMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E1E2BDD9346009C2428 /* EmptyMessageView.swift */; };
 		4ABB4E212BDD93BA009C2428 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB4E202BDD93BA009C2428 /* ViewCode.swift */; };
@@ -216,7 +216,7 @@
 		4ABB4E0D2BDD8AC8009C2428 /* PurchaseListSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseListSnapshotTests.swift; sourceTree = "<group>"; };
 		4ABB4E0F2BDD8B46009C2428 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		4ABB4E112BDD8B5F009C2428 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
-		4ABB4E152BDD8CE8009C2428 /* LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderSpy.swift; sourceTree = "<group>"; };
+		4ABB4E152BDD8CE8009C2428 /* PurchaseLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseLoaderSpy.swift; sourceTree = "<group>"; };
 		4ABB4E172BDD8D12009C2428 /* PurchasesListViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchasesListViewController+Helpers.swift"; sourceTree = "<group>"; };
 		4ABB4E1E2BDD9346009C2428 /* EmptyMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMessageView.swift; sourceTree = "<group>"; };
 		4ABB4E202BDD93BA009C2428 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
@@ -575,7 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				4A7146B12BDB2EC300D202BE /* XCTestCase+Localized.swift */,
-				4ABB4E152BDD8CE8009C2428 /* LoaderSpy.swift */,
+				4ABB4E152BDD8CE8009C2428 /* PurchaseLoaderSpy.swift */,
 				4ABB4E172BDD8D12009C2428 /* PurchasesListViewController+Helpers.swift */,
 			);
 			path = Helpers;
@@ -966,7 +966,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ABB4E162BDD8CE8009C2428 /* LoaderSpy.swift in Sources */,
+				4ABB4E162BDD8CE8009C2428 /* PurchaseLoaderSpy.swift in Sources */,
 				4ABB4E0E2BDD8AC8009C2428 /* PurchaseListSnapshotTests.swift in Sources */,
 				4A97BD542BDEDCD500F2CC36 /* PurchaseDetailsIntegrationTests.swift in Sources */,
 				4A7146B22BDB2EC300D202BE /* XCTestCase+Localized.swift in Sources */,

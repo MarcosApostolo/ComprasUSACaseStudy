@@ -27,6 +27,10 @@ public class RegisterPurchaseViewController: UIViewController {
         view.addSubview(paymentTypesPickerController.typeButton)
         view.addSubview(paymentTypesPickerController.pickerView)
         view.addSubview(paymentTypesPickerController.textField)
+        
+        statesPickerController.onOptionSelect = { [weak self] _ in
+            self?.viewModel?.loadStates()
+        }
     }
 
     private func bind() {

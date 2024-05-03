@@ -9,7 +9,7 @@ import XCTest
 import ComprasUSAiOS
 import ComprasUSACaseStudy
 
-final class RegisterPurchaseViewControllerTests: XCTestCase {
+final class RegisterPurchaseViewControllerIntegrationTests: XCTestCase {
     func test_init_display() {
         let (sut, _) = makeSUT()
         

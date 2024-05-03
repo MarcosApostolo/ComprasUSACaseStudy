@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		4A6693ED2BE26335002B46C9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4A6693EC2BE26335002B46C9 /* README.md */; };
+		4A7D3A892BE58D8A0082B284 /* PurchasesListViewControllerIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A882BE58D8A0082B284 /* PurchasesListViewControllerIntegrationTests.swift */; };
+		4A7D3A8C2BE58DB40082B284 /* XCTestCase+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A8B2BE58DB40082B284 /* XCTestCase+Localized.swift */; };
+		4A7D3A8E2BE58DE60082B284 /* XCTestCase+MemoryLeakCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A8D2BE58DE60082B284 /* XCTestCase+MemoryLeakCheck.swift */; };
+		4A7D3A902BE58E040082B284 /* PurchaseLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A8F2BE58E040082B284 /* PurchaseLoaderSpy.swift */; };
+		4A7D3A922BE58E0D0082B284 /* PurchasesListViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A912BE58E0D0082B284 /* PurchasesListViewController+Helpers.swift */; };
+		4A7D3A952BE58E4F0082B284 /* UIViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A942BE58E4F0082B284 /* UIViewController+TestHelpers.swift */; };
+		4A7D3A982BE58E9C0082B284 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A972BE58E9C0082B284 /* TestHelpers.swift */; };
+		4A7D3A9B2BE58EF20082B284 /* PurchaseDetailsUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A9A2BE58EF20082B284 /* PurchaseDetailsUIIntegrationTests.swift */; };
+		4A7D3A9E2BE58F230082B284 /* RegisterPurchaseUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A9D2BE58F230082B284 /* RegisterPurchaseUIIntegrationTests.swift */; };
+		4A7D3AA02BE58F4C0082B284 /* UIKit+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3A9F2BE58F4C0082B284 /* UIKit+TestHelpers.swift */; };
 		4A80CF462BE10A65009D2139 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A80CF452BE10A65009D2139 /* AppDelegate.swift */; };
 		4A80CF482BE10A65009D2139 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A80CF472BE10A65009D2139 /* SceneDelegate.swift */; };
 		4A80CF4F2BE10A66009D2139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A80CF4E2BE10A66009D2139 /* Assets.xcassets */; };
@@ -48,6 +58,17 @@
 		4A7D3A722BE58BC10082B284 /* ComprasUSACaseStudyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComprasUSACaseStudyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7D3A7B2BE58BD80082B284 /* ComprasUSACaseStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ComprasUSACaseStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7D3A7C2BE58BD80082B284 /* ComprasUSAiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ComprasUSAiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A7D3A882BE58D8A0082B284 /* PurchasesListViewControllerIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchasesListViewControllerIntegrationTests.swift; sourceTree = "<group>"; };
+		4A7D3A8B2BE58DB40082B284 /* XCTestCase+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Localized.swift"; sourceTree = "<group>"; };
+		4A7D3A8D2BE58DE60082B284 /* XCTestCase+MemoryLeakCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakCheck.swift"; sourceTree = "<group>"; };
+		4A7D3A8F2BE58E040082B284 /* PurchaseLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseLoaderSpy.swift; sourceTree = "<group>"; };
+		4A7D3A912BE58E0D0082B284 /* PurchasesListViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PurchasesListViewController+Helpers.swift"; sourceTree = "<group>"; };
+		4A7D3A942BE58E4F0082B284 /* UIViewController+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		4A7D3A962BE58E710082B284 /* ComprasUSACaseStudyApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = ComprasUSACaseStudyApp.xctestplan; path = ../../../ComprasUSACaseStudyApp.xctestplan; sourceTree = "<group>"; };
+		4A7D3A972BE58E9C0082B284 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		4A7D3A9A2BE58EF20082B284 /* PurchaseDetailsUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseDetailsUIIntegrationTests.swift; sourceTree = "<group>"; };
+		4A7D3A9D2BE58F230082B284 /* RegisterPurchaseUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPurchaseUIIntegrationTests.swift; sourceTree = "<group>"; };
+		4A7D3A9F2BE58F4C0082B284 /* UIKit+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+TestHelpers.swift"; sourceTree = "<group>"; };
 		4A80CF422BE10A65009D2139 /* ComprasUSACaseStudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSACaseStudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A80CF452BE10A65009D2139 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A80CF472BE10A65009D2139 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,8 +102,67 @@
 		4A7D3A732BE58BC10082B284 /* ComprasUSACaseStudyAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				4A7D3A962BE58E710082B284 /* ComprasUSACaseStudyApp.xctestplan */,
+				4A7D3A932BE58E420082B284 /* Helpers */,
+				4A7D3A862BE58D510082B284 /* Purchases */,
 			);
 			path = ComprasUSACaseStudyAppTests;
+			sourceTree = "<group>";
+		};
+		4A7D3A862BE58D510082B284 /* Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3A8A2BE58DA90082B284 /* Helpers */,
+				4A7D3A9C2BE58F190082B284 /* RegisterPurchase */,
+				4A7D3A992BE58EE40082B284 /* PurchaseDetails */,
+				4A7D3A872BE58D6E0082B284 /* PurchasesList */,
+			);
+			path = Purchases;
+			sourceTree = "<group>";
+		};
+		4A7D3A872BE58D6E0082B284 /* PurchasesList */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3A882BE58D8A0082B284 /* PurchasesListViewControllerIntegrationTests.swift */,
+			);
+			path = PurchasesList;
+			sourceTree = "<group>";
+		};
+		4A7D3A8A2BE58DA90082B284 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3A912BE58E0D0082B284 /* PurchasesListViewController+Helpers.swift */,
+				4A7D3A8F2BE58E040082B284 /* PurchaseLoaderSpy.swift */,
+				4A7D3A8B2BE58DB40082B284 /* XCTestCase+Localized.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4A7D3A932BE58E420082B284 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3A8D2BE58DE60082B284 /* XCTestCase+MemoryLeakCheck.swift */,
+				4A7D3A942BE58E4F0082B284 /* UIViewController+TestHelpers.swift */,
+				4A7D3A972BE58E9C0082B284 /* TestHelpers.swift */,
+				4A7D3A9F2BE58F4C0082B284 /* UIKit+TestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4A7D3A992BE58EE40082B284 /* PurchaseDetails */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3A9A2BE58EF20082B284 /* PurchaseDetailsUIIntegrationTests.swift */,
+			);
+			path = PurchaseDetails;
+			sourceTree = "<group>";
+		};
+		4A7D3A9C2BE58F190082B284 /* RegisterPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3A9D2BE58F230082B284 /* RegisterPurchaseUIIntegrationTests.swift */,
+			);
+			path = RegisterPurchase;
 			sourceTree = "<group>";
 		};
 		4A80CF392BE10A65009D2139 = {
@@ -230,6 +310,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A7D3A9B2BE58EF20082B284 /* PurchaseDetailsUIIntegrationTests.swift in Sources */,
+				4A7D3AA02BE58F4C0082B284 /* UIKit+TestHelpers.swift in Sources */,
+				4A7D3A952BE58E4F0082B284 /* UIViewController+TestHelpers.swift in Sources */,
+				4A7D3A922BE58E0D0082B284 /* PurchasesListViewController+Helpers.swift in Sources */,
+				4A7D3A9E2BE58F230082B284 /* RegisterPurchaseUIIntegrationTests.swift in Sources */,
+				4A7D3A982BE58E9C0082B284 /* TestHelpers.swift in Sources */,
+				4A7D3A902BE58E040082B284 /* PurchaseLoaderSpy.swift in Sources */,
+				4A7D3A8C2BE58DB40082B284 /* XCTestCase+Localized.swift in Sources */,
+				4A7D3A892BE58D8A0082B284 /* PurchasesListViewControllerIntegrationTests.swift in Sources */,
+				4A7D3A8E2BE58DE60082B284 /* XCTestCase+MemoryLeakCheck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -66,3 +66,14 @@ private final class SnapshotWindow: UIWindow {
         }
     }
 }
+
+extension UIViewController {
+    func simulateAppearance() {
+        if !isViewLoaded {
+            loadViewIfNeeded()
+        }
+
+        beginAppearanceTransition(true, animated: false)
+        endAppearanceTransition()
+    }
+}

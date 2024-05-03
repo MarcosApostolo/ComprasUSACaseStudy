@@ -135,7 +135,7 @@ final class RegisterPurchaseUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.pickerSelectedOption, .card)
     }
     
-    func test_picker_whenTappingLabel_opensPicker() {
+    func test_picker_whenTappingLabel_opensPicker_whenTappingDone_closesPicker() {
         let (sut, _) = makeSUT()
         
         sut.simulateAppearance()
@@ -316,7 +316,9 @@ private extension RegisterPurchaseViewController {
     }
     
     func tapPaymentDoneButton() {
-        paymentTypesPickerController.didTapDoneButton()
+        let item = paymentTypesPickerController.doneToolbar.items?.last
+        
+        let _ = item?.target?.perform(item?.action, with: nil)
     }
     
     func selectState(_ row: Int) {

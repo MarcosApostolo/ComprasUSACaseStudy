@@ -123,7 +123,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.paymentTypePickerNumberOfRows, 2)
     }
     
-    func test_paymentTypesPicker_whenPickingType_updatesPickerLocalState() {
+    func test_picker_whenPickingOption_updatesPickerLocalState() {
         let sut = makeSUT()
         
         let cardPaymentTypeRowNumber = 0
@@ -135,7 +135,7 @@ final class RegisterPurchaseViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.pickerSelectedOption, .card)
     }
     
-    func test_paymentTypesPicker_whenTappingTypeLabel_opensPicker() {
+    func test_picker_whenTappingLabel_opensPicker() {
         let sut = makeSUT()
         
         sut.simulateAppearance()

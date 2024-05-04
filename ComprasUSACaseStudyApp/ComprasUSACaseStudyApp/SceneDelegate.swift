@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This force try will be removed once the App composition is complete
         let store = try! CoreDataStore(storeURL: NSPersistentContainer
             .defaultDirectoryURL()
-            .appendingPathComponent("feed-store.sqlite"))
+            .appendingPathComponent("purchase-store.sqlite"))
         
         let loader = PurchaseFeatureUseCase(store: store)
         

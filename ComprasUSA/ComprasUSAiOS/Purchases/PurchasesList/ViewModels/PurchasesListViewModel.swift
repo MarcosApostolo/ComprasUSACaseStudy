@@ -15,7 +15,7 @@ public class PurchasesListViewModel {
     
     var onLoadingStateChange: Observer<Bool>?
     var onErrorStateChange: Observer<String?>?
-    var onEmptyFeedLoad: Observer<Bool>?
+    var onEmptyPurchasesLoad: Observer<Bool>?
     var onPurchasesLoad: Observer<[Purchase]>?
     
     var title: String {
@@ -60,7 +60,7 @@ public class PurchasesListViewModel {
     func loadPurchases() {
         onLoadingStateChange?(true)
         onErrorStateChange?(.none)
-        onEmptyFeedLoad?(false)
+        onEmptyPurchasesLoad?(false)
         
         self.cancellable = loader()
             .dispatchOnMainQueue()
@@ -76,7 +76,7 @@ public class PurchasesListViewModel {
             },
             receiveValue: { [weak self] purchases in
                 if (purchases.isEmpty) {
-                    self?.onEmptyFeedLoad?(true)
+                    self?.onEmptyPurchasesLoad?(true)
                     return
                 }
                 

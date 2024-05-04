@@ -149,7 +149,7 @@ final class PurchaseListUIIntegrationTests: XCTestCase {
     }
     
     func assertThat(_ sut: PurchasesListViewController, isRendering purchases: [Purchase], file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertEqual(sut.numberOfRenderedFeedImageViews(), purchases.count, "Expected one cell for each purchase loaded")
+        XCTAssertEqual(sut.numberOfRenderedPurchaseCellViews(), purchases.count, "Expected one cell for each purchase loaded")
         
         purchases.enumerated().forEach({ index, purchase in
             let view = sut.purchaseCell(for: index)

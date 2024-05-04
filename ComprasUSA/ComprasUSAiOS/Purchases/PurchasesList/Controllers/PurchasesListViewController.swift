@@ -98,7 +98,7 @@ public class PurchasesListViewController: UITableViewController {
             self?.errorMessage = error
         }
         
-        viewModel?.onEmptyFeedLoad = { [weak self] isEmpty in
+        viewModel?.onEmptyPurchasesLoad = { [weak self] isEmpty in
             self?.emptyMessageView.isHidden = !isEmpty
         }
     }

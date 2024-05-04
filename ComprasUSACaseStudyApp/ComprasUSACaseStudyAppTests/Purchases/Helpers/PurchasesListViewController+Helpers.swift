@@ -38,7 +38,7 @@ extension PurchasesListViewController {
         self.emptyMessageView.button.simulateTap()
     }
     
-    func numberOfRenderedFeedImageViews() -> Int {
+    func numberOfRenderedPurchaseCellViews() -> Int {
         return tableView.numberOfRows(inSection: section)
     }
     
